@@ -7,7 +7,7 @@
   max-width: 1180px;
   margin: 0 auto;
   padding: 48px 34px 90px;
-  color: #111111;
+  color: #171717;
 }
 
 .placement-monitoring-page * {
@@ -41,7 +41,7 @@
   display: block;
   margin-bottom: 18px;
 
-  color: #008f86;
+  color: #6d3fd0;
   font-family: "Courier New", monospace;
   font-size: 11px;
   font-weight: 600;
@@ -83,7 +83,7 @@
 }
 
 .placement-hero-stat strong {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
   font-size: 48px;
   font-weight: 500;
   line-height: 1;
@@ -158,7 +158,7 @@
   border: 1px solid #d8d8d8;
   border-radius: 10px;
 
-  color: #111111;
+  color: #171717;
   font: inherit;
   font-size: 13px;
 
@@ -167,7 +167,7 @@
 }
 
 .placement-filter select:focus {
-  border-color: #00a99d;
+  border-color: #7c3aed;
 }
 
 /* =========================================================
@@ -211,7 +211,7 @@
 .placement-summary-card strong {
   margin: 13px 0 8px;
 
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
   font-size: 38px;
   font-weight: 500;
 }
@@ -225,8 +225,8 @@
 }
 
 .placement-summary-highlight {
-  background: #f1fbfa;
-  border-color: #77dcd5;
+  background: #f5f0ff;
+  border-color: #cbb9f7;
 }
 
 /* =========================================================
@@ -303,7 +303,7 @@
 }
 
 .placement-pipeline-stage > span {
-  color: #008f86;
+  color: #6d3fd0;
   font-family: "Courier New", monospace;
   font-size: 9px;
   letter-spacing: 1px;
@@ -312,7 +312,7 @@
 .placement-pipeline-stage strong {
   margin: 9px 0 4px;
 
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
   font-size: 34px;
   font-weight: 500;
 }
@@ -332,11 +332,11 @@
 }
 
 .placement-pipeline-selected {
-  color: #008f86;
+  color: #6d3fd0;
 }
 
 .placement-pipeline-selected strong {
-  color: #008f86;
+  color: #6d3fd0;
 }
 
 .placement-pipeline-note {
@@ -394,7 +394,7 @@
 }
 
 .placement-table td strong {
-  color: #111111;
+  color: #171717;
 }
 
 .placement-participation {
@@ -418,7 +418,7 @@
 .placement-participation-fill {
   height: 100%;
 
-  background: #00a99d;
+  background: #7c3aed;
   border-radius: 999px;
 }
 
@@ -461,7 +461,7 @@
 
   padding-top: 27px;
 
-  color: #008f86;
+  color: #6d3fd0;
   font-family: "Courier New", monospace;
   font-size: 10px;
   text-align: center;
@@ -484,7 +484,7 @@
 }
 
 .placement-card-label {
-  color: #008f86;
+  color: #6d3fd0;
   font-family: "Courier New", monospace;
   font-size: 9px;
   letter-spacing: 1.1px;
@@ -675,7 +675,7 @@
 }
 
 .placement-progress-row strong {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
   font-size: 26px;
   font-weight: 500;
 }
@@ -693,7 +693,7 @@
 .placement-progress-fill {
   height: 100%;
 
-  background: #00a99d;
+  background: #7c3aed;
   border-radius: 999px;
 }
 
