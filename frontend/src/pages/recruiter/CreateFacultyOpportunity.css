@@ -1,0 +1,340 @@
+.create-faculty-page {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.create-faculty-header {
+  margin-bottom: 26px;
+}
+
+.create-faculty-back {
+  margin-bottom: 24px;
+  padding: 0;
+
+  border: 0;
+  background: transparent;
+
+  color: var(--recruiter-shell-muted);
+
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.create-faculty-back:hover {
+  color: var(--recruiter-shell-accent);
+}
+
+.create-faculty-heading-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+}
+
+.create-faculty-eyebrow {
+  color: var(--recruiter-shell-accent);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.create-faculty-heading-row h1 {
+  margin: 8px 0 10px;
+
+  font-family: "Fraunces", serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.create-faculty-heading-row h1 span {
+  color: var(--recruiter-shell-accent);
+}
+
+.create-faculty-heading-row p {
+  max-width: 650px;
+  margin: 0;
+
+  color: var(--recruiter-shell-muted);
+
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.create-faculty-company {
+  min-width: 190px;
+
+  padding: 12px 14px;
+
+  border: 1px solid var(--recruiter-shell-border);
+  border-radius: 10px;
+
+  background: var(--recruiter-shell-panel);
+}
+
+.create-faculty-company span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: var(--recruiter-shell-muted);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.62rem;
+
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.create-faculty-company strong {
+  font-size: 0.8rem;
+}
+
+/* ERROR */
+
+.create-faculty-error {
+  margin-bottom: 18px;
+  padding: 13px 15px;
+
+  border: 1px solid rgba(255, 55, 95, 0.3);
+  border-radius: 10px;
+
+  background: var(--recruiter-shell-accent-soft);
+  color: var(--recruiter-shell-danger);
+
+  font-size: 0.8rem;
+}
+
+/* FORM */
+
+.create-faculty-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.create-faculty-section {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 18px;
+
+  padding: 24px;
+
+  border: 1px solid var(--recruiter-shell-border);
+  border-radius: 15px;
+
+  background: var(--recruiter-shell-panel);
+}
+
+.create-faculty-section-number {
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 10px;
+
+  background: var(--recruiter-shell-accent-soft);
+  color: var(--recruiter-shell-accent);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.create-faculty-section-heading {
+  margin-bottom: 20px;
+}
+
+.create-faculty-section-heading h2 {
+  margin: 0 0 5px;
+
+  font-family: "Fraunces", serif;
+  font-size: 1.25rem;
+}
+
+.create-faculty-section-heading p {
+  margin: 0;
+
+  color: var(--recruiter-shell-muted);
+
+  font-size: 0.78rem;
+}
+
+/* FIELDS */
+
+.create-faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.create-faculty-date-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.create-faculty-full {
+  grid-column: 1 / -1;
+}
+
+.create-faculty-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.create-faculty-field label {
+  color: var(--recruiter-shell-ink);
+
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.create-faculty-field input,
+.create-faculty-field select,
+.create-faculty-field textarea {
+  width: 100%;
+
+  border: 1px solid var(--recruiter-shell-border);
+  border-radius: 9px;
+
+  background: var(--recruiter-shell-panel-soft);
+  color: var(--recruiter-shell-ink);
+
+  font: inherit;
+
+  outline: none;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.create-faculty-field input,
+.create-faculty-field select {
+  min-height: 44px;
+  padding: 0 12px;
+}
+
+.create-faculty-field textarea {
+  min-height: 135px;
+  padding: 12px;
+
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.create-faculty-field input:focus,
+.create-faculty-field select:focus,
+.create-faculty-field textarea:focus {
+  border-color: var(--recruiter-shell-accent);
+
+  box-shadow:
+    0 0 0 3px rgba(255, 55, 95, 0.08);
+}
+
+.create-faculty-field input::placeholder,
+.create-faculty-field textarea::placeholder {
+  color: #a6a6a6;
+}
+
+/* ACTIONS */
+
+.create-faculty-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  padding-top: 8px;
+}
+
+.create-faculty-cancel,
+.create-faculty-submit {
+  min-height: 44px;
+
+  padding: 0 18px;
+
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.create-faculty-cancel {
+  border: 1px solid var(--recruiter-shell-border);
+
+  background: var(--recruiter-shell-panel);
+  color: var(--recruiter-shell-muted);
+}
+
+.create-faculty-submit {
+  border: 0;
+
+  background: var(--recruiter-shell-accent);
+  color: #ffffff;
+}
+
+.create-faculty-submit:disabled,
+.create-faculty-cancel:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.create-faculty-state {
+  min-height: 55vh;
+
+  display: grid;
+  place-items: center;
+
+  color: var(--recruiter-shell-muted);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+  .create-faculty-heading-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .create-faculty-company {
+    width: 100%;
+  }
+
+  .create-faculty-grid,
+  .create-faculty-date-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .create-faculty-full {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .create-faculty-section {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+
+  .create-faculty-actions {
+    flex-direction: column-reverse;
+  }
+
+  .create-faculty-cancel,
+  .create-faculty-submit {
+    width: 100%;
+  }
+}

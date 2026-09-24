@@ -1,0 +1,600 @@
+.internship-page {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 70px 38px 100px;
+  color: #111827;
+}
+
+.internship-hero {
+  margin-bottom: 42px;
+  text-align: center;
+}
+
+.internship-kicker {
+  margin: 0 0 14px;
+  color: #ef3155;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.internship-hero h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(48px, 6vw, 76px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -3px;
+}
+
+.internship-hero h1 span {
+  color: #ef3155;
+}
+
+.internship-hero > p:not(.internship-kicker) {
+  max-width: 760px;
+  margin: 22px auto 0;
+  color: #6f7789;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.internship-company {
+  width: fit-content;
+  margin: 28px auto 0;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid #d9dde5;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.internship-company span {
+  color: #969dad;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  letter-spacing: 1.3px;
+}
+
+.internship-company strong {
+  font-size: 15px;
+}
+
+/* =========================
+   MESSAGES
+========================= */
+
+.internship-message {
+  margin-bottom: 22px;
+  padding: 15px 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.internship-message.success {
+  border: 1px solid #8dddd0;
+  background: #effcf8;
+  color: #008d72;
+}
+
+.internship-message.error {
+  border: 1px solid #ffb9c6;
+  background: #fff5f7;
+  color: #d92d50;
+}
+
+/* =========================
+   SUMMARY
+========================= */
+
+.internship-summary {
+  margin-bottom: 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.internship-summary article {
+  min-height: 180px;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d9dde5;
+  border-radius: 18px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.internship-summary span {
+  color: #737c8e;
+  font-size: 15px;
+}
+
+.internship-summary strong {
+  margin-top: 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 42px;
+  font-weight: 500;
+}
+
+.internship-summary p {
+  margin: 8px 0 0;
+  color: #9aa1af;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+/* =========================
+   RECORD
+========================= */
+
+.internship-record-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.internship-record {
+  overflow: hidden;
+  border: 1px solid #d8dce5;
+  border-radius: 22px;
+  background: #ffffff;
+}
+
+.internship-record-header {
+  padding: 32px 34px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.internship-student {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.internship-avatar {
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 17px;
+  background: #ffe5eb;
+  color: #ef3155;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 29px;
+}
+
+.internship-student-top {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.internship-student h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.internship-student p {
+  margin: 7px 0;
+  color: #7a8294;
+  font-size: 14px;
+}
+
+.internship-opportunity {
+  color: #ef3155;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.internship-status-pill {
+  padding: 7px 10px;
+  border: 1px solid #d8dde5;
+  border-radius: 999px;
+  background: #f7f8fa;
+  color: #747c8e;
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.internship-status-pill.ongoing {
+  border-color: #85dfd1;
+  background: #effcf9;
+  color: #009d82;
+}
+
+.internship-status-pill.completed {
+  border-color: #b8d6ff;
+  background: #f1f7ff;
+  color: #2776dc;
+}
+
+.internship-status-pill.paused {
+  border-color: #ffd39d;
+  background: #fff8ed;
+  color: #d77a08;
+}
+
+.internship-progress-number {
+  min-width: 130px;
+  text-align: right;
+}
+
+.internship-progress-number span {
+  display: block;
+  color: #8790a1;
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  letter-spacing: 1.4px;
+}
+
+.internship-progress-number strong {
+  display: block;
+  margin-top: 4px;
+  color: #00a589;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 45px;
+  font-weight: 500;
+}
+
+/* =========================
+   PROGRESS BAR
+========================= */
+
+.internship-progress-track {
+  height: 8px;
+  margin: 0 34px 28px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #eceff3;
+}
+
+.internship-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: #00aa8c;
+  transition: width 0.25s ease;
+}
+
+/* =========================
+   STUDENT META
+========================= */
+
+.internship-student-meta {
+  margin: 0 34px 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  overflow: hidden;
+  border: 1px solid #e0e3e9;
+  border-radius: 14px;
+}
+
+.internship-student-meta div {
+  min-height: 90px;
+  padding: 17px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #e0e3e9;
+  text-align: center;
+}
+
+.internship-student-meta div:last-child {
+  border-right: none;
+}
+
+.internship-student-meta span {
+  color: #8b93a3;
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.internship-student-meta strong {
+  margin-top: 7px;
+  font-size: 15px;
+}
+
+/* =========================
+   EDIT AREA
+========================= */
+
+.internship-edit-grid {
+  padding: 30px 34px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  border-top: 1px solid #e6e8ed;
+  background: #fafbfc;
+}
+
+.internship-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.internship-field label {
+  color: #4e5668;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.internship-field > input,
+.internship-field select,
+.internship-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d8dce5;
+  border-radius: 11px;
+  outline: none;
+  background: #ffffff;
+  color: #111827;
+  font: inherit;
+}
+
+.internship-field > input,
+.internship-field select {
+  height: 48px;
+  padding: 0 14px;
+}
+
+.internship-field textarea {
+  min-height: 110px;
+  padding: 14px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.internship-field > input:focus,
+.internship-field select:focus,
+.internship-field textarea:focus {
+  border-color: #ef3155;
+}
+
+.internship-wide-field {
+  grid-column: 1 / -1;
+}
+
+/* =========================
+   RANGE INPUT
+========================= */
+
+.internship-progress-input {
+  min-height: 48px;
+  padding: 0 12px;
+  display: grid;
+  grid-template-columns: 1fr 70px 18px;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #d8dce5;
+  border-radius: 11px;
+  background: #ffffff;
+}
+
+.internship-progress-input input[type="range"] {
+  width: 100%;
+  accent-color: #ef3155;
+}
+
+.internship-progress-input input[type="number"] {
+  width: 70px;
+  height: 34px;
+  box-sizing: border-box;
+  border: 1px solid #d8dce5;
+  border-radius: 8px;
+  outline: none;
+  text-align: center;
+}
+
+.internship-progress-input span {
+  color: #737b8c;
+  font-size: 13px;
+}
+
+/* =========================
+   STUDENT UPDATE
+========================= */
+
+.internship-student-update {
+  min-height: 75px;
+  padding: 16px;
+  border: 1px dashed #cfd5df;
+  border-radius: 11px;
+  background: #ffffff;
+  color: #70798b;
+  line-height: 1.6;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.internship-record-footer {
+  padding: 22px 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid #e4e7ec;
+}
+
+.internship-record-footer > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  color: #858d9e;
+  font-size: 13px;
+}
+
+.internship-record-footer strong {
+  color: #333b4b;
+}
+
+.internship-save-button {
+  min-width: 150px;
+  height: 48px;
+  padding: 0 22px;
+  border: 1px solid #ef3155;
+  border-radius: 11px;
+  background: #ef3155;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.internship-save-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: #dc2949;
+}
+
+.internship-save-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* =========================
+   EMPTY / LOADING
+========================= */
+
+.internship-empty {
+  min-height: 350px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed #ccd2dc;
+  border-radius: 20px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.internship-empty-icon {
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  background: #ffe8ed;
+  color: #ef3155;
+  font-size: 25px;
+}
+
+.internship-empty h2 {
+  margin: 20px 0 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.internship-empty p {
+  margin: 0;
+  color: #858d9e;
+}
+
+.internship-state {
+  min-height: 500px;
+  display: grid;
+  place-items: center;
+  padding: 40px;
+  color: #747c8e;
+  text-align: center;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+  .internship-summary {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .internship-student-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .internship-student-meta div:nth-child(2) {
+    border-right: none;
+  }
+
+  .internship-student-meta div:nth-child(-n + 2) {
+    border-bottom: 1px solid #e0e3e9;
+  }
+}
+
+@media (max-width: 720px) {
+  .internship-page {
+    padding: 45px 18px 80px;
+  }
+
+  .internship-hero h1 {
+    font-size: 47px;
+    letter-spacing: -2px;
+  }
+
+  .internship-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .internship-record-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .internship-progress-number {
+    width: 100%;
+    text-align: left;
+  }
+
+  .internship-student-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .internship-student-meta div {
+    border-right: none;
+    border-bottom: 1px solid #e0e3e9;
+  }
+
+  .internship-student-meta div:last-child {
+    border-bottom: none;
+  }
+
+  .internship-edit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .internship-wide-field {
+    grid-column: auto;
+  }
+
+  .internship-record-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .internship-save-button {
+    width: 100%;
+  }
+}

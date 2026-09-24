@@ -1,0 +1,776 @@
+/* =========================================
+   COLLEGE DASHBOARD
+========================================= */
+
+.college-dashboard {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 42px 34px 70px;
+  box-sizing: border-box;
+  color: #111827;
+}
+
+/* =========================================
+   LOADING / ERROR
+========================================= */
+
+.college-dashboard-state {
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  color: #667085;
+}
+
+.college-dashboard-state.error {
+  color: #d92d20;
+}
+
+/* =========================================
+   HERO
+========================================= */
+
+.college-dashboard-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 34px;
+}
+
+.college-hero-copy {
+  max-width: 720px;
+}
+
+.college-dashboard-eyebrow,
+.college-card-kicker {
+  display: block;
+  margin-bottom: 10px;
+  color: #6f38ff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.college-dashboard-hero h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(42px, 5vw, 64px);
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -2px;
+}
+
+.college-dashboard-hero h1 span {
+  color: #6f38ff;
+}
+
+.college-dashboard-hero p {
+  max-width: 700px;
+  margin: 20px 0 0;
+  color: #667085;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.college-institution-badge {
+  min-width: 220px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid #dde1e8;
+  border-radius: 14px;
+}
+
+.college-institution-badge div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.college-institution-badge small {
+  color: #98a2b3;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.college-institution-badge strong {
+  font-size: 14px;
+}
+
+.college-live-dot {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+  background: #12b76a;
+  border-radius: 50%;
+}
+
+/* =========================================
+   MAIN STAT CARDS
+========================================= */
+
+.college-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.college-stat-card {
+  min-height: 190px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #dde1e8;
+  border-radius: 18px;
+  box-sizing: border-box;
+}
+
+.college-stat-icon {
+  width: 38px;
+  height: 38px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.college-stat-icon.purple {
+  color: #6f38ff;
+  background: #f1eaff;
+}
+
+.college-stat-icon.green {
+  color: #039855;
+  background: #e8f8f1;
+}
+
+.college-stat-icon.blue {
+  color: #1570ef;
+  background: #eaf4ff;
+}
+
+.college-stat-icon.orange {
+  color: #f79009;
+  background: #fff4e5;
+}
+
+.college-stat-label {
+  color: #667085;
+  font-size: 14px;
+}
+
+.college-stat-card > strong {
+  margin: 7px 0 9px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 42px;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.college-stat-foot {
+  margin-top: auto;
+  color: #98a2b3;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+/* =========================================
+   COMMON CARD
+========================================= */
+
+.college-dashboard-card {
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid #dde1e8;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.college-dashboard-two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.college-card-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e7e9ee;
+}
+
+.college-card-heading h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.college-card-heading button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #6f38ff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.college-card-heading button:hover {
+  text-decoration: underline;
+}
+
+/* =========================================
+   READINESS
+========================================= */
+
+.college-readiness-block {
+  padding: 26px 0 20px;
+}
+
+.college-readiness-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  margin-bottom: 14px;
+}
+
+.college-readiness-main strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 46px;
+  font-weight: 500;
+}
+
+.college-readiness-main span {
+  padding-bottom: 6px;
+  color: #667085;
+  font-size: 14px;
+}
+
+.college-progress-track {
+  width: 100%;
+  height: 7px;
+  overflow: hidden;
+  background: #eceef2;
+  border-radius: 100px;
+}
+
+.college-progress-track.large {
+  height: 9px;
+}
+
+.college-progress-fill {
+  height: 100%;
+  background: #6f38ff;
+  border-radius: inherit;
+  transition: width 0.3s ease;
+}
+
+.college-readiness-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 25px;
+  border: 1px solid #e4e7ec;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.college-readiness-grid > div {
+  padding: 17px 10px;
+  text-align: center;
+}
+
+.college-readiness-grid > div + div {
+  border-left: 1px solid #e4e7ec;
+}
+
+.college-readiness-grid span {
+  display: block;
+  margin-bottom: 6px;
+  color: #98a2b3;
+  font-size: 12px;
+}
+
+.college-readiness-grid strong {
+  font-size: 22px;
+}
+
+/* =========================================
+   SKILL READINESS
+========================================= */
+
+.college-coverage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 26px;
+  border: 1px solid #e4e7ec;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.college-coverage-grid > div {
+  padding: 26px 16px;
+  text-align: center;
+}
+
+.college-coverage-grid > div + div {
+  border-left: 1px solid #e4e7ec;
+}
+
+.college-coverage-grid strong {
+  display: block;
+  margin-bottom: 7px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 38px;
+  font-weight: 500;
+}
+
+.college-coverage-grid span {
+  color: #667085;
+  font-size: 13px;
+}
+
+.college-skill-note {
+  margin: 20px 0 0;
+  color: #98a2b3;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* =========================================
+   SKILL GAP TABLE
+========================================= */
+
+.college-gap-card {
+  margin-bottom: 20px;
+}
+
+.college-gap-list {
+  margin-top: 8px;
+}
+
+.college-gap-header,
+.college-gap-row {
+  display: grid;
+  grid-template-columns:
+    minmax(220px, 2fr)
+    minmax(90px, 0.7fr)
+    minmax(180px, 1.3fr)
+    minmax(70px, 0.5fr);
+  gap: 20px;
+  align-items: center;
+}
+
+.college-gap-header {
+  padding: 18px 12px 12px;
+  color: #98a2b3;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.college-gap-row {
+  padding: 18px 12px;
+  border-top: 1px solid #eaecf0;
+}
+
+.college-gap-skill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.college-gap-symbol {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6f38ff;
+  background: #f1eaff;
+  border-radius: 10px;
+  font-weight: 800;
+}
+
+.college-gap-skill div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.college-gap-skill strong {
+  font-size: 14px;
+}
+
+.college-gap-skill small {
+  color: #98a2b3;
+}
+
+.college-gap-value {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.college-gap-value strong {
+  font-size: 19px;
+}
+
+.college-gap-value span {
+  color: #98a2b3;
+  font-size: 11px;
+}
+
+.college-gap-coverage > div:first-child {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.college-gap-coverage strong {
+  font-size: 13px;
+}
+
+.college-gap-coverage span {
+  color: #98a2b3;
+  font-size: 11px;
+}
+
+.college-mini-track {
+  height: 5px;
+  overflow: hidden;
+  background: #eceef2;
+  border-radius: 100px;
+}
+
+.college-mini-track div {
+  height: 100%;
+  background: #6f38ff;
+  border-radius: inherit;
+}
+
+.college-gap-badge {
+  min-width: 42px;
+  padding: 7px 9px;
+  display: inline-flex;
+  justify-content: center;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.college-gap-badge.high {
+  color: #d92d20;
+  background: #fff0ee;
+}
+
+.college-gap-badge.medium {
+  color: #dc6803;
+  background: #fff6e8;
+}
+
+.college-gap-badge.low {
+  color: #039855;
+  background: #eaf9f2;
+}
+
+/* =========================================
+   TRAINING
+========================================= */
+
+.college-training-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 25px;
+  border: 1px solid #e4e7ec;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.college-training-stats div {
+  padding: 17px 10px;
+  text-align: center;
+}
+
+.college-training-stats div + div {
+  border-left: 1px solid #e4e7ec;
+}
+
+.college-training-stats strong {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 22px;
+}
+
+.college-training-stats span {
+  color: #98a2b3;
+  font-size: 12px;
+}
+
+.college-training-list {
+  margin-top: 20px;
+}
+
+.college-training-row {
+  padding: 15px 0;
+  border-top: 1px solid #eaecf0;
+}
+
+.college-training-row:first-child {
+  border-top: 0;
+}
+
+.college-training-row > div {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 10px;
+  row-gap: 5px;
+  align-items: center;
+}
+
+.college-training-row strong {
+  font-size: 14px;
+}
+
+.college-training-row small {
+  grid-column: 2;
+  color: #98a2b3;
+}
+
+.college-training-status {
+  padding: 5px 8px;
+  border-radius: 100px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.college-training-status.active {
+  color: #027a48;
+  background: #ecfdf3;
+}
+
+.college-training-status.planned {
+  color: #6941c6;
+  background: #f4f0ff;
+}
+
+.college-training-status.completed {
+  color: #175cd3;
+  background: #eff8ff;
+}
+
+/* =========================================
+   DEPARTMENTS
+========================================= */
+
+.college-department-list {
+  margin-top: 15px;
+}
+
+.college-department-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 80px 80px;
+  gap: 15px;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #eaecf0;
+}
+
+.college-department-row:last-child {
+  border-bottom: 0;
+}
+
+.college-department-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.college-department-icon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6f38ff;
+  background: #f1eaff;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.college-department-name > div {
+  min-width: 0;
+}
+
+.college-department-name strong,
+.college-department-name span {
+  display: block;
+}
+
+.college-department-name strong {
+  overflow: hidden;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.college-department-name div > span {
+  margin-top: 3px;
+  color: #98a2b3;
+  font-size: 11px;
+}
+
+.college-department-metric {
+  text-align: center;
+}
+
+.college-department-metric span {
+  display: block;
+  margin-bottom: 3px;
+  color: #98a2b3;
+  font-size: 10px;
+}
+
+.college-department-metric strong {
+  font-size: 16px;
+}
+
+/* =========================================
+   INSTITUTION DETAILS
+========================================= */
+
+.college-institution-card {
+  margin-top: 20px;
+}
+
+.college-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-top: 25px;
+  overflow: hidden;
+  background: #e4e7ec;
+  border: 1px solid #e4e7ec;
+  border-radius: 14px;
+}
+
+.college-detail-grid > div {
+  min-height: 90px;
+  padding: 20px;
+  background: #ffffff;
+}
+
+.college-detail-grid span {
+  display: block;
+  margin-bottom: 8px;
+  color: #98a2b3;
+  font-size: 11px;
+}
+
+.college-detail-grid strong {
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+/* =========================================
+   EMPTY STATES
+========================================= */
+
+.college-empty-state {
+  padding: 55px 20px;
+  color: #98a2b3;
+  text-align: center;
+  font-size: 14px;
+}
+
+.college-small-empty {
+  margin-top: 20px;
+  padding: 25px 15px;
+  color: #98a2b3;
+  background: #f9fafb;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 13px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1050px) {
+  .college-stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .college-dashboard-two-column {
+    grid-template-columns: 1fr;
+  }
+
+  .college-detail-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .college-dashboard {
+    padding: 28px 18px 55px;
+  }
+
+  .college-dashboard-hero {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .college-institution-badge {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .college-stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .college-gap-header {
+    display: none;
+  }
+
+  .college-gap-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .college-gap-skill {
+    grid-column: 1 / -1;
+  }
+
+  .college-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .college-card-heading {
+    flex-direction: column;
+  }
+}

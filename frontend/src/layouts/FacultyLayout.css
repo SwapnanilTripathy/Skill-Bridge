@@ -1,0 +1,381 @@
+.faculty-shell {
+  min-height: 100vh;
+  display: flex;
+  background: #f8f8fa;
+  color: #111827;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.faculty-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+
+  width: 308px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 24px 22px;
+
+  border-right: 1px solid #dedfe3;
+  background: #ffffff;
+
+  z-index: 20;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.faculty-sidebar-logo {
+  min-height: 56px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  color: #111111;
+  cursor: pointer;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.faculty-sidebar-logo > span:last-child > span {
+  color: #f59e0b;
+}
+
+.faculty-sidebar-mark {
+  width: 38px;
+  height: 38px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+  background: #f59e0b;
+
+  flex-shrink: 0;
+}
+
+/* =========================
+   WORKSPACE LABEL
+========================= */
+
+.faculty-sidebar-role {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 8px;
+  padding: 8px 0 25px;
+
+  border-bottom: 1px solid #e5e7eb;
+
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #5f6672;
+}
+
+.faculty-role-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+  background: #7c3aed;
+
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.08);
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.faculty-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  margin-top: 20px;
+}
+
+.faculty-nav-item {
+  min-height: 54px;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  padding: 0 13px;
+
+  border-radius: 12px;
+
+  color: #68707c;
+  text-decoration: none;
+
+  font-size: 1rem;
+  font-weight: 500;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.faculty-nav-item svg {
+  width: 21px;
+  height: 21px;
+
+  flex-shrink: 0;
+}
+
+.faculty-nav-item:hover {
+  background: #f5f5f7;
+  color: #111827;
+}
+
+.faculty-nav-item.active {
+  background: #f0f0f3;
+  color: #111111;
+
+  box-shadow: inset 4px 0 0 #7c3aed;
+}
+
+/* =========================
+   USER SECTION
+========================= */
+
+.faculty-sidebar-bottom {
+  margin-top: auto;
+
+  padding-top: 18px;
+
+  border-top: 1px solid #e5e7eb;
+}
+
+.faculty-user-card {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  margin-bottom: 13px;
+}
+
+.faculty-avatar {
+  width: 39px;
+  height: 39px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #f3e8ff;
+  color: #6d28d9;
+
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.faculty-user-copy {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.faculty-user-copy strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  font-size: 0.82rem;
+  color: #111827;
+}
+
+.faculty-user-copy span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  font-size: 0.7rem;
+  color: #9ca3af;
+}
+
+/* =========================
+   MAIN AREA
+========================= */
+
+.faculty-main-area {
+  width: calc(100% - 308px);
+  min-width: 0;
+  min-height: 100vh;
+
+  margin-left: 308px;
+}
+
+/* =========================
+   TOPBAR
+========================= */
+
+.faculty-topbar {
+  min-height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  box-sizing: border-box;
+
+  padding: 0 34px;
+
+  border-bottom: 1px solid #e5e7eb;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.faculty-topbar-kicker {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.faculty-opportunity-shortcut {
+  min-height: 36px;
+
+  padding: 0 14px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #374151;
+
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.faculty-opportunity-shortcut:hover {
+  border-color: #9ca3af;
+  background: #f9fafb;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.faculty-content {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+
+  padding: 34px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 950px) {
+  .faculty-sidebar {
+    width: 250px;
+  }
+
+  .faculty-main-area {
+    width: calc(100% - 250px);
+    margin-left: 250px;
+  }
+
+  .faculty-sidebar-logo {
+    font-size: 1.45rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .faculty-shell {
+    display: block;
+  }
+
+  .faculty-sidebar {
+    position: static;
+
+    width: 100%;
+    min-height: auto;
+
+    padding: 0 18px 16px;
+
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .faculty-sidebar-role {
+    padding-bottom: 14px;
+  }
+
+  .faculty-sidebar-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    margin-top: 14px;
+  }
+
+  .faculty-nav-item {
+    min-height: 46px;
+    font-size: 0.84rem;
+  }
+
+  .faculty-sidebar-bottom {
+    display: none;
+  }
+
+  .faculty-main-area {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .faculty-topbar {
+    min-height: 58px;
+    padding: 0 18px;
+  }
+
+  .faculty-content {
+    padding: 22px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .faculty-sidebar-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .faculty-opportunity-shortcut {
+    display: none;
+  }
+}

@@ -1,0 +1,558 @@
+.college-training-page {
+  width: 100%;
+  min-width: 0;
+  padding-bottom: 48px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.college-training-header {
+  margin-bottom: 28px;
+}
+
+.college-training-kicker {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.college-training-header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: #111827;
+}
+
+.college-training-header p {
+  max-width: 760px;
+  margin: 14px 0 0;
+  color: #6b7280;
+  line-height: 1.7;
+}
+
+/* =========================
+   SUMMARY
+========================= */
+
+.college-training-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.college-training-summary article {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.college-training-summary article > span {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.college-training-summary strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 2rem;
+  line-height: 1;
+  color: #111827;
+}
+
+.college-training-summary p {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+/* =========================
+   MESSAGES
+========================= */
+
+.college-training-message {
+  margin-bottom: 18px;
+  padding: 13px 16px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.college-training-message.success {
+  border: 1px solid #bbf7d0;
+  background: #f0fdf4;
+  color: #166534;
+}
+
+.college-training-message.error {
+  border: 1px solid #fecaca;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.college-training-create,
+.college-training-programs {
+  min-width: 0;
+  margin-bottom: 24px;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.college-training-section-heading {
+  margin-bottom: 22px;
+}
+
+.college-training-section-heading h2 {
+  margin: 0;
+  font-size: 1.35rem;
+  color: #111827;
+}
+
+.college-training-section-heading p {
+  margin: 7px 0 0;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #6b7280;
+}
+
+.college-training-section-heading.program-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.college-training-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.college-training-field {
+  min-width: 0;
+}
+
+.college-training-field.wide {
+  grid-column: 1 / -1;
+}
+
+.college-training-field label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #374151;
+}
+
+.college-training-field input,
+.college-training-field select,
+.college-training-field textarea,
+.college-training-status-filter {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #111827;
+  font: inherit;
+  font-size: 0.88rem;
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.college-training-field input,
+.college-training-field select {
+  min-height: 43px;
+  padding: 0 12px;
+}
+
+.college-training-field textarea {
+  min-height: 105px;
+  padding: 11px 12px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.college-training-field input:focus,
+.college-training-field select:focus,
+.college-training-field textarea:focus,
+.college-training-status-filter:focus {
+  border-color: #6b7280;
+  box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.1);
+}
+
+.college-training-field input::placeholder,
+.college-training-field textarea::placeholder {
+  color: #9ca3af;
+}
+
+.college-training-form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 2px;
+}
+
+.college-training-form-actions button,
+.college-training-card-actions button {
+  border: 1px solid #111827;
+  border-radius: 8px;
+  background: #111827;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+
+.college-training-form-actions button {
+  min-height: 42px;
+  padding: 0 18px;
+}
+
+.college-training-form-actions button:hover,
+.college-training-card-actions button:hover {
+  opacity: 0.86;
+}
+
+.college-training-form-actions button:active,
+.college-training-card-actions button:active {
+  transform: translateY(1px);
+}
+
+.college-training-form-actions button:disabled,
+.college-training-card-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =========================
+   STATUS FILTER
+========================= */
+
+.college-training-status-filter {
+  width: 170px;
+  min-height: 40px;
+  padding: 0 11px;
+  flex-shrink: 0;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.college-training-empty {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 28px 4px 8px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.college-training-empty > span {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #e5e7eb;
+}
+
+.college-training-empty h3 {
+  margin: 0 0 5px;
+  font-size: 1rem;
+  color: #111827;
+}
+
+.college-training-empty p {
+  margin: 0;
+  font-size: 0.84rem;
+  color: #6b7280;
+}
+
+/* =========================
+   PROGRAM CARDS
+========================= */
+
+.college-training-list {
+  display: grid;
+  gap: 14px;
+}
+
+.college-training-card {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 13px;
+  background: #ffffff;
+}
+
+.college-training-card-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px;
+  gap: 24px;
+  align-items: start;
+}
+
+.college-training-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+
+.college-training-card-tags > span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0 8px;
+  border-radius: 5px;
+  background: #f3f4f6;
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #4b5563;
+}
+
+.college-training-card-tags .status.planned {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+.college-training-card-tags .status.active {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.college-training-card-tags .status.completed {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.college-training-card-tags .status.cancelled {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.college-training-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.08rem;
+  color: #111827;
+}
+
+.college-training-card-top > div:first-child > p {
+  max-width: 720px;
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: #6b7280;
+}
+
+.college-training-target {
+  padding: 13px;
+  border: 1px solid #e5e7eb;
+  border-radius: 9px;
+  background: #f9fafb;
+}
+
+.college-training-target span {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #9ca3af;
+}
+
+.college-training-target strong {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 0.88rem;
+  color: #111827;
+}
+
+/* =========================
+   PROGRAM DETAILS
+========================= */
+
+.college-training-card-details {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.college-training-card-details > div {
+  min-width: 0;
+}
+
+.college-training-card-details span {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #9ca3af;
+}
+
+.college-training-card-details strong {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 0.8rem;
+  color: #374151;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+.college-training-card-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 17px;
+}
+
+.college-training-card-actions button {
+  min-height: 36px;
+  padding: 0 13px;
+}
+
+.college-training-card-actions button.secondary {
+  border-color: #d1d5db;
+  background: #ffffff;
+  color: #374151;
+}
+
+.college-training-card-actions button.secondary.danger {
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+.college-training-finished {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #15803d;
+}
+
+.college-training-cancelled {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #b91c1c;
+}
+
+.college-training-updating {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.college-training-state {
+  padding: 32px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #ffffff;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1050px) {
+  .college-training-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .college-training-card-details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .college-training-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .college-training-create,
+  .college-training-programs {
+    padding: 18px;
+  }
+
+  .college-training-form {
+    grid-template-columns: 1fr;
+  }
+
+  .college-training-field.wide,
+  .college-training-form-actions {
+    grid-column: auto;
+  }
+
+  .college-training-form-actions {
+    justify-content: stretch;
+  }
+
+  .college-training-form-actions button {
+    width: 100%;
+  }
+
+  .college-training-section-heading.program-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .college-training-status-filter {
+    width: 100%;
+  }
+
+  .college-training-card-top {
+    grid-template-columns: 1fr;
+  }
+
+  .college-training-card-details {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .college-training-card-details {
+    grid-template-columns: 1fr;
+  }
+}

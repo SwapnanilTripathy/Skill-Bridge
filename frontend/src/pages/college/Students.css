@@ -1,0 +1,462 @@
+.college-students-page {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 42px 38px 70px;
+  box-sizing: border-box;
+  color: #171717;
+}
+
+.college-students-header {
+  margin-bottom: 34px;
+}
+
+.college-students-kicker {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #7655a8;
+}
+
+.college-students-header h1 {
+  margin: 0 0 10px;
+  font-size: 40px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.college-students-header p {
+  max-width: 680px;
+  margin: 0;
+  color: #666;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* =========================
+   OVERVIEW
+========================= */
+
+.college-students-overview {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 48px;
+  border: 1px solid #dedede;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.college-students-stat {
+  min-height: 145px;
+  padding: 24px;
+  border-right: 1px solid #e3e3e3;
+  box-sizing: border-box;
+}
+
+.college-students-stat:last-child {
+  border-right: none;
+}
+
+.college-students-stat span {
+  display: block;
+  margin-bottom: 13px;
+  color: #777;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.college-students-stat strong {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.college-students-stat p {
+  margin: 0;
+  color: #777;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* =========================
+   DIRECTORY
+========================= */
+
+.college-students-directory {
+  width: 100%;
+}
+
+.college-students-section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.college-students-section-heading h2 {
+  margin: 0;
+  font-size: 26px;
+  letter-spacing: -0.025em;
+}
+
+.college-students-count {
+  padding: 9px 14px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  background: #fff;
+  color: #666;
+  font-size: 12px;
+}
+
+/* =========================
+   FILTERS
+========================= */
+
+.college-students-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.college-students-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.college-students-search:focus-within {
+  border-color: #8d65c5;
+}
+
+.college-students-search svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: #777;
+}
+
+.college-students-search input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #171717;
+  font: inherit;
+  font-size: 14px;
+}
+
+.college-students-search input::placeholder {
+  color: #999;
+}
+
+.college-students-filters select {
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+  background: #fff;
+  color: #333;
+  font: inherit;
+  font-size: 13px;
+}
+
+.college-students-filters select:focus {
+  border-color: #8d65c5;
+}
+
+/* =========================
+   STUDENT LIST
+========================= */
+
+.college-students-list {
+  display: grid;
+  gap: 14px;
+}
+
+.college-student-card {
+  padding: 22px;
+  border: 1px solid #dedede;
+  border-radius: 13px;
+  background: #fff;
+}
+
+.college-student-card-main {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 22px;
+}
+
+.college-student-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  border-radius: 50%;
+  background: #f0eafa;
+  color: #7044aa;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.college-student-identity {
+  min-width: 0;
+  flex: 1;
+}
+
+.college-student-name-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.college-student-name-row h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 650;
+}
+
+.college-student-identity > p {
+  margin: 5px 0 10px;
+  color: #777;
+  font-size: 13px;
+}
+
+.college-student-status {
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.college-student-status.verified {
+  background: #eaf5ef;
+  color: #2f7657;
+}
+
+.college-student-status.pending {
+  background: #fff4e6;
+  color: #9b651e;
+}
+
+.college-student-status.rejected {
+  background: #fbeaea;
+  color: #9a3f3f;
+}
+
+.college-student-tags {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.college-student-tags span {
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: #f3f3f3;
+  color: #555;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* =========================
+   STUDENT DETAILS
+========================= */
+
+.college-student-details {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border: 1px solid #e4e4e4;
+  border-radius: 9px;
+  overflow: hidden;
+}
+
+.college-student-details > div {
+  min-width: 0;
+  padding: 14px 16px;
+  border-right: 1px solid #e4e4e4;
+}
+
+.college-student-details > div:last-child {
+  border-right: none;
+}
+
+.college-student-details span {
+  display: block;
+  margin-bottom: 7px;
+  color: #888;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.college-student-details strong {
+  display: block;
+  overflow: hidden;
+  color: #222;
+  font-size: 14px;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =========================
+   PROFILE PROGRESS
+========================= */
+
+.college-student-progress {
+  height: 3px;
+  margin-top: 15px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #ededed;
+}
+
+.college-student-progress > div {
+  height: 100%;
+  border-radius: inherit;
+  background: #7655a8;
+  transition: width 0.25s ease;
+}
+
+/* =========================
+   EMPTY / ERROR
+========================= */
+
+.college-students-empty {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 32px;
+  border: 1px solid #dedede;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.college-students-empty > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #1b1b1b;
+  color: #fff;
+  font-size: 11px;
+}
+
+.college-students-empty h3 {
+  margin: 1px 0 7px;
+  font-size: 17px;
+}
+
+.college-students-empty p {
+  max-width: 600px;
+  margin: 0;
+  color: #777;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.college-students-state {
+  margin: 70px auto;
+  padding: 35px;
+  max-width: 620px;
+  border: 1px solid #dedede;
+  border-radius: 12px;
+  background: #fff;
+  text-align: center;
+}
+
+.college-students-state h3 {
+  margin: 0 0 10px;
+}
+
+.college-students-state p {
+  margin: 0;
+  color: #777;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+  .college-students-overview {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .college-students-stat:nth-child(2) {
+    border-right: none;
+  }
+
+  .college-students-stat:nth-child(-n + 2) {
+    border-bottom: 1px solid #e3e3e3;
+  }
+
+  .college-student-details {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .college-student-details > div {
+    border-bottom: 1px solid #e4e4e4;
+  }
+}
+
+@media (max-width: 720px) {
+  .college-students-page {
+    padding: 28px 18px 50px;
+  }
+
+  .college-students-header h1 {
+    font-size: 32px;
+  }
+
+  .college-students-overview {
+    grid-template-columns: 1fr;
+  }
+
+  .college-students-stat {
+    border-right: none;
+    border-bottom: 1px solid #e3e3e3;
+  }
+
+  .college-students-stat:last-child {
+    border-bottom: none;
+  }
+
+  .college-students-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .college-students-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .college-student-details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

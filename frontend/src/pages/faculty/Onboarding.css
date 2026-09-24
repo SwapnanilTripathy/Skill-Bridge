@@ -1,0 +1,356 @@
+/* =========================
+   PAGE
+========================= */
+
+.faculty-onboarding-page {
+  min-height: 100vh;
+  background: #f8f8fa;
+  color: #111827;
+  padding: 48px 24px;
+  box-sizing: border-box;
+}
+
+.faculty-onboarding-container {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.faculty-onboarding-header {
+  margin-bottom: 30px;
+}
+
+.faculty-onboarding-kicker {
+  display: inline-block;
+  margin-bottom: 10px;
+
+  color: #7c3aed;
+
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.faculty-onboarding-header h1 {
+  margin: 0 0 12px;
+
+  color: #111111;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 5vw, 3.3rem);
+  line-height: 1.05;
+  font-weight: 700;
+}
+
+.faculty-onboarding-header p {
+  max-width: 720px;
+
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.faculty-onboarding-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.faculty-onboarding-section {
+  padding: 28px;
+
+  border: 1px solid #e1e2e6;
+  border-radius: 16px;
+
+  background: #ffffff;
+}
+
+.faculty-section-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+
+  margin-bottom: 25px;
+}
+
+.faculty-section-heading > span {
+  width: 35px;
+  height: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 9px;
+
+  background: #f3e8ff;
+  color: #6d28d9;
+
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.faculty-section-heading h2 {
+  margin: 1px 0 5px;
+
+  color: #111827;
+
+  font-size: 1.05rem;
+  font-weight: 750;
+}
+
+.faculty-section-heading p {
+  margin: 0;
+
+  color: #8a9099;
+
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.faculty-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.faculty-wide {
+  grid-column: 1 / -1;
+}
+
+/* =========================
+   FIELDS
+========================= */
+
+.faculty-form-field {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.faculty-form-field label {
+  color: #374151;
+
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.faculty-form-field input,
+.faculty-form-field select,
+.faculty-form-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+
+  border: 1px solid #d9dce1;
+  border-radius: 9px;
+
+  background: #ffffff;
+  color: #111827;
+
+  font-family: inherit;
+  font-size: 0.88rem;
+
+  outline: none;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.faculty-form-field input,
+.faculty-form-field select {
+  min-height: 44px;
+  padding: 0 12px;
+}
+
+.faculty-form-field textarea {
+  min-height: 120px;
+
+  padding: 12px;
+
+  line-height: 1.55;
+
+  resize: vertical;
+}
+
+.faculty-form-field input::placeholder,
+.faculty-form-field textarea::placeholder {
+  color: #b0b5bd;
+}
+
+.faculty-form-field input:focus,
+.faculty-form-field select:focus,
+.faculty-form-field textarea:focus {
+  border-color: #7c3aed;
+
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
+}
+
+.faculty-form-field select:disabled {
+  background: #f4f4f5;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* =========================
+   NOTE
+========================= */
+
+.faculty-onboarding-note {
+  padding: 18px 20px;
+
+  border: 1px solid #ddd6fe;
+  border-radius: 12px;
+
+  background: #faf7ff;
+}
+
+.faculty-onboarding-note strong {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #5b21b6;
+
+  font-size: 0.82rem;
+}
+
+.faculty-onboarding-note p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+.faculty-onboarding-actions {
+  display: flex;
+  justify-content: flex-end;
+
+  padding-top: 4px;
+}
+
+.faculty-onboarding-actions button {
+  min-height: 46px;
+
+  padding: 0 22px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #111111;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
+}
+
+.faculty-onboarding-actions button:hover:not(:disabled) {
+  background: #2a2a2a;
+  transform: translateY(-1px);
+}
+
+.faculty-onboarding-actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* =========================
+   ERROR
+========================= */
+
+.faculty-onboarding-error {
+  margin-bottom: 20px;
+  padding: 13px 15px;
+
+  border: 1px solid #fecaca;
+  border-radius: 9px;
+
+  background: #fef2f2;
+  color: #b91c1c;
+
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.faculty-onboarding-state {
+  max-width: 700px;
+
+  margin: 80px auto;
+  padding: 30px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  background: #ffffff;
+  color: #6b7280;
+
+  text-align: center;
+  font-size: 0.88rem;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+  .faculty-onboarding-page {
+    padding: 30px 16px;
+  }
+
+  .faculty-onboarding-section {
+    padding: 21px 18px;
+  }
+
+  .faculty-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .faculty-wide {
+    grid-column: auto;
+  }
+
+  .faculty-onboarding-actions button {
+    width: 100%;
+  }
+}

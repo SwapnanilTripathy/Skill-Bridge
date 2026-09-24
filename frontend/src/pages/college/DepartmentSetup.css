@@ -1,0 +1,400 @@
+.department-setup-page {
+  width: 100%;
+}
+
+.department-setup-state {
+  min-height: 55vh;
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  text-align: center;
+  color: var(--college-shell-muted);
+}
+
+.department-setup-state h2,
+.department-setup-state p {
+  margin: 0;
+}
+
+.department-setup-state button {
+  margin-top: 8px;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--college-shell-accent);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.department-setup-state.error {
+  color: var(--college-shell-danger, #e42f55);
+}
+
+.department-setup-hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 22px;
+}
+
+.department-setup-kicker {
+  color: var(--college-shell-accent);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.department-setup-hero h1 {
+  margin: 7px 0 10px;
+  font-family: "Fraunces", serif;
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  line-height: 1;
+}
+
+.department-setup-hero h1 span {
+  color: var(--college-shell-accent);
+}
+
+.department-setup-hero p {
+  max-width: 720px;
+  margin: 0;
+  color: var(--college-shell-muted);
+  line-height: 1.6;
+}
+
+.department-setup-hero p strong {
+  color: var(--college-shell-ink);
+}
+
+.department-setup-progress-card {
+  min-width: 160px;
+  padding: 16px 18px;
+  border: 1px solid var(--college-shell-border);
+  border-radius: 14px;
+  background: var(--college-shell-panel);
+}
+
+.department-setup-progress-card > strong {
+  display: block;
+  color: var(--college-shell-accent);
+  font-family: "Fraunces", serif;
+  font-size: 1.7rem;
+}
+
+.department-setup-progress-card > span {
+  display: block;
+  margin-top: 2px;
+  color: var(--college-shell-muted);
+  font-size: 0.7rem;
+}
+
+.department-progress-track {
+  height: 5px;
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--college-shell-panel-soft);
+}
+
+.department-progress-track > div {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--college-shell-accent);
+  transition: width 0.2s ease;
+}
+
+.department-setup-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.department-setup-summary > div {
+  padding: 14px 16px;
+  border: 1px solid var(--college-shell-border);
+  border-radius: 12px;
+  background: var(--college-shell-panel);
+}
+
+.department-setup-summary span {
+  display: block;
+  color: var(--college-shell-muted);
+  font-size: 0.7rem;
+}
+
+.department-setup-summary strong {
+  display: block;
+  margin-top: 5px;
+  font-family: "Fraunces", serif;
+  font-size: 1.35rem;
+}
+
+.department-setup-alert {
+  margin-bottom: 14px;
+  padding: 11px 13px;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.department-setup-alert.error {
+  border: 1px solid rgba(228, 47, 85, 0.28);
+  background: rgba(228, 47, 85, 0.07);
+  color: #e42f55;
+}
+
+.department-setup-alert.success {
+  border: 1px solid rgba(139, 92, 246, 0.28);
+  background: rgba(139, 92, 246, 0.08);
+  color: var(--college-shell-accent);
+}
+
+.department-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.department-edit-card {
+  padding: 18px;
+  border: 1px solid var(--college-shell-border);
+  border-radius: 15px;
+  background: var(--college-shell-panel);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.department-edit-card.complete {
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.department-edit-card:hover {
+  transform: translateY(-1px);
+}
+
+.department-card-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 11px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.department-number {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--college-shell-border);
+  border-radius: 10px;
+  background: var(--college-shell-accent-soft);
+  color: var(--college-shell-accent);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.department-card-head > div:nth-child(2) {
+  min-width: 0;
+}
+
+.department-card-head span {
+  color: var(--college-shell-muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.department-card-head h2 {
+  margin: 3px 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: "Fraunces", serif;
+  font-size: 1.05rem;
+}
+
+.department-remove-button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--college-shell-border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--college-shell-muted);
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.department-card-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+}
+
+.department-card-fields label.wide {
+  grid-column: 1 / -1;
+}
+
+.department-card-fields label > span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--college-shell-muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.63rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.department-card-fields input {
+  width: 100%;
+  min-height: 41px;
+  padding: 9px 11px;
+  border: 1px solid var(--college-shell-border);
+  border-radius: 9px;
+  outline: none;
+  background: var(--college-shell-panel-soft);
+  color: var(--college-shell-ink);
+}
+
+.department-card-fields input:focus {
+  border-color: var(--college-shell-accent);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.department-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--college-shell-border);
+}
+
+.department-card-foot > span {
+  font-size: 0.68rem;
+}
+
+.department-card-foot > span.complete {
+  color: var(--college-shell-accent);
+}
+
+.department-card-foot > span.incomplete {
+  color: var(--college-shell-muted);
+}
+
+.department-card-foot strong {
+  padding: 5px 8px;
+  border-radius: 7px;
+  background: var(--college-shell-accent-soft);
+  color: var(--college-shell-accent);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.67rem;
+}
+
+.department-add-button {
+  width: 100%;
+  min-height: 50px;
+  margin-top: 12px;
+  border: 1px dashed var(--college-shell-border);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--college-shell-muted);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.department-add-button:hover {
+  border-color: var(--college-shell-accent);
+  color: var(--college-shell-accent);
+}
+
+.department-save-bar {
+  position: sticky;
+  bottom: 16px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 18px;
+  padding: 14px 16px;
+  border: 1px solid var(--college-shell-border);
+  border-radius: 13px;
+  background: var(--college-shell-panel);
+}
+
+.department-save-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.department-primary-button,
+.department-secondary-button {
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.department-primary-button {
+  border: 0;
+  background: var(--college-shell-accent);
+  color: #fff;
+}
+
+.department-secondary-button {
+  border: 1px solid var(--college-shell-border);
+  background: var(--college-shell-panel-soft);
+  color: var(--college-shell-ink);
+}
+
+.department-primary-button:disabled,
+.department-secondary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .department-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .department-setup-hero,
+  .department-save-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .department-setup-progress-card {
+    width: 100%;
+  }
+
+  .department-setup-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .department-card-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .department-card-fields label.wide {
+    grid-column: auto;
+  }
+
+  .department-save-actions {
+    flex-direction: column;
+  }
+
+  .department-primary-button,
+  .department-secondary-button {
+    width: 100%;
+  }
+}

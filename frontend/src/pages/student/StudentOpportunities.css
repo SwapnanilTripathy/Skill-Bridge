@@ -1,0 +1,610 @@
+.student-opportunity-state {
+  min-height: 50vh;
+  display: grid;
+  place-items: center;
+  color: var(--student-shell-muted);
+}
+
+.student-opportunity-state.error {
+  color: var(--student-shell-danger);
+}
+
+.student-opportunities-page {
+  width: 100%;
+}
+
+.student-opportunities-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 28px;
+
+  margin-bottom: 28px;
+}
+
+.student-opportunities-kicker {
+  color: var(--student-shell-accent);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.student-opportunities-head h1 {
+  margin: 8px 0 10px;
+  font-family: "Fraunces", serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.05;
+}
+
+.student-opportunities-head p {
+  max-width: 700px;
+  margin: 0;
+  color: var(--student-shell-muted);
+  line-height: 1.6;
+}
+
+.student-eligibility-summary {
+  min-width: 112px;
+  padding: 14px 18px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border: 1px solid var(--student-shell-border);
+  border-radius: 14px;
+  background: var(--student-shell-panel);
+}
+
+.student-eligibility-summary strong {
+  font-family: "Fraunces", serif;
+  font-size: 1.8rem;
+  color: var(--student-shell-accent);
+}
+
+.student-eligibility-summary span {
+  margin-top: 3px;
+  color: var(--student-shell-muted);
+  font-size: 0.7rem;
+}
+
+.student-eligibility-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+
+  margin-bottom: 14px;
+}
+
+.student-eligibility-strip > div {
+  min-height: 78px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 14px;
+
+  border: 1px solid var(--student-shell-border);
+  border-radius: 12px;
+  background: var(--student-shell-panel);
+}
+
+.student-eligibility-strip span {
+  margin-bottom: 5px;
+  color: var(--student-shell-muted);
+  font-size: 0.7rem;
+}
+
+.student-eligibility-strip strong {
+  font-size: 0.9rem;
+}
+
+.student-opportunities-empty {
+  min-height: 350px;
+
+  padding: 48px 24px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  border: 1px dashed var(--student-shell-border);
+  border-radius: 16px;
+  background: var(--student-shell-panel);
+}
+
+.student-opportunities-empty-icon {
+  width: 52px;
+  height: 52px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 14px;
+  background: rgba(0, 184, 163, 0.12);
+  color: var(--student-shell-accent);
+}
+
+.student-opportunities-empty-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.student-opportunities-empty h2 {
+  margin: 18px 0 8px;
+  font-family: "Fraunces", serif;
+}
+
+.student-opportunities-empty p {
+  max-width: 500px;
+  margin: 0;
+  color: var(--student-shell-muted);
+  line-height: 1.55;
+}
+
+.student-opportunity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.student-opportunity-card {
+  padding: 22px;
+
+  border: 1px solid var(--student-shell-border);
+  border-radius: 16px;
+  background: var(--student-shell-panel);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.035);
+}
+
+.student-opportunity-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.student-opportunity-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.student-opportunity-tags span {
+  padding: 4px 8px;
+
+  border-radius: 999px;
+
+  background: var(--student-shell-panel-soft);
+  color: var(--student-shell-muted);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.63rem;
+  text-transform: uppercase;
+}
+
+.student-opportunity-card h2 {
+  margin: 9px 0 0;
+  font-family: "Fraunces", serif;
+  font-size: 1.4rem;
+}
+
+.student-eligible-badge {
+  flex: none;
+
+  padding: 6px 9px;
+
+  border: 1px solid rgba(0, 184, 163, 0.32);
+  border-radius: 999px;
+
+  background: rgba(0, 184, 163, 0.1);
+  color: var(--student-shell-accent);
+
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.student-opportunity-description {
+  margin: 17px 0;
+
+  color: var(--student-shell-muted);
+  line-height: 1.62;
+  font-size: 0.88rem;
+}
+
+.student-opportunity-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin-bottom: 14px;
+}
+
+.student-opportunity-meta span {
+  padding: 6px 9px;
+
+  border-radius: 8px;
+  background: var(--student-shell-panel-soft);
+  color: var(--student-shell-muted);
+
+  font-size: 0.72rem;
+}
+
+.student-opportunity-eligibility {
+  display: grid;
+  grid-template-columns: 140px 150px minmax(0, 1fr);
+  gap: 10px;
+
+  margin-bottom: 18px;
+}
+
+.student-opportunity-eligibility > div {
+  padding: 12px;
+
+  border: 1px solid var(--student-shell-border);
+  border-radius: 10px;
+}
+
+.student-opportunity-eligibility span,
+.student-skill-group-label {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: var(--student-shell-muted);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.student-opportunity-eligibility strong {
+  font-size: 0.82rem;
+}
+
+.student-opportunity-skills {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+
+  padding-top: 17px;
+
+  border-top: 1px solid var(--student-shell-border);
+}
+
+.student-skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.student-skill-chips > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 6px 9px;
+
+  border-radius: 8px;
+
+  font-size: 0.74rem;
+}
+
+.student-skill-chips > span.required {
+  border: 1px solid rgba(0, 184, 163, 0.28);
+  background: rgba(0, 184, 163, 0.09);
+  color: var(--student-shell-ink);
+}
+
+.student-skill-chips > span.preferred {
+  border: 1px solid var(--student-shell-border);
+  background: var(--student-shell-panel-soft);
+  color: var(--student-shell-ink);
+}
+
+.student-skill-chips small {
+  color: var(--student-shell-muted);
+  text-transform: capitalize;
+}
+
+.student-no-skills {
+  color: var(--student-shell-muted) !important;
+  background: transparent !important;
+  border: 0 !important;
+  padding-left: 0 !important;
+}
+
+.student-opportunity-footer {
+  margin-top: 19px;
+  padding-top: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  border-top: 1px solid var(--student-shell-border);
+}
+
+.student-opportunity-footer > span {
+  color: var(--student-shell-muted);
+  font-size: 0.74rem;
+}
+
+.student-opportunity-footer button {
+  min-height: 38px;
+  padding: 0 13px;
+
+  border: 0;
+  border-radius: 9px;
+
+  background: var(--student-shell-accent);
+  color: #10201e;
+
+  font-weight: 700;
+}
+
+.student-apply-button {
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.student-apply-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.student-apply-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.student-application-status {
+  cursor: default;
+}
+
+.student-application-status.status-applied {
+  background: rgba(0, 184, 163, 0.13);
+  color: var(--student-shell-accent);
+}
+
+.student-application-status.status-shortlisted,
+.student-application-status.status-interview {
+  background: rgba(255, 161, 22, 0.13);
+  color: var(--student-shell-ink);
+}
+
+.student-application-status.status-selected {
+  background: rgba(0, 184, 163, 0.16);
+  color: var(--student-shell-accent);
+}
+
+.student-application-status.status-rejected,
+.student-application-status.status-withdrawn {
+  background: var(--student-shell-panel-soft);
+  color: var(--student-shell-muted);
+}
+
+.student-application-warning {
+  margin-bottom: 14px;
+  padding: 11px 13px;
+
+  border: 1px solid rgba(255, 55, 95, 0.28);
+  border-radius: 10px;
+
+  background: rgba(255, 55, 95, 0.07);
+  color: var(--student-shell-danger);
+
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 900px) {
+  .student-eligibility-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .student-opportunity-eligibility {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .student-opportunity-eligibility > div:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 650px) {
+  .student-opportunities-head,
+  .student-opportunity-card-top,
+  .student-opportunity-footer {
+    flex-direction: column;
+  }
+
+  .student-eligibility-summary {
+    width: 100%;
+  }
+
+  .student-eligibility-strip,
+  .student-opportunity-eligibility,
+  .student-opportunity-skills {
+    grid-template-columns: 1fr;
+  }
+
+  .student-opportunity-eligibility > div:last-child {
+    grid-column: auto;
+  }
+
+  .student-opportunity-footer button {
+    width: 100%;
+  }
+}
+
+
+/* ======================================================
+   SKILL MATCH SCORE
+====================================================== */
+
+.student-match-warning {
+  margin-bottom: 14px;
+  padding: 11px 13px;
+
+  border: 1px solid rgba(255, 161, 22, 0.32);
+  border-radius: 10px;
+
+  background: rgba(255, 161, 22, 0.08);
+  color: var(--student-shell-muted);
+
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.student-match-panel {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 16px;
+
+  margin-top: 18px;
+  padding-top: 18px;
+
+  border-top: 1px solid var(--student-shell-border);
+}
+
+.student-match-score-card {
+  min-height: 150px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 18px;
+
+  border: 1px solid rgba(0, 184, 163, 0.28);
+  border-radius: 14px;
+
+  background: rgba(0, 184, 163, 0.07);
+
+  text-align: center;
+}
+
+.student-match-score-card > span {
+  color: var(--student-shell-muted);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.63rem;
+
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.student-match-score-card > strong {
+  margin: 8px 0 5px;
+
+  color: var(--student-shell-accent);
+
+  font-family: "Fraunces", serif;
+  font-size: 2.35rem;
+  line-height: 1;
+}
+
+.student-match-score-card > small {
+  color: var(--student-shell-muted);
+  font-size: 0.67rem;
+  line-height: 1.45;
+}
+
+.student-match-breakdown {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.student-match-section-label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: var(--student-shell-muted);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.63rem;
+
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.student-match-items {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.student-match-items > span:not(.student-match-empty) {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  padding: 8px 9px;
+
+  border-radius: 9px;
+
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.student-match-items > span.matched {
+  border: 1px solid rgba(0, 184, 163, 0.27);
+  background: rgba(0, 184, 163, 0.08);
+  color: var(--student-shell-accent);
+}
+
+.student-match-items > span.weak {
+  border: 1px solid rgba(255, 161, 22, 0.30);
+  background: rgba(255, 161, 22, 0.08);
+  color: var(--student-shell-ink);
+}
+
+.student-match-items > span.missing {
+  border: 1px solid rgba(255, 55, 95, 0.25);
+  background: rgba(255, 55, 95, 0.07);
+  color: var(--student-shell-ink);
+}
+
+.student-match-items small {
+  color: var(--student-shell-muted);
+
+  font-size: 0.64rem;
+  font-weight: 400;
+}
+
+.student-match-empty {
+  color: var(--student-shell-muted);
+
+  font-size: 0.72rem;
+  font-style: italic;
+}
+
+@media (max-width: 900px) {
+  .student-match-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .student-match-score-card {
+    min-height: 120px;
+  }
+}
+
+@media (max-width: 720px) {
+  .student-match-breakdown {
+    grid-template-columns: 1fr;
+  }
+}

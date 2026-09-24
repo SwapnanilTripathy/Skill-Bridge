@@ -1,0 +1,385 @@
+.take-assessment-page {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 12px 0 50px;
+}
+
+.take-assessment-kicker {
+  display: block;
+  margin-bottom: 9px;
+  color: #777;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* BACK */
+
+.take-assessment-back {
+  margin-bottom: 28px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #666;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.take-assessment-back:hover {
+  color: #111;
+}
+
+/* INTRO */
+
+.take-assessment-intro {
+  max-width: 720px;
+  margin: 20px auto 0;
+  padding: 34px;
+  border: 1px solid #e2e2e2;
+  border-radius: 15px;
+  background: #fff;
+}
+
+.take-assessment-intro h1 {
+  margin: 0;
+  color: #181818;
+  font-size: 34px;
+}
+
+.take-assessment-intro > p {
+  margin: 12px 0 26px;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.take-assessment-rules {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 24px;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.take-assessment-rules div {
+  padding: 18px 10px;
+  background: #fafafa;
+  text-align: center;
+}
+
+.take-assessment-rules div + div {
+  border-left: 1px solid #e8e8e8;
+}
+
+.take-assessment-rules strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #191919;
+  font-size: 20px;
+}
+
+.take-assessment-rules span {
+  color: #777;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.take-assessment-note {
+  margin-bottom: 22px;
+  padding: 16px;
+  border-left: 3px solid #222;
+  background: #f7f7f7;
+}
+
+.take-assessment-note strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #222;
+  font-size: 13px;
+}
+
+.take-assessment-note p {
+  margin: 0;
+  color: #666;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.take-assessment-start {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 17px;
+  border: 1px solid #202020;
+  border-radius: 8px;
+  background: #202020;
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.take-assessment-start:hover:not(:disabled) {
+  background: #000;
+}
+
+.take-assessment-start:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.take-assessment-start span {
+  font-size: 18px;
+}
+
+/* QUIZ */
+
+.take-assessment-quiz {
+  max-width: 800px;
+  margin: 15px auto 0;
+}
+
+.take-assessment-quiz-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.take-assessment-quiz-header h1 {
+  margin: 0;
+  color: #181818;
+  font-size: 30px;
+}
+
+.take-assessment-progress-copy {
+  color: #777;
+  font-size: 12px;
+}
+
+.take-assessment-progress {
+  width: 100%;
+  height: 5px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #e9e9e9;
+}
+
+.take-assessment-progress div {
+  height: 100%;
+  border-radius: inherit;
+  background: #222;
+  transition: width 0.25s ease;
+}
+
+/* QUESTION */
+
+.take-question-card {
+  padding: 28px;
+  border: 1px solid #e1e1e1;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.take-question-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  color: #888;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.take-question-difficulty {
+  padding: 5px 9px;
+  border-radius: 6px;
+  background: #f2f2f2;
+  color: #555;
+}
+
+.take-question-card h2 {
+  margin: 0 0 24px;
+  color: #1c1c1c;
+  font-size: 21px;
+  line-height: 1.45;
+}
+
+.take-question-options {
+  display: grid;
+  gap: 10px;
+}
+
+.take-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 14px;
+  border: 1px solid #dedede;
+  border-radius: 9px;
+  background: #fff;
+  color: #333;
+  font: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.take-option:hover {
+  border-color: #999;
+  background: #fafafa;
+}
+
+.take-option.selected {
+  border-color: #222;
+  background: #f4f4f4;
+}
+
+.take-option-letter {
+  min-width: 31px;
+  height: 31px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fafafa;
+  color: #444;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.take-option.selected .take-option-letter {
+  border-color: #222;
+  background: #222;
+  color: #fff;
+}
+
+/* NAVIGATION */
+
+.take-assessment-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.take-nav-secondary,
+.take-nav-primary {
+  padding: 11px 16px;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.take-nav-secondary {
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #444;
+}
+
+.take-nav-primary {
+  border: 1px solid #222;
+  background: #222;
+  color: #fff;
+}
+
+.take-nav-primary:hover:not(:disabled) {
+  background: #000;
+}
+
+.take-nav-secondary:disabled,
+.take-nav-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* STATES */
+
+.take-assessment-state {
+  max-width: 650px;
+  margin: 40px auto;
+  padding: 32px;
+  border: 1px solid #e3e3e3;
+  border-radius: 12px;
+  background: #fff;
+  color: #666;
+  text-align: center;
+}
+
+.take-assessment-state h3 {
+  margin: 0 0 8px;
+  color: #222;
+}
+
+.take-assessment-state p {
+  margin: 0 0 18px;
+  font-size: 13px;
+}
+
+.take-assessment-state button {
+  padding: 10px 14px;
+  border: 1px solid #222;
+  border-radius: 7px;
+  background: #222;
+  color: #fff;
+  cursor: pointer;
+}
+
+.take-assessment-error {
+  margin-bottom: 15px;
+  padding: 12px;
+  border: 1px solid #efcccc;
+  border-radius: 7px;
+  background: #fff7f7;
+  color: #a32929;
+  font-size: 12px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+  .take-assessment-intro {
+    padding: 24px;
+  }
+
+  .take-assessment-intro h1 {
+    font-size: 28px;
+  }
+
+  .take-assessment-rules {
+    grid-template-columns: 1fr;
+  }
+
+  .take-assessment-rules div + div {
+    border-left: 0;
+    border-top: 1px solid #e8e8e8;
+  }
+
+  .take-assessment-quiz-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .take-question-card {
+    padding: 20px;
+  }
+}
