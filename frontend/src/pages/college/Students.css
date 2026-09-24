@@ -17,7 +17,7 @@
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #7655a8;
+  color: #6d3fd0;
 }
 
 .college-students-header h1 {
@@ -44,7 +44,7 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   margin-bottom: 48px;
-  border: 1px solid #dedede;
+  border: 1px solid #dddddd;
   border-radius: 14px;
   overflow: hidden;
   background: #fff;
@@ -53,7 +53,7 @@
 .college-students-stat {
   min-height: 145px;
   padding: 24px;
-  border-right: 1px solid #e3e3e3;
+  border-right: 1px solid #e6e6e6;
   box-sizing: border-box;
 }
 
@@ -139,7 +139,7 @@
 }
 
 .college-students-search:focus-within {
-  border-color: #8d65c5;
+  border-color: #7c3aed;
 }
 
 .college-students-search svg {
@@ -176,7 +176,7 @@
 }
 
 .college-students-filters select:focus {
-  border-color: #8d65c5;
+  border-color: #7c3aed;
 }
 
 /* =========================
@@ -190,7 +190,7 @@
 
 .college-student-card {
   padding: 22px;
-  border: 1px solid #dedede;
+  border: 1px solid #dddddd;
   border-radius: 13px;
   background: #fff;
 }
@@ -211,7 +211,7 @@
   flex: 0 0 48px;
   border-radius: 50%;
   background: #f0eafa;
-  color: #7044aa;
+  color: #6d3fd0;
   font-size: 18px;
   font-weight: 700;
 }
@@ -336,7 +336,7 @@
 .college-student-progress > div {
   height: 100%;
   border-radius: inherit;
-  background: #7655a8;
+  background: #6d3fd0;
   transition: width 0.25s ease;
 }
 
@@ -349,7 +349,7 @@
   align-items: flex-start;
   gap: 20px;
   padding: 32px;
-  border: 1px solid #dedede;
+  border: 1px solid #dddddd;
   border-radius: 12px;
   background: #fff;
 }
@@ -384,7 +384,7 @@
   margin: 70px auto;
   padding: 35px;
   max-width: 620px;
-  border: 1px solid #dedede;
+  border: 1px solid #dddddd;
   border-radius: 12px;
   background: #fff;
   text-align: center;
@@ -413,7 +413,7 @@
   }
 
   .college-students-stat:nth-child(-n + 2) {
-    border-bottom: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e6e6e6;
   }
 
   .college-student-details {
@@ -440,7 +440,7 @@
 
   .college-students-stat {
     border-right: none;
-    border-bottom: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e6e6e6;
   }
 
   .college-students-stat:last-child {
