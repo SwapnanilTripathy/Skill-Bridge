@@ -794,3 +794,330 @@
     align-items: flex-start;
   }
 }
+
+
+/* =========================================================
+   COLLEGE PAGE THEME
+   ---------------------------------------------------------
+   Gives every college page the same look as the student
+   portal (hero card, mono kickers, separate summary cards),
+   using the college purple as the role accent instead of
+   the student teal.
+
+   Scoped with `main.college-content` so it reliably wins
+   over the individual page stylesheets, whatever the CSS
+   load order is.
+
+   To re-colour the whole college portal, change the
+   --cp-accent* tokens below (and --college-shell-accent in
+   CollegeLayout.css for the shell).
+========================================================= */
+
+main.college-content {
+  --cp-ink: #171717;
+  --cp-body: #5e5e5e;
+  --cp-muted: #666666;
+  --cp-label: #707070;
+
+  --cp-card: #ffffff;
+  --cp-card-soft: #fafafa;
+  --cp-border: #dddddd;
+  --cp-border-soft: #e6e6e6;
+
+  --cp-accent: #7c3aed;
+  --cp-accent-text: #6d3fd0;
+  --cp-accent-strong: #5b2fc0;
+  --cp-accent-tint: #f5f0ff;
+  --cp-accent-border: #c9b6f5;
+
+  --cp-mono: "Courier New", monospace;
+}
+
+/* =========================================================
+   KICKERS  (// small mono labels)
+========================================================= */
+
+main.college-content
+  :is(
+    .college-students-kicker,
+    .college-training-kicker,
+    .verification-kicker,
+    .skill-gap-kicker,
+    .college-analytics-kicker,
+    .analytics-eyebrow,
+    .placement-eyebrow,
+    .placement-state-kicker,
+    .department-setup-kicker
+  ) {
+  display: inline-block;
+  margin-bottom: 0;
+
+  color: var(--cp-accent-text);
+  font-family: var(--cp-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   HERO CARD  (page header)
+========================================================= */
+
+main.college-content
+  :is(
+    .college-students-header,
+    .college-training-header,
+    .portfolio-verification-hero,
+    .skill-gap-header,
+    .college-analytics-hero,
+    .placement-hero
+  ) {
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 44px 52px;
+
+  background: var(--cp-card);
+  border: 1px solid var(--cp-border);
+  border-radius: 22px;
+  color: var(--cp-ink);
+}
+
+main.college-content
+  :is(
+    .college-students-header,
+    .college-training-header,
+    .portfolio-verification-hero,
+    .skill-gap-header,
+    .college-analytics-hero,
+    .placement-hero
+  )
+  h1 {
+  margin: 16px 0 12px;
+
+  color: var(--cp-ink);
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+main.college-content
+  :is(
+    .college-students-header,
+    .college-training-header,
+    .portfolio-verification-hero,
+    .skill-gap-header,
+    .college-analytics-hero,
+    .placement-hero
+  )
+  h1
+  span {
+  color: var(--cp-accent);
+}
+
+main.college-content
+  :is(
+    .college-students-header,
+    .college-training-header,
+    .portfolio-verification-hero,
+    .skill-gap-header,
+    .college-analytics-hero,
+    .placement-hero
+  )
+  p {
+  max-width: 650px;
+  margin: 0;
+
+  color: var(--cp-body);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* pages whose hero is a centred single column */
+main.college-content .college-analytics-hero > p {
+  margin-inline: auto;
+}
+
+/* hero side blocks (count box / filter) */
+main.college-content .placement-hero-stat {
+  border-color: var(--cp-border);
+  background: var(--cp-card-soft);
+}
+
+/* =========================================================
+   SUMMARY CARDS  (4 separate cards, centred content)
+========================================================= */
+
+main.college-content
+  :is(
+    .college-students-overview,
+    .skill-gap-summary,
+    .college-training-summary,
+    .verification-stats
+  ) {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+
+  margin-bottom: 28px;
+
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+main.college-content
+  :is(
+    .college-students-stat,
+    .skill-gap-summary article,
+    .college-training-summary article,
+    .verification-stats article
+  ) {
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 150px;
+  padding: 28px 22px 24px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  background: var(--cp-card);
+  border: 1px solid var(--cp-border);
+  border-radius: 18px;
+  box-shadow: none;
+
+  text-align: center;
+}
+
+main.college-content
+  :is(
+    .college-students-stat,
+    .skill-gap-summary article,
+    .college-training-summary article,
+    .verification-stats article
+  )
+  > span {
+  margin: 0;
+
+  color: var(--cp-label);
+  font-family: var(--cp-mono);
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+main.college-content
+  :is(
+    .college-students-stat,
+    .skill-gap-summary article,
+    .college-training-summary article,
+    .verification-stats article
+  )
+  > strong {
+  margin: 14px 0 8px;
+
+  color: var(--cp-ink);
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+main.college-content
+  :is(
+    .college-students-stat,
+    .skill-gap-summary article,
+    .college-training-summary article,
+    .verification-stats article
+  )
+  > p {
+  margin: 0;
+
+  color: var(--cp-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   HEROES WITH A SIDE ELEMENT (filter / count box)
+========================================================= */
+
+main.college-content .skill-gap-header {
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+main.college-content .skill-gap-header > div:first-child {
+  flex: 1 1 340px;
+  min-width: 0;
+}
+
+main.college-content :is(.skill-gap-header, .placement-hero) h1 {
+  font-size: clamp(32px, 4vw, 48px);
+}
+
+/* =========================================================
+   ANALYTICS METRIC ICONS  (single accent, centred)
+========================================================= */
+
+main.college-content .analytics-metric-top {
+  justify-content: center;
+}
+
+main.college-content
+  :is(
+    .analytics-metric-icon.purple,
+    .analytics-metric-icon.blue,
+    .analytics-metric-icon.green,
+    .analytics-metric-icon.orange
+  ) {
+  color: var(--cp-accent);
+  background: var(--cp-accent-tint);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+  main.college-content
+    :is(
+      .college-students-overview,
+      .skill-gap-summary,
+      .college-training-summary,
+      .verification-stats
+    ) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  main.college-content
+    :is(
+      .college-students-header,
+      .college-training-header,
+      .portfolio-verification-hero,
+      .skill-gap-header,
+      .college-analytics-hero,
+      .placement-hero
+    ) {
+    padding: 30px 24px;
+  }
+}
+
+@media (max-width: 520px) {
+  main.college-content
+    :is(
+      .college-students-overview,
+      .skill-gap-summary,
+      .college-training-summary,
+      .verification-stats
+    ) {
+    grid-template-columns: 1fr;
+  }
+}
