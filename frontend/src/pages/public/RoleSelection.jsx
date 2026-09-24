@@ -3,11 +3,81 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "../../services/supabase";
 import "./RoleSelection.css";
 
+const ROLES = [
+  {
+    id: "student",
+    icon: "🎓",
+    title: "Student",
+    label: "Student",
+    desc: "Build your skills, discover opportunities and prepare for your career.",
+    bullets: [
+      "Build your skill profile",
+      "Discover matching opportunities",
+      "Identify missing skills"
+    ]
+  },
+  {
+    id: "faculty",
+    icon: "📚",
+    title: "Faculty",
+    label: "Faculty",
+    desc: "Connect with industry for professional development, research and academic collaboration.",
+    bullets: [
+      "Discover faculty development programs",
+      "Explore research and consultancy",
+      "Join industry collaborations"
+    ]
+  },
+  {
+    id: "college",
+    icon: "🏛️",
+    title: "College / Placement Cell",
+    label: "College",
+    desc: "Understand student readiness and bridge the gap between academia and industry.",
+    bullets: [
+      "Monitor student readiness",
+      "Analyze industry skill demand",
+      "Discover institutional skill gaps"
+    ]
+  },
+  {
+    id: "recruiter",
+    icon: "💼",
+    title: "Recruiter / Industry",
+    label: "Recruiter",
+    desc: "Find skilled candidates and connect your opportunities with the right talent.",
+    bullets: [
+      "Post jobs and internships",
+      "Find eligible candidates",
+      "Rank candidates by skills"
+    ]
+  }
+];
+
 function RoleSelection() {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [manualTheme, setManualTheme] = useState("");
+
+  /* =========================
+     THEME
+  ========================= */
+
+  function toggleTheme() {
+    setManualTheme((current) => {
+      if (!current) {
+        const prefersDark = window.matchMedia?.(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+
+        return prefersDark ? "light" : "dark";
+      }
+
+      return current === "dark" ? "light" : "dark";
+    });
+  }
 
   /* =========================
      REDIRECT BY ROLE
@@ -137,232 +207,166 @@ function RoleSelection() {
   }
 
   return (
-    <div className="role-page">
-      <div className="role-container">
-        {/* =========================
-            BRAND
-        ========================= */}
+    <div className="role-page" data-theme={manualTheme || undefined}>
+      <div className="role-glow role-glow-one"></div>
+      <div className="role-glow role-glow-two"></div>
+      <div className="role-grain"></div>
+      <div className="role-top-accent"></div>
 
-        <div className="role-brand">
-          <div className="role-logo">
-            SB
+      {/* =========================
+          NAVBAR
+      ========================== */}
+
+      <nav className="role-nav">
+        <button
+          type="button"
+          className="role-logo"
+          onClick={() => navigate("/")}
+          aria-label="Go to SkillBridge home"
+        >
+          <span className="role-logo-mark">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#1a1a1a"
+              strokeWidth="2.4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M3 18 12 4l9 14" />
+              <line x1="2" y1="18" x2="22" y2="18" />
+              <line x1="7" y1="10" x2="7" y2="18" />
+              <line x1="12" y1="7" x2="12" y2="18" />
+              <line x1="17" y1="10" x2="17" y2="18" />
+            </svg>
+          </span>
+
+          <span>
+            Skill<span className="role-brand-text">Bridge</span>
+          </span>
+        </button>
+
+        <div className="role-nav-right">
+          <button
+            type="button"
+            className="role-back-link"
+            onClick={() => navigate("/")}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
+              <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+            Back to home
+          </button>
+
+          <button
+            type="button"
+            className="role-theme-button"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+          >
+            <svg
+              className="role-icon-sun"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+            </svg>
+
+            <svg
+              className="role-icon-moon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <main className="role-main">
+        <div className="role-container">
+          {/* =========================
+              HEADING
+          ========================== */}
+
+          <div className="role-heading">
+            <div className="role-eyebrow">// choose your role</div>
+
+            <h1>
+              How will you use{" "}
+              <span className="role-brand-text">SkillBridge</span>?
+            </h1>
+
+            <p>
+              Choose your role so we can personalize your SkillBridge
+              experience.
+            </p>
           </div>
 
-          <span>SkillBridge</span>
-        </div>
+          {/* =========================
+              ROLE CARDS
+          ========================== */}
 
-        {/* =========================
-            HEADING
-        ========================= */}
+          <div className="role-cards">
+            {ROLES.map((role) => (
+              <button
+                key={role.id}
+                type="button"
+                className={`role-card ${role.id}`}
+                onClick={() => selectRole(role.id)}
+                disabled={loading}
+              >
+                <span className="role-card-icon">{role.icon}</span>
 
-        <div className="role-heading">
-          <h1>
-            How will you use SkillBridge?
-          </h1>
+                <h2>{role.title}</h2>
 
-          <p>
-            Choose your role so we can personalize your
-            SkillBridge experience.
-          </p>
-        </div>
+                <p>{role.desc}</p>
 
-        {/* =========================
-            ROLE CARDS
-        ========================= */}
+                <ul>
+                  {role.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
 
-        <div className="role-cards">
-          {/* STUDENT */}
-
-          <button
-            type="button"
-            className="role-card"
-            onClick={() =>
-              selectRole("student")
-            }
-            disabled={loading}
-          >
-            <div className="role-icon">
-              🎓
-            </div>
-
-            <h2>Student</h2>
-
-            <p>
-              Build your skills, discover opportunities
-              and prepare for your career.
-            </p>
-
-            <ul>
-              <li>
-                Build your skill profile
-              </li>
-
-              <li>
-                Discover matching opportunities
-              </li>
-
-              <li>
-                Identify missing skills
-              </li>
-            </ul>
-
-            <span className="role-continue">
-              Continue as Student →
-            </span>
-          </button>
-
-          {/* RECRUITER */}
-
-          <button
-            type="button"
-            className="role-card"
-            onClick={() =>
-              selectRole("recruiter")
-            }
-            disabled={loading}
-          >
-            <div className="role-icon">
-              💼
-            </div>
-
-            <h2>
-              Recruiter / Industry
-            </h2>
-
-            <p>
-              Find skilled candidates and connect your
-              opportunities with the right talent.
-            </p>
-
-            <ul>
-              <li>
-                Post jobs and internships
-              </li>
-
-              <li>
-                Find eligible candidates
-              </li>
-
-              <li>
-                Rank candidates by skills
-              </li>
-            </ul>
-
-            <span className="role-continue">
-              Continue as Recruiter →
-            </span>
-          </button>
-
-          {/* COLLEGE */}
-
-          <button
-            type="button"
-            className="role-card"
-            onClick={() =>
-              selectRole("college")
-            }
-            disabled={loading}
-          >
-            <div className="role-icon">
-              🏫
-            </div>
-
-            <h2>
-              College / Placement Cell
-            </h2>
-
-            <p>
-              Understand student readiness and bridge the
-              gap between academia and industry.
-            </p>
-
-            <ul>
-              <li>
-                Monitor student readiness
-              </li>
-
-              <li>
-                Analyze industry skill demand
-              </li>
-
-              <li>
-                Discover institutional skill gaps
-              </li>
-            </ul>
-
-            <span className="role-continue">
-              Continue as College →
-            </span>
-          </button>
-
-          {/* FACULTY */}
-
-          <button
-            type="button"
-            className="role-card"
-            onClick={() =>
-              selectRole("faculty")
-            }
-            disabled={loading}
-          >
-            <div className="role-icon">
-              👩‍🏫
-            </div>
-
-            <h2>
-              Academician / Faculty
-            </h2>
-
-            <p>
-              Connect with industry for professional
-              development, research and academic
-              collaboration.
-            </p>
-
-            <ul>
-              <li>
-                Discover faculty development programs
-              </li>
-
-              <li>
-                Explore research and consultancy
-              </li>
-
-              <li>
-                Join industry collaborations
-              </li>
-            </ul>
-
-            <span className="role-continue">
-              Continue as Faculty →
-            </span>
-          </button>
-        </div>
-
-        {/* =========================
-            LOADING
-        ========================= */}
-
-        {loading && (
-          <div className="role-message">
-            <div className="role-spinner"></div>
-
-            <p>
-              Setting up your account...
-            </p>
+                <span className="role-continue">
+                  Continue as {role.label} →
+                </span>
+              </button>
+            ))}
           </div>
-        )}
 
-        {/* =========================
-            ERROR
-        ========================= */}
+          {/* =========================
+              LOADING
+          ========================== */}
 
-        {error && (
-          <p className="role-error">
-            {error}
-          </p>
-        )}
-      </div>
+          {loading && (
+            <div className="role-message">
+              <div className="role-spinner"></div>
+
+              <p>Setting up your account...</p>
+            </div>
+          )}
+
+          {/* =========================
+              ERROR
+          ========================== */}
+
+          {error && <p className="role-error">{error}</p>}
+        </div>
+      </main>
     </div>
   );
 }
