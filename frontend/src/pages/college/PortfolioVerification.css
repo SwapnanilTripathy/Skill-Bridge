@@ -18,7 +18,7 @@
 
 .portfolio-verification-hero {
   background: #ffffff;
-  border: 1px solid #e8e8e8;
+  border: 1px solid #e6e6e6;
   border-radius: 18px;
   padding: 34px 36px;
 }
@@ -38,7 +38,7 @@
   font-size: clamp(30px, 4vw, 48px);
   line-height: 1.05;
   letter-spacing: -1.5px;
-  color: #191919;
+  color: #171717;
 }
 
 .portfolio-verification-hero h1 span {
@@ -88,7 +88,7 @@
 
 .verification-stats article {
   background: #ffffff;
-  border: 1px solid #e8e8e8;
+  border: 1px solid #e6e6e6;
   border-radius: 14px;
   padding: 22px;
 }
@@ -107,7 +107,7 @@
   display: block;
   font-size: 30px;
   line-height: 1;
-  color: #1c1c1c;
+  color: #171717;
 }
 
 .verification-stats p {
@@ -129,7 +129,7 @@
   padding: 18px 20px;
 
   background: #ffffff;
-  border: 1px solid #e8e8e8;
+  border: 1px solid #e6e6e6;
   border-radius: 14px;
 }
 
@@ -173,7 +173,7 @@
 
 .verification-section {
   background: #ffffff;
-  border: 1px solid #e8e8e8;
+  border: 1px solid #e6e6e6;
   border-radius: 18px;
   padding: 28px;
 }
@@ -250,7 +250,7 @@
   min-width: 0;
   padding: 20px;
 
-  border: 1px solid #e5e5e5;
+  border: 1px solid #e6e6e6;
   border-radius: 13px;
 
   background: #fcfcfc;
