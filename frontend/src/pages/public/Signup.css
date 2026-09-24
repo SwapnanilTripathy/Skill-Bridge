@@ -477,6 +477,11 @@
   color: var(--signup-purple);
 }
 
+.signup-perk-icon.blue {
+  background: rgba(56,189,248,0.12);
+  color: #38bdf8;
+}
+
 .signup-role-section {
   margin-bottom: 22px;
 }
