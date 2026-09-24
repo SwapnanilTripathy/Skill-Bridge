@@ -1,559 +1,1265 @@
-:root {
-  color-scheme: dark;
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Landing.css";
 
-  --bg: #1a1a1a;
-  --panel: #262626;
-  --panel-2: #2d2d2d;
-  --border: #363636;
+const FEATURE_FILTERS = [
+  { id: "all", label: "All" },
+  { id: "student", label: "Students" },
+  { id: "faculty", label: "Faculty" },
+  { id: "college", label: "Colleges" },
+  { id: "recruiter", label: "Recruiters" },
+];
 
-  --ink: #eff1f6;
-  --muted: #97979c;
+function Landing() {
+  const navigate = useNavigate();
 
-  --brand: #ffa116;
-  --brand-dim: #cc8012;
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [navScrolled, setNavScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+  const [selectedPillar, setSelectedPillar] = useState(null);
+  const [contactOpen, setContactOpen] = useState(false);
+  const [contactStatus, setContactStatus] = useState("");
+  const [featureFilter, setFeatureFilter] = useState("all");
 
-  --tag-green: #00b8a3;
-  --tag-yellow: #8b5cf6;
-  --tag-red: #ff375f;
-  --tag-blue: #38bdf8;
+  useEffect(() => {
+    const handleScroll = () => {
+      setNavScrolled(window.scrollY > 8);
+    };
 
-  /* Extra adaptive colors */
-  --surface-soft: #202020;
-  --surface-card: #272727;
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
-  --nav-bg: rgba(26, 26, 26, 0.85);
-  --nav-mobile-bg: rgba(26, 26, 26, 0.97);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  --brand-text: #1a1a1a;
+  useEffect(() => {
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
 
-  --font-d: "Fraunces", serif;
-  --font-b: "IBM Plex Sans", sans-serif;
-  --font-m: "IBM Plex Mono", monospace;
+    const revealElements = document.querySelectorAll(".reveal");
 
-  --ease: cubic-bezier(.16,.84,.44,1);
-  --ease-pop: cubic-bezier(.34,1.56,.64,1);
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      revealElements.forEach((element) => {
+        element.classList.add("visible");
 
-  --card-shadow:
-    0 10px 30px -22px rgba(0,0,0,0.7),
-    inset 0 1px 0 rgba(255,255,255,0.045);
+        const bars = element.querySelector(".pipe-bars");
+        if (bars) {
+          bars.classList.add("animate");
+        }
+      });
 
-  --card-shadow-hover:
-    0 16px 36px -18px rgba(0,0,0,0.8),
-    inset 0 1px 0 rgba(255,255,255,0.06);
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color-scheme: light;
-
-    --bg: #f7f7f8;
-    --panel: #ffffff;
-    --panel-2: #f1f2f4;
-    --border: #dedfe3;
-
-    --ink: #18191c;
-    --muted: #686b72;
-
-    /*
-      Keep SkillBridge's identity colors.
-      We don't want the brand itself changing.
-    */
-    --brand: #f39a12;
-    --brand-dim: #c97b08;
-
-    --tag-green: #009b89;
-    --tag-yellow: #8b5cf6;
-    --tag-red: #e42f55;
-    --tag-blue: #0284c7;
-
-    --surface-soft: #fafafa;
-    --surface-card: #f4f4f5;
-
-    --nav-bg: rgba(247, 247, 248, 0.88);
-    --nav-mobile-bg: rgba(247, 247, 248, 0.98);
-
-    --brand-text: #18191c;
-
-    --card-shadow:
-      0 10px 30px -22px rgba(0,0,0,0.22),
-      inset 0 1px 0 rgba(255,255,255,0.8);
-
-    --card-shadow-hover:
-      0 16px 36px -18px rgba(0,0,0,0.25),
-      inset 0 1px 0 rgba(255,255,255,0.9);
-  }
-
-  .grain { opacity: 0.018; }
-  .glow { background:radial-gradient(circle, rgba(243,154,18,0.10), transparent 70%); }
-  .glow-2 { background:radial-gradient(circle, rgba(201,123,8,0.07), transparent 70%); }
-}
-
-
-  *,*::before,*::after{ box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:var(--font-b);
-    overflow-x:hidden;
-    -webkit-font-smoothing:antialiased;
-    transition:background-color .25s var(--ease), color .25s var(--ease);
-  }
-  a{ color:inherit; text-decoration:none; }
-  input, textarea, select, button{ color-scheme:inherit; }
-  input, textarea, select{ accent-color:var(--brand); }
-  svg,img{ display:block; max-width:100%; }
-
-  /* subtle single-hue depth, no rainbow bloom */
-  .glow{ position:fixed; width:640px; height:640px; top:-280px; right:-220px; border-radius:50%;
-    background:radial-gradient(circle, rgba(255,161,22,0.13), transparent 70%);
-    filter:blur(90px); pointer-events:none; z-index:0; }
-  .glow-2{ position:fixed; width:520px; height:520px; bottom:-260px; left:-180px; border-radius:50%;
-    background:radial-gradient(circle, rgba(204,128,18,0.10), transparent 70%);
-    filter:blur(90px); pointer-events:none; z-index:0; }
-  .grain{
-    position:fixed; inset:0; z-index:1; pointer-events:none; opacity:0.035; mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  }
-
-  .page{ position:relative; z-index:2; min-height:100vh; display:flex; flex-direction:column; }
-
-  /* ---------- top accent ---------- */
-  .top-accent{ position:fixed; top:0; left:0; right:0; height:3px; z-index:50;
-    background:linear-gradient(90deg, transparent, var(--brand), transparent); opacity:0.8; }
-
-  /* ---------- nav ---------- */
-  .nav{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:18px clamp(20px,5vw,64px);
-    position:sticky; top:0; z-index:40;
-    background:var(--nav-bg);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid transparent;
-    box-shadow:0 0 0 rgba(0,0,0,0);
-    transition:border-color .3s var(--ease), box-shadow .3s var(--ease), padding .3s var(--ease);
-  }
-  .nav.scrolled{
-    border-bottom:1px solid var(--border);
-    box-shadow:0 12px 30px -20px rgba(0,0,0,0.6);
-    padding-top:13px; padding-bottom:13px;
-  }
-  .logo{ font-family:var(--font-d); font-weight:700; font-size:1.25rem; display:flex; align-items:center; gap:9px; }
-  .logo .mark{
-    width:30px; height:30px; border-radius:8px; background:var(--brand);
-    display:flex; align-items:center; justify-content:center;
-    box-shadow:0 4px 14px -4px rgba(255,161,22,0.6);
-    transition:transform .25s var(--ease-pop);
-  }
-  .logo:hover .mark{ transform:rotate(-6deg) scale(1.06); }
-  .logo .accent{ color:var(--brand); }
-  .nav-right{ display:flex; align-items:center; gap:10px; }
-  .nav-links{ display:flex; gap:2rem; font-size:0.9rem; color:var(--muted); list-style:none; margin:0; padding:0; }
-  .nav-links a{ position:relative; padding:6px 0; transition:color .2s var(--ease); }
-  .nav-links a:hover, .nav-links a.active{ color:var(--ink); }
-  .nav-links a::after{
-    content:""; position:absolute; left:0; right:0; bottom:-2px; height:2px;
-    background:var(--brand); border-radius:2px;
-    transform:scaleX(0); transform-origin:left; transition:transform .25s var(--ease);
-  }
-  .nav-links a:hover::after, .nav-links a.active::after{ transform:scaleX(1); }
-  .nav-toggle{ display:none; flex-direction:column; gap:4px; background:none; border:none; padding:8px; cursor:pointer; }
-  .nav-toggle span{ width:20px; height:2px; background:var(--ink); border-radius:2px; transition:transform .2s var(--ease), opacity .2s var(--ease); }
-  .nav-toggle.open span:nth-child(1){ transform:translateY(6px) rotate(45deg); }
-  .nav-toggle.open span:nth-child(2){ opacity:0; }
-  .nav-toggle.open span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
-
-  .btn{
-    font-family:var(--font-b); font-weight:600; font-size:0.9rem;
-    padding:11px 22px; border-radius:10px; border:1px solid transparent; cursor:pointer;
-    display:inline-flex; align-items:center; gap:8px;
-    transition:transform .2s var(--ease), box-shadow .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease);
-  }
-  .btn:active{ transform:scale(0.97); }
-  .btn-primary{
-    background:linear-gradient(135deg, #ffb03d, var(--brand) 60%, #f0900a);
-    color:var(--brand-text); box-shadow:0 6px 20px -6px rgba(255,161,22,0.55);
-  }
-  .btn-primary:hover{ box-shadow:0 8px 26px -6px rgba(255,161,22,0.75); transform:translateY(-1px); }
-  .btn-ghost{ background:var(--panel); border-color:var(--border); color:var(--ink); }
-  .btn-ghost:hover{ border-color:var(--brand); color:var(--brand); }
-  .btn svg{ width:15px; height:15px; }
-
-  /* ---------- hero ---------- */
-  .hero{
-    max-width:1400px; width:100%; margin:0 auto; flex:1;
-    padding:clamp(48px,7vh,88px) clamp(20px,5vw,64px) clamp(50px,7vh,90px);
-  }
-  .hero-grid{ display:grid; grid-template-columns:1.05fr 0.95fr; gap:clamp(28px,4vw,56px); align-items:center; }
-  .eyebrow{
-    font-family:var(--font-m); font-size:0.74rem; font-weight:600;
-    color:var(--brand); text-transform:uppercase; letter-spacing:0.08em;
-    display:inline-block; margin-bottom:16px;
-  }
-  .tag-row{ display:flex; gap:10px; margin-bottom:26px; flex-wrap:wrap; justify-content:flex-start; }
-  .tag{
-    font-family:var(--font-m); font-size:0.76rem; font-weight:500;
-    padding:6px 13px; border-radius:999px; border:1px solid var(--border);
-    background:var(--panel); display:inline-flex; align-items:center; gap:7px; color:var(--muted);
-    transition:border-color .2s var(--ease), box-shadow .2s var(--ease), transform .2s var(--ease-pop);
-  }
-  .tag .sw{ width:8px; height:8px; border-radius:50%; }
-  .tag.tg .sw{ background:var(--tag-green); } .tag.tg{ color:var(--tag-green); border-color:rgba(0,184,163,0.3); }
-  .tag.ty .sw{ background:var(--tag-yellow); } .tag.ty{ color:var(--tag-yellow); border-color:rgba(139,92,246,0.3); }
-  .tag.tr .sw{ background:var(--tag-red); } .tag.tr{ color:var(--tag-red); border-color:rgba(255,55,95,0.3); }
-  .tag.tb .sw{ background:var(--tag-blue); } .tag.tb{ color:var(--tag-blue); border-color:rgba(56,189,248,0.3); }
-  .tag.tg:hover{ box-shadow:0 0 0 3px rgba(0,184,163,0.14); transform:translateY(-1px); }
-  .tag.ty:hover{ box-shadow:0 0 0 3px rgba(139,92,246,0.14); transform:translateY(-1px); }
-  .tag.tr:hover{ box-shadow:0 0 0 3px rgba(255,55,95,0.14); transform:translateY(-1px); }
-  .tag.tb:hover{ box-shadow:0 0 0 3px rgba(56,189,248,0.14); transform:translateY(-1px); }
-
-  .hero h1{
-    font-family:var(--font-d); font-weight:600; font-size:clamp(2.4rem,4.6vw,3.6rem);
-    line-height:1.08; letter-spacing:-0.01em; margin:0 0 20px; color:var(--ink);
-  }
-  .hero h1 .accent-text{
-    background:linear-gradient(100deg, #ffb236 10%, var(--brand) 55%, #ff8a3d 90%);
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-    filter:drop-shadow(0 0 22px rgba(255,161,22,0.28));
-  }
-  .hero h1 .role-student{
-    background:linear-gradient(100deg, #4be0cc 10%, var(--tag-green) 55%, #00d9c2 90%);
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-    filter:drop-shadow(0 0 22px rgba(0,184,163,0.3));
-  }
-  .hero h1 .role-college{
-    background:linear-gradient(100deg, #a78bfa 10%, var(--tag-yellow) 55%, #7c3aed 90%);
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-    filter:drop-shadow(0 0 22px rgba(139,92,246,0.35));
-  }
-  .hero h1 .role-recruiter{
-    background:linear-gradient(100deg, #ff7d9d 10%, var(--tag-red) 55%, #ff375f 90%);
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-    filter:drop-shadow(0 0 22px rgba(255,55,95,0.3));
-  }
-  .hero h1 .role-faculty{
-    background:linear-gradient(100deg, #7dd3fc 10%, var(--tag-blue) 55%, #0ea5e9 90%);
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-    filter:drop-shadow(0 0 22px rgba(56,189,248,0.3));
-  }
-  .hero p.lede{ font-size:1.04rem; line-height:1.65; color:var(--muted); max-width:480px; margin:0 0 30px; }
-  .hero-actions{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    width:100%;
-  }
-
-  .hero-actions .btn-primary,
-  .hero-actions .btn-ghost{
-    width:100%;
-    justify-content:center;
-  }
-
-  .hero-stats{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; align-content:start; }
-  .hero-stats .mtile.wide{ grid-column:1 / -1; }
-
-  @keyframes fadeUp{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:none; } }
-  .hero-copy > *{ opacity:0; animation:fadeUp .7s var(--ease) forwards; }
-  .hero-copy > .eyebrow{ animation-delay:.05s; }
-  .hero-copy > .tag-row{ animation-delay:.15s; }
-  .hero-copy > h1{ animation-delay:.25s; }
-  .hero-copy > p.lede{ animation-delay:.4s; }
-  .hero-copy > .hero-actions{ animation-delay:.52s; }
-
-  @media (prefers-reduced-motion: reduce){
-    .reveal{ transition:none; }
-    .hero-copy > *{ animation:none !important; opacity:1 !important; transform:none !important; }
-  }
-
-  /* ---------- footer ---------- */
-  .footer{
-    position:relative;
-    padding:22px clamp(20px,5vw,64px);
-    color:var(--muted); font-size:0.82rem;
-    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
-  }
-  .footer::before{
-    content:""; position:absolute; top:0; left:0; right:0; height:1px;
-    background:linear-gradient(90deg, transparent, var(--border) 15%, var(--border) 85%, transparent);
-  }
-
-  /* ---------- shared section scaffolding ---------- */
-  section[id]{ scroll-margin-top:84px; }
-  .section-inner{ max-width:1400px; margin:0 auto; padding:clamp(60px,9vh,96px) clamp(20px,5vw,64px); }
-  .section-head{ max-width:640px; margin-bottom:44px; }
-  .section-head h2{
-    font-family:var(--font-d); font-weight:600; color:var(--ink);
-    font-size:clamp(1.7rem,3.4vw,2.4rem); line-height:1.2; letter-spacing:-0.005em; margin:0 0 14px;
-  }
-  .section-head p.lede{ font-size:1rem; line-height:1.65; color:var(--muted); margin:0; }
-
-  /* ---------- about ---------- */
-  .about{ position:relative; }
-  .about::before{
-    content:""; position:absolute; top:0; left:0; right:0; height:1px;
-    background:linear-gradient(90deg, transparent, var(--border) 15%, var(--border) 85%, transparent);
-  }
-  .pillar-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:40px; }
-  .pillar{
-    background:linear-gradient(165deg, var(--panel), var(--panel-2)); border:1px solid var(--border); border-radius:20px;
-    padding:24px 22px; display:flex; flex-direction:column; align-items:flex-start; gap:16px;
-    box-shadow:var(--card-shadow);
-    transition:border-color .2s var(--ease), transform .2s var(--ease), box-shadow .2s var(--ease);
-  }
-  .pillar:hover{ transform:translateY(-3px); box-shadow:var(--card-shadow-hover); }
-  .pillar-icon{
-    flex:none; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center;
-    background:var(--panel-2); border:1px solid var(--border); cursor:pointer;
-    transition:transform .3s var(--ease-pop), background .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease);
-  }
-  .pillar:hover .pillar-icon{ transform:scale(1.1) rotate(-4deg); }
-  .pillar-green .pillar-icon{ color:var(--tag-green); }
-  .pillar-yellow .pillar-icon{ color:var(--tag-yellow); }
-  .pillar-red .pillar-icon{ color:var(--tag-red); }
-  .pillar-blue .pillar-icon{ color:var(--tag-blue); }
-  .pillar-green:hover{ border-color:rgba(0,184,163,0.4); }
-  .pillar-yellow:hover{ border-color:rgba(139,92,246,0.4); }
-  .pillar-red:hover{ border-color:rgba(255,55,95,0.4); }
-  .pillar-blue:hover{ border-color:rgba(56,189,248,0.4); }
-
-  .pillar-green.selected{ background:linear-gradient(165deg, rgba(0,184,163,0.2), rgba(0,184,163,0.07)); border-color:rgba(0,184,163,0.45); }
-  .pillar-green.selected .pillar-icon{ background:rgba(0,184,163,0.28); border-color:rgba(0,184,163,0.5); }
-  .pillar-yellow.selected{ background:linear-gradient(165deg, rgba(139,92,246,0.18), rgba(139,92,246,0.06)); border-color:rgba(139,92,246,0.45); }
-  .pillar-yellow.selected .pillar-icon{ background:rgba(139,92,246,0.26); border-color:rgba(139,92,246,0.5); }
-  .pillar-red.selected{ background:linear-gradient(165deg, rgba(255,55,95,0.18), rgba(255,55,95,0.06)); border-color:rgba(255,55,95,0.45); }
-  .pillar-red.selected .pillar-icon{ background:rgba(255,55,95,0.26); border-color:rgba(255,55,95,0.5); }
-  .pillar-blue.selected{ background:linear-gradient(165deg, rgba(56,189,248,0.18), rgba(56,189,248,0.06)); border-color:rgba(56,189,248,0.45); }
-  .pillar-blue.selected .pillar-icon{ background:rgba(56,189,248,0.26); border-color:rgba(56,189,248,0.5); }
-  .pillar h3{ font-family:var(--font-d); font-size:1.02rem; font-weight:600; margin:0 0 6px; color:var(--ink); }
-  .pillar p{ font-size:0.9rem; line-height:1.55; color:var(--muted); margin:0; }
-
-  /* ---------- features ---------- */
-  .features{ position:relative; background:var(--panel); }
-  .features::before{
-    content:""; position:absolute; top:0; left:0; right:0; height:1px;
-    background:linear-gradient(90deg, transparent, var(--border) 15%, var(--border) 85%, transparent);
-  }
-  .feature-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-
-  .feature-group{ margin-top:46px; }
-  .feature-group:first-child{ margin-top:0; }
-
-  .feature-group-head{ display:flex; align-items:center; gap:9px; margin-bottom:16px; }
-  .feature-group-head .dot{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }
-  .feature-group-head .dot.green{ background:var(--tag-green); }
-  .feature-group-head .dot.red{ background:var(--tag-red); }
-  .feature-group-head .dot.yellow{ background:var(--tag-yellow); }
-  .feature-group-head .dot.blue{ background:var(--tag-blue); }
-  .feature-group-head h4{
-    font-family:var(--font-m); font-size:0.76rem; font-weight:600;
-    letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:0;
-  }
-
-  .feature-card.fc-green .f-index{ color:var(--tag-green); }
-  .feature-card.fc-red .f-index{ color:var(--tag-red); }
-  .feature-card.fc-yellow .f-index{ color:var(--tag-yellow); }
-  .feature-card.fc-blue .f-index{ color:var(--tag-blue); }
-  .feature-card.fc-green:hover{ border-color:var(--tag-green); }
-  .feature-card.fc-red:hover{ border-color:var(--tag-red); }
-  .feature-card.fc-yellow:hover{ border-color:var(--tag-yellow); }
-  .feature-card.fc-blue:hover{ border-color:var(--tag-blue); }
-  .feature-card{
-    background:linear-gradient(165deg, var(--bg), var(--surface-soft)); border:1px solid var(--border); border-radius:20px; padding:26px 24px;
-    box-shadow:var(--card-shadow);
-    transition:border-color .2s var(--ease), transform .2s var(--ease), box-shadow .2s var(--ease);
-  }
-  .feature-card:hover{ border-color:var(--brand); transform:translateY(-3px); box-shadow:var(--card-shadow-hover); }
-  .f-index{ font-family:var(--font-m); font-size:0.75rem; color:var(--brand); margin-bottom:14px; }
-  .feature-card h3{ font-family:var(--font-d); font-size:1.05rem; font-weight:600; margin:0 0 8px; color:var(--ink); }
-  .feature-card p{ font-size:0.9rem; line-height:1.6; color:var(--muted); margin:0; }
-
-  /* ---------- contact ---------- */
-  .contact{ position:relative; }
-  .contact::before{
-    content:""; position:absolute; top:0; left:0; right:0; height:1px;
-    background:linear-gradient(90deg, transparent, var(--border) 15%, var(--border) 85%, transparent);
-  }
-  .contact-inner{ display:flex; justify-content:space-between; align-items:center; gap:32px; flex-wrap:wrap; }
-  .contact-inner h2{ font-family:var(--font-d); font-weight:600; color:var(--ink); font-size:clamp(1.6rem,3.2vw,2.2rem); line-height:1.2; letter-spacing:-0.005em; margin:0 0 12px; }
-  .contact-inner p.lede{ font-size:1rem; line-height:1.65; color:var(--muted); max-width:460px; margin:0; }
-  .contact-actions{ display:flex; gap:12px; flex-wrap:wrap; flex:none; }
-
-  /* ---------- metric tiles (inside hero) ---------- */
-  .mtile{ background:linear-gradient(165deg, var(--panel-2), var(--surface-card)); border:1px solid var(--border); border-radius:20px; padding:20px 20px 18px;
-    display:flex; flex-direction:column; justify-content:center; box-shadow:var(--card-shadow);
-    transition:border-color .2s var(--ease), transform .2s var(--ease), box-shadow .2s var(--ease); }
-  .mtile:hover{ border-color:var(--brand); transform:translateY(-2px); box-shadow:var(--card-shadow-hover); }
-  .mtile.brand{ background:linear-gradient(165deg, #ffb84d, var(--brand)); border-color:transparent; }
-  .m-label{ font-family:var(--font-m); font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em;
-    color:var(--muted); display:flex; align-items:center; gap:8px; margin:0 0 14px; }
-  .mtile.brand .m-label{ color:rgba(26,26,26,0.72); }
-  .m-label svg{ width:15px; height:15px; flex:none; transition:transform .3s var(--ease-pop); }
-  .mtile:hover .m-label svg{ transform:scale(1.15); }
-  .m-val{ font-family:var(--font-d); font-weight:600; font-size:clamp(1.7rem,2.6vw,2.2rem); letter-spacing:0; color:var(--brand); }
-  .mtile.brand .m-val{ color:var(--brand-text); }
-  .m-foot{ margin-top:10px; font-size:0.8rem; color:var(--muted); }
-  .mtile.brand .m-foot{ color:rgba(26,26,26,0.78); }
-
-  /* ---------- pipeline chart ---------- */
-  .pipeline-inner{ max-width:1400px; margin:0 auto; padding:clamp(44px,6.5vh,72px) clamp(20px,5vw,64px) 0; }
-  .pipe-card{ background:linear-gradient(165deg, var(--panel-2), var(--surface-card)); border:1px solid var(--border); border-radius:20px; padding:clamp(22px,3vw,30px); box-shadow:var(--card-shadow); }
-  .pipe-head{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; }
-  .pipe-sub{ margin-top:10px; font-family:var(--font-d); font-weight:600; font-size:clamp(0.98rem,1.5vw,1.15rem); color:var(--ink); }
-  .pipe-tag{ font-family:var(--font-m); font-size:0.76rem; color:var(--brand); }
-  .pipe-bars{ display:flex; align-items:flex-end; gap:8px; height:92px; margin-top:26px; }
-  .pipe-bar{ flex:1; height:100%; display:flex; align-items:flex-end; }
-  .pipe-bar span{ display:block; width:100%; background:var(--brand); border-radius:999px; transform-origin:bottom;
-    opacity:0.88; transition:opacity .2s var(--ease); }
-  .pipe-bar:hover span{ opacity:1; }
-  .pipe-bars.animate span{ animation:pipefill .6s var(--ease) both; }
-  .pipe-bar:nth-child(1) span{ animation-delay:.02s; } .pipe-bar:nth-child(2) span{ animation-delay:.06s; }
-  .pipe-bar:nth-child(3) span{ animation-delay:.10s; } .pipe-bar:nth-child(4) span{ animation-delay:.14s; }
-  .pipe-bar:nth-child(5) span{ animation-delay:.18s; } .pipe-bar:nth-child(6) span{ animation-delay:.22s; }
-  .pipe-bar:nth-child(7) span{ animation-delay:.26s; } .pipe-bar:nth-child(8) span{ animation-delay:.30s; }
-  .pipe-bar:nth-child(9) span{ animation-delay:.34s; } .pipe-bar:nth-child(10) span{ animation-delay:.38s; }
-  .pipe-bar:nth-child(11) span{ animation-delay:.42s; } .pipe-bar:nth-child(12) span{ animation-delay:.46s; }
-  @keyframes pipefill{ from{ transform:scaleY(0.04); opacity:0.25; } to{ transform:scaleY(1); opacity:0.88; } }
-  .pipe-scale{ display:flex; justify-content:space-between; margin-top:12px; font-family:var(--font-m);
-    font-size:0.72rem; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase; }
-  @media (prefers-reduced-motion: reduce){ .pipe-bar span{ animation:none !important; } }
-
-  /* ---------- how it works ---------- */
-  .how{ position:relative; }
-  .how::before{ content:""; position:absolute; top:0; left:0; right:0; height:1px;
-    background:linear-gradient(90deg, transparent, var(--border) 15%, var(--border) 85%, transparent); }
-  .step-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:40px; }
-  .step-card{ background:linear-gradient(165deg, var(--panel), var(--panel-2)); border:1px solid var(--border); border-radius:20px; padding:26px 24px;
-    transition:border-color .2s var(--ease), transform .2s var(--ease), box-shadow .2s var(--ease);
-    box-shadow:var(--card-shadow); }
-  .step-card:hover{ border-color:var(--brand); transform:translateY(-3px); box-shadow:var(--card-shadow-hover); }
-  .step-num{ font-family:var(--font-m); font-size:0.75rem; color:var(--brand); letter-spacing:0.05em; }
-  .step-card h3{ font-family:var(--font-d); font-size:1.05rem; font-weight:600; margin:12px 0 8px; color:var(--ink); }
-  .step-card p{ font-size:0.9rem; line-height:1.6; color:var(--muted); margin:0; }
-
-  /* ---------- proof ---------- */
-  .proof{ position:relative; background:var(--panel); }
-  .proof::before{ content:""; position:absolute; top:0; left:0; right:0; height:1px;
-    background:linear-gradient(90deg, transparent, var(--border) 15%, var(--border) 85%, transparent); }
-  .proof-split{ display:grid; grid-template-columns:0.95fr 1.05fr; gap:24px; align-items:start; margin-top:40px; }
-  .proof-quote{ background:linear-gradient(165deg, var(--bg), var(--surface-soft)); border:1px solid var(--border); border-radius:20px; padding:clamp(24px,3vw,32px); box-shadow:var(--card-shadow); }
-  .quote-mark{ fill:var(--brand); opacity:0.5; margin-bottom:12px; }
-  .proof-quote p{ font-family:var(--font-d); font-weight:600; font-size:clamp(1.02rem,1.5vw,1.25rem); line-height:1.5; color:var(--ink); margin:0; }
-  .proof-by{ margin-top:22px; display:flex; flex-direction:column; gap:2px; }
-  .proof-by .n{ font-size:0.92rem; font-weight:600; color:var(--ink); }
-  .proof-by .r{ font-size:0.76rem; color:var(--muted); }
-  .proof-rows{ background:linear-gradient(165deg, var(--bg), var(--surface-soft)); border:1px solid var(--border); border-radius:20px; padding:8px 20px; display:flex; flex-direction:column; box-shadow:var(--card-shadow); }
-  .proof-row{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 0; }
-  .proof-row + .proof-row{ border-top:1px solid var(--border); }
-  .proof-row .rn{ font-size:0.92rem; font-weight:600; color:var(--ink); }
-  .proof-row .rs{ font-size:0.76rem; color:var(--muted); margin-top:2px; }
-  .proof-row .rv{ font-family:var(--font-d); font-weight:700; font-size:1.05rem; color:var(--brand); white-space:nowrap; }
-
-  /* ---------- cta band ---------- */
-  .cta-band{ background:linear-gradient(165deg, var(--panel), var(--panel-2)); border:1px solid var(--border); border-radius:24px; padding:clamp(30px,4vw,44px); box-shadow:var(--card-shadow); }
-
-  /* ---------- scroll reveal ---------- */
-  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s var(--ease), transform .6s var(--ease); }
-  .reveal.visible{ opacity:1; transform:none; }
-
-  @media (max-width:1150px){
-    .pillar-grid{ grid-template-columns:repeat(2,1fr); }
-    .feature-grid{ grid-template-columns:repeat(2,1fr); }
-  }
-
-  @media (max-width:900px){
-    .nav-toggle{ display:flex; }
-    .nav-links{
-      position:absolute; top:100%; left:0; right:0; flex-direction:column; gap:0;
-      background:var(--nav-mobile-bg); backdrop-filter:blur(10px);
-      border-bottom:1px solid var(--border);
-      max-height:0; overflow:hidden; opacity:0; padding:0 clamp(20px,5vw,64px);
-      transition:max-height .3s var(--ease), opacity .2s var(--ease), padding .3s var(--ease);
+      return;
     }
-    .nav-links.open{ max-height:280px; opacity:1; padding:14px clamp(20px,5vw,64px) 18px; }
-    .nav-links li{ padding:10px 0; border-bottom:1px solid var(--border); }
-    .nav-links li:last-child{ border-bottom:none; }
-    .pillar-grid{ grid-template-columns:1fr; }
-    .feature-grid{ grid-template-columns:1fr; }
-    .contact-inner{ flex-direction:column; align-items:flex-start; }
-    .hero-grid{ grid-template-columns:1fr; }
-    .hero-copy{ text-align:left; }
-    .step-grid{ grid-template-columns:1fr; }
-    .proof-split{ grid-template-columns:1fr; }
-  }
 
-  @media (max-width:640px){
-    .hero-stats{ grid-template-columns:1fr; }
-  }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
 
-  /* ---------- modal (sign in / get started / contact) ---------- */
-  .modal-overlay{
-    position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center;
-    background:rgba(10,10,10,0.62); backdrop-filter:blur(6px);
-    opacity:0; visibility:hidden; transition:opacity .25s var(--ease), visibility 0s .25s;
-    padding:20px;
-  }
-  .modal-overlay.open{ opacity:1; visibility:visible; transition:opacity .25s var(--ease); }
-  .modal{
-    position:relative; width:100%; max-width:420px; max-height:88vh; overflow-y:auto;
-    background:var(--panel); border:1px solid var(--border);
-    border-radius:16px; padding:32px 28px 28px;
-    box-shadow:0 30px 70px -20px rgba(0,0,0,0.75);
-    opacity:0; transform:translateY(14px) scale(0.94);
-    transition:transform .22s var(--ease), opacity .18s var(--ease);
-  }
-  .modal-overlay.open .modal{
-    opacity:1; transform:none;
-    transition:transform .4s var(--ease-pop), opacity .22s var(--ease);
-  }
-  .modal-close{
-    position:absolute; top:16px; right:16px; width:30px; height:30px; border-radius:8px;
-    background:var(--panel-2); border:1px solid var(--border); color:var(--muted);
-    display:flex; align-items:center; justify-content:center; cursor:pointer;
-    transition:color .2s var(--ease), border-color .2s var(--ease);
-  }
-  .modal-close:hover{ color:var(--ink); border-color:var(--brand); }
-  .modal-close svg{ width:14px; height:14px; }
-  .modal-panel{ display:none; opacity:1; transform:none; transition:opacity .16s var(--ease), transform .16s var(--ease); }
-  .modal-panel.active{ display:block; }
-  .modal-panel.leaving{ opacity:0; transform:translateY(-4px); }
-  .modal-panel.entering{ opacity:0; transform:translateY(6px); }
-  .modal h3{ font-family:var(--font-d); font-weight:700; font-size:1.35rem; color:var(--ink); margin:0 0 18px; letter-spacing:-0.01em; }
-  .modal-form{ display:flex; flex-direction:column; gap:14px; }
-  .modal-form label{ display:flex; flex-direction:column; gap:6px; font-size:0.78rem; color:var(--muted); font-family:var(--font-m); text-transform:uppercase; letter-spacing:0.04em; }
-  .modal-form input, .modal-form textarea{
-    font-family:var(--font-b); font-size:0.92rem; color:var(--ink); background:var(--bg);
-    border:1px solid var(--border); border-radius:8px; padding:10px 12px; resize:vertical;
-    transition:border-color .2s var(--ease);
-  }
-  .modal-form input:focus, .modal-form textarea:focus{ outline:none; border-color:var(--brand); }
-  .modal-submit{ width:100%; justify-content:center; margin-top:4px; }
-  .modal-switch{ font-size:0.85rem; color:var(--muted); margin:16px 0 0; text-align:center; }
-  .modal-switch a{ color:var(--brand); text-decoration:underline; text-underline-offset:2px; }
-  .role-select{ display:flex; gap:8px; margin-bottom:18px; }
-  .role-btn{
-    flex:1; font-family:var(--font-m); font-size:0.78rem; padding:9px 6px; border-radius:8px;
-    border:1px solid var(--border); background:var(--bg); color:var(--muted); cursor:pointer;
-    transition:border-color .2s var(--ease), color .2s var(--ease), background .2s var(--ease);
-  }
-  .role-btn:hover{ color:var(--ink); }
-  .role-green.active{ border-color:rgba(0,184,163,0.5); color:var(--tag-green); background:rgba(0,184,163,0.1); }
-  .role-yellow.active{ border-color:rgba(139,92,246,0.5); color:var(--tag-yellow); background:rgba(139,92,246,0.1); }
-  .role-red.active{ border-color:rgba(255,55,95,0.5); color:var(--tag-red); background:rgba(255,55,95,0.1); }
-  .modal-success{ display:none; text-align:center; padding:8px 0 4px; opacity:1; transform:none;
-    transition:opacity .16s var(--ease), transform .16s var(--ease); }
-  .modal-success.active{ display:block; }
-  .modal-success.leaving{ opacity:0; transform:translateY(-4px); }
-  .modal-success.entering{ opacity:0; transform:translateY(6px); }
-  .modal-success-icon{
-    width:52px; height:52px; border-radius:50%; background:var(--brand); margin:0 auto 18px;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .modal-success-icon svg{ width:22px; height:22px; }
-  .modal-success h3{ margin-bottom:8px; }
-  .modal-success p{ color:var(--muted); font-size:0.92rem; margin:0; }
+          entry.target.classList.add("visible");
 
-  @media (prefers-reduced-motion: reduce){
-    .modal-overlay, .modal, .modal-panel, .modal-success{ transition:none; }
-  }
+          const bars = entry.target.querySelector(".pipe-bars");
+          if (bars) {
+            bars.classList.add("animate");
+          }
+
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    revealElements.forEach((element) => observer.observe(element));
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!("IntersectionObserver" in window)) return;
+
+    const sectionIds = [
+      "home",
+      "about",
+      "features",
+      "how",
+      "proof",
+      "contact",
+    ];
+
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-45% 0px -50% 0px",
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!contactOpen) {
+      document.body.style.overflow = "";
+      return;
+    }
+
+    document.body.style.overflow = "hidden";
+
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setContactOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [contactOpen]);
+
+  const closeMobileMenu = () => {
+    setMenuOpen(false);
+  };
+
+  const handleContactSubmit = (event) => {
+    event.preventDefault();
+
+    // UI-only for now. We can connect this to an email/API endpoint later.
+    setContactStatus(
+      "The contact form UI is working. Message delivery will be connected next."
+    );
+    event.currentTarget.reset();
+  };
+
+  const pillarClass = (baseClass, name) =>
+    `pillar ${baseClass} reveal ${
+      selectedPillar === name ? "selected" : ""
+    }`;
+
+  return (
+    <>
+      <div className="top-accent"></div>
+      <div className="glow"></div>
+      <div className="glow-2"></div>
+      <div className="grain"></div>
+
+      <div className="page">
+        {/* =========================
+            NAVBAR
+        ========================== */}
+
+        <nav className={`nav ${navScrolled ? "scrolled" : ""}`}>
+          <a
+            className="logo"
+            href="#home"
+            onClick={closeMobileMenu}
+            aria-label="SkillBridge home"
+          >
+            <span className="mark">
+              <svg
+                viewBox="0 0 26 22"
+                width="17"
+                height="14"
+                fill="none"
+                stroke="#1a1a1a"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M2 15 L2 9 M24 15 L24 9" />
+                <path d="M2 9 C 9 -1 17 -1 24 9" />
+                <line x1="0" y1="15" x2="26" y2="15" />
+                <line x1="7" y1="10" x2="7" y2="15" />
+                <line x1="13" y1="7.5" x2="13" y2="15" />
+                <line x1="19" y1="10" x2="19" y2="15" />
+              </svg>
+            </span>
+
+            Skill<span className="accent">Bridge</span>
+          </a>
+
+          <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
+            <li>
+              <a
+                href="#home"
+                className={activeSection === "home" ? "active" : ""}
+                onClick={closeMobileMenu}
+              >
+                Home
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="#about"
+                className={activeSection === "about" ? "active" : ""}
+                onClick={closeMobileMenu}
+              >
+                About
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="#features"
+                className={activeSection === "features" ? "active" : ""}
+                onClick={closeMobileMenu}
+              >
+                Features
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="#how"
+                className={activeSection === "how" ? "active" : ""}
+                onClick={closeMobileMenu}
+              >
+                How it Works
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="#proof"
+                className={activeSection === "proof" ? "active" : ""}
+                onClick={closeMobileMenu}
+              >
+                Proof
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="#contact"
+                className={activeSection === "contact" ? "active" : ""}
+                onClick={closeMobileMenu}
+              >
+                Contact
+              </a>
+            </li>
+          </ul>
+
+          <div className="nav-right">
+            <button
+              className="btn btn-ghost"
+              onClick={() => navigate("/login")}
+            >
+              Sign In
+            </button>
+
+            <button
+              type="button"
+              className={`nav-toggle ${menuOpen ? "open" : ""}`}
+              aria-label="Toggle menu"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((current) => !current)}
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </nav>
+
+        {/* =========================
+            HERO
+        ========================== */}
+
+        <section className="hero" id="home">
+          <div className="hero-grid">
+            <div className="hero-copy">
+              <div className="eyebrow">// connecting four worlds</div>
+
+              <h1>
+                Bridging <span className="role-student">Students</span> &amp;{" "}
+                <span className="role-faculty">Faculty</span>,
+                <br />
+                <span className="role-college">Colleges</span> &amp;{" "}
+                <span className="role-recruiter">Recruiters</span>
+                <br />
+                Together
+              </h1>
+
+              <p className="lede">
+                One network where talent, education and opportunity meet — so
+                students grow, faculty advance, colleges empower, and
+                recruiters discover what&apos;s next.
+              </p>
+
+              <div className="tag-row">
+                <span className="tag tg">
+                  <span className="sw"></span>
+                  student
+                </span>
+
+                <span className="tag tb">
+                  <span className="sw"></span>
+                  faculty
+                </span>
+
+                <span className="tag ty">
+                  <span className="sw"></span>
+                  college
+                </span>
+
+                <span className="tag tr">
+                  <span className="sw"></span>
+                  recruiter
+                </span>
+              </div>
+
+              <div className="hero-actions">
+                <button
+                  className="btn btn-primary"
+                  onClick={() => navigate("/signup")}
+                >
+                  Get Started
+
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.4"
+                    strokeLinecap="round"
+                  >
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </button>
+
+                <button
+                  className="btn btn-ghost"
+                  onClick={() => navigate("/login")}
+                >
+                  Sign In
+                </button>
+              </div>
+            </div>
+
+            {/* =========================
+                HERO STATS
+            ========================== */}
+
+            <div className="hero-stats">
+              <div className="mtile brand reveal">
+                <div className="m-label">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="9" cy="8" r="3.4" />
+                    <path d="M3.5 20c0-3.5 2.5-6 5.5-6s5.5 2.5 5.5 6" />
+                    <path d="M16 4.6a3.4 3.4 0 0 1 0 6.6" />
+                    <path d="M20.5 20c0-2.8-1.7-5-4-5.7" />
+                  </svg>
+                  Students
+                </div>
+
+                <div className="m-val">18.4K</div>
+
+                <div className="m-foot">
+                  Verified students live right now
+                </div>
+              </div>
+
+              <div className="mtile reveal">
+                <div className="m-label">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M4 5c3-1.3 6-1.3 8 0v14c-2-1.3-5-1.3-8 0V5Z" />
+                    <path d="M20 5c-3-1.3-6-1.3-8 0v14c2-1.3 5-1.3 8 0V5Z" />
+                  </svg>
+                  Faculty
+                </div>
+
+                <div className="m-val">540</div>
+
+                <div className="m-foot">Faculty members connected</div>
+              </div>
+
+              <div className="mtile reveal">
+                <div className="m-label">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M12 22s7-6.5 7-12.5A7 7 0 0 0 5 9.5C5 15.5 12 22 12 22Z" />
+                    <circle cx="12" cy="9.5" r="2.6" />
+                  </svg>
+                  Colleges
+                </div>
+
+                <div className="m-val">312</div>
+
+                <div className="m-foot">
+                  Partner institutions connected
+                </div>
+              </div>
+
+              <div className="mtile reveal">
+                <div className="m-label">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect x="2" y="6" width="20" height="14" rx="2" />
+                    <path d="M8 6V4.5C8 3.5 8.8 3 10 3h4c1.2 0 2 .5 2 1.5V6" />
+                    <line x1="2" y1="12" x2="22" y2="12" />
+                  </svg>
+                  Recruiters
+                </div>
+
+                <div className="m-val">86</div>
+
+                <div className="m-foot">Companies actively hiring</div>
+              </div>
+
+              <div className="mtile wide reveal">
+                <div className="m-label">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M12.5 2 4 13h6l-1 9 8.5-11h-6l1-9Z" />
+                  </svg>
+                  Matches
+                </div>
+
+                <div className="m-val">947</div>
+
+                <div className="m-foot">Shortlists sent this week</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================
+            PIPELINE
+        ========================== */}
+
+        <section className="pipeline" aria-label="Matching activity">
+          <div className="pipeline-inner">
+            <div className="pipe-card reveal">
+              <div className="pipe-head">
+                <div>
+                  <div className="m-label">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M4 21V10M12 21V4M20 21v-7" />
+                    </svg>
+                    Matches per week
+                  </div>
+
+                  <div className="pipe-sub">
+                    A visual preview of how SkillBridge can track matching
+                    activity across a placement cycle.
+                  </div>
+                </div>
+
+                <div className="pipe-tag">// demo preview</div>
+              </div>
+
+              <div
+                className="pipe-bars"
+                aria-label="Illustrative weekly matching activity"
+              >
+                {[24, 31, 28, 42, 39, 54, 61, 57, 73, 81, 88, 100].map(
+                  (height, index) => (
+                    <div className="pipe-bar" key={index}>
+                      <span style={{ height: `${height}%` }}></span>
+                    </div>
+                  )
+                )}
+              </div>
+
+              <div className="pipe-scale">
+                <span>Week 1</span>
+                <span>Week 12</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================
+            ABOUT
+        ========================== */}
+
+        <section id="about" className="about">
+          <div className="section-inner">
+            <div className="section-head reveal">
+              <div className="eyebrow">// why we exist</div>
+
+              <h2>
+                <span className="accent-text">SkillBridge</span> is one
+                platform,
+                <br />
+                four worlds in sync
+              </h2>
+
+              <p className="lede">
+                Students graduate with skills that are hard to present in a
+                structured way. Faculty need better channels to turn expertise
+                into industry collaboration. Colleges need better visibility
+                into industry demand. Recruiters need a faster way to
+                identify relevant talent. SkillBridge connects all four
+                through one shared skill ecosystem.
+              </p>
+            </div>
+
+            <div className="pillar-grid">
+              {/* STUDENT */}
+              <div className={pillarClass("pillar-green", "student")}>
+                <button
+                  type="button"
+                  className="pillar-icon"
+                  aria-label="Highlight student role"
+                  onClick={() =>
+                    setSelectedPillar((current) =>
+                      current === "student" ? null : "student"
+                    )
+                  }
+                >
+                  <svg
+                    viewBox="0 0 28 22"
+                    width="22"
+                    height="17"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M0 8 L14 0 L28 8 L14 16 Z" />
+                    <path d="M6 11 V18 C6 20 10 22 14 22 C18 22 22 20 22 18 V11" />
+                    <line x1="28" y1="8" x2="28" y2="16" />
+                  </svg>
+                </button>
+
+                <div>
+                  <h3>Students</h3>
+                  <p>
+                    Build a skill-first profile from your resume, projects and
+                    experience, discover matched opportunities and understand
+                    which skills can improve your fit.
+                  </p>
+                </div>
+              </div>
+
+              {/* FACULTY */}
+              <div className={pillarClass("pillar-blue", "faculty")}>
+                <button
+                  type="button"
+                  className="pillar-icon"
+                  aria-label="Highlight faculty role"
+                  onClick={() =>
+                    setSelectedPillar((current) =>
+                      current === "faculty" ? null : "faculty"
+                    )
+                  }
+                >
+                  <svg
+                    viewBox="0 0 24 22"
+                    width="19"
+                    height="17"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M4 4c3-1.3 6-1.3 8 0v15c-2-1.3-5-1.3-8 0V4Z" />
+                    <path d="M20 4c-3-1.3-6-1.3-8 0v15c2-1.3 5-1.3 8 0V4Z" />
+                  </svg>
+                </button>
+
+                <div>
+                  <h3>Faculty</h3>
+                  <p>
+                    Connect with industry for professional development,
+                    research collaboration and consultancy — while feeding
+                    expertise back into the skill ecosystem.
+                  </p>
+                </div>
+              </div>
+
+              {/* COLLEGE */}
+              <div className={pillarClass("pillar-yellow", "college")}>
+                <button
+                  type="button"
+                  className="pillar-icon"
+                  aria-label="Highlight college role"
+                  onClick={() =>
+                    setSelectedPillar((current) =>
+                      current === "college" ? null : "college"
+                    )
+                  }
+                >
+                  <svg
+                    viewBox="0 0 26 19"
+                    width="20"
+                    height="15"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M0 7 L13 0 L26 7" />
+                    <line x1="2" y1="7" x2="24" y2="7" />
+                    <line x1="4" y1="7" x2="4" y2="19" />
+                    <line x1="10" y1="7" x2="10" y2="19" />
+                    <line x1="16" y1="7" x2="16" y2="19" />
+                    <line x1="22" y1="7" x2="22" y2="19" />
+                    <line x1="1" y1="19" x2="25" y2="19" />
+                  </svg>
+                </button>
+
+                <div>
+                  <h3>Colleges</h3>
+                  <p>
+                    Understand student readiness, compare academic talent with
+                    industry demand and identify training areas that can improve
+                    placement outcomes.
+                  </p>
+                </div>
+              </div>
+
+              {/* RECRUITER */}
+              <div className={pillarClass("pillar-red", "recruiter")}>
+                <button
+                  type="button"
+                  className="pillar-icon"
+                  aria-label="Highlight recruiter role"
+                  onClick={() =>
+                    setSelectedPillar((current) =>
+                      current === "recruiter" ? null : "recruiter"
+                    )
+                  }
+                >
+                  <svg
+                    viewBox="0 0 26 22"
+                    width="20"
+                    height="17"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect x="0" y="5" width="26" height="17" rx="2" />
+                    <path d="M8 5 V2 C8 1 9 0 10 0 H16 C17 0 18 1 18 2 V5" />
+                    <line x1="0" y1="13" x2="26" y2="13" />
+                  </svg>
+                </button>
+
+                <div>
+                  <h3>Recruiters</h3>
+                  <p>
+                    Define opportunity requirements, automatically filter
+                    eligible students and discover candidates ranked by
+                    relevant skills and project experience.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================
+            FEATURES
+        ========================== */}
+
+        <section id="features" className="features">
+          <div className="section-inner">
+            <div className="section-head reveal">
+              <div className="eyebrow">// the platform</div>
+
+              <h2>
+                What <span className="accent-text">SkillBridge</span> actually
+                does
+              </h2>
+
+              <p className="lede">
+                One connected system for skill mapping, opportunity matching
+                and academia-industry collaboration — everything each of the
+                four portals actually does.
+              </p>
+            </div>
+
+            <div
+              className="feature-tabs reveal"
+              role="tablist"
+              aria-label="Filter features by role"
+            >
+              {FEATURE_FILTERS.map((filter) => (
+                <button
+                  key={filter.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={featureFilter === filter.id}
+                  className={`feature-tab ${
+                    featureFilter === filter.id ? "active" : ""
+                  }`}
+                  onClick={() => setFeatureFilter(filter.id)}
+                >
+                  {filter.label}
+                </button>
+              ))}
+            </div>
+
+            {/* STUDENT */}
+            <div
+              className={`feature-group ${
+                featureFilter === "all" || featureFilter === "student"
+                  ? ""
+                  : "is-hidden"
+              }`}
+            >
+              <div className="feature-group-head">
+                <span className="dot green"></span>
+                <h4>For students</h4>
+                <span className="f-count">9</span>
+              </div>
+
+              <div className="feature-grid">
+                <div className="feature-card fc-green reveal">
+                  <div className="f-index">01</div>
+                  <h3>Resume Intelligence</h3>
+                  <p>Upload a resume and SkillBridge extracts relevant skills, projects and experience to build a structured student profile.</p>
+                </div>
+
+                <div className="feature-card fc-green reveal">
+                  <div className="f-index">02</div>
+                  <h3>Portfolio Builder</h3>
+                  <p>Bring your academic profile, verified skills, projects, certifications and achievements together in one industry-ready portfolio.</p>
+                </div>
+
+                <div className="feature-card fc-green reveal">
+                  <div className="f-index">03</div>
+                  <h3>Skill Assessment</h3>
+                  <p>Take skill-specific assessments so your proficiency levels are backed by more than a self-rating.</p>
+                </div>
+
+                <div className="feature-card fc-green reveal">
+                  <div className="f-index">04</div>
+                  <h3>Career Guidance</h3>
+                  <p>Explore career directions based on your skills, interests and the requirements of opportunities currently live on SkillBridge.</p>
+                </div>
+
+                <div className="feature-card fc-green reveal">
+                  <div className="f-index">05</div>
+                  <h3>Skill Roadmap</h3>
+                  <p>Build a focused roadmap for any opportunity, tracking exactly which skills close the gap to a stronger match.</p>
+                </div>
+
+                <div className="feature-card fc-green reveal">
+                  <div className="f-index">06</div>
+                  <h3>Learning Hub</h3>
+                  <p>Turn skill gaps into actionable learning, with recommendations drawn from open opportunities and your institution&apos;s training.</p>
+                </div>
+
+                <div className="feature-card fc-green reveal">
+                  <div className="f-index">07</div>
+                  <h3>Opportunity Matching</h3>
+                  <p>SkillBridge checks eligibility first, then ranks every opportunity against your saved skills and proficiency levels.</p>
+                </div>
+
+                <div className="feature-card fc-green reveal">
+                  <div className="f-index">08</div>
+                  <h3>Application Tracking</h3>
+                  <p>Follow every internship and job application from submission through to the final recruiter decision.</p>
+                </div>
+
+                <div className="feature-card fc-green reveal">
+                  <div className="f-index">09</div>
+                  <h3>Internship Progress Tracking</h3>
+                  <p>Follow every milestone of an internship once a match turns into an offer.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* FACULTY */}
+            <div
+              className={`feature-group ${
+                featureFilter === "all" || featureFilter === "faculty"
+                  ? ""
+                  : "is-hidden"
+              }`}
+            >
+              <div className="feature-group-head">
+                <span className="dot blue"></span>
+                <h4>For faculty</h4>
+                <span className="f-count">3</span>
+              </div>
+
+              <div className="feature-grid">
+                <div className="feature-card fc-blue reveal">
+                  <div className="f-index">01</div>
+                  <h3>Faculty Profile</h3>
+                  <p>Maintain your academic expertise, research interests and professional information for industry collaboration.</p>
+                </div>
+
+                <div className="feature-card fc-blue reveal">
+                  <div className="f-index">02</div>
+                  <h3>Opportunity Discovery</h3>
+                  <p>Discover faculty development programmes, research collaborations and consultancy work posted directly by industry.</p>
+                </div>
+
+                <div className="feature-card fc-blue reveal">
+                  <div className="f-index">03</div>
+                  <h3>Application Tracking</h3>
+                  <p>Track your faculty development, research and training applications from submission through to outcome.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* COLLEGE */}
+            <div
+              className={`feature-group ${
+                featureFilter === "all" || featureFilter === "college"
+                  ? ""
+                  : "is-hidden"
+              }`}
+            >
+              <div className="feature-group-head">
+                <span className="dot yellow"></span>
+                <h4>For colleges</h4>
+                <span className="f-count">7</span>
+              </div>
+
+              <div className="feature-grid">
+                <div className="feature-card fc-yellow reveal">
+                  <div className="f-index">01</div>
+                  <h3>Department Setup</h3>
+                  <p>Configure the academic departments that every student record in your institution is built on.</p>
+                </div>
+
+                <div className="feature-card fc-yellow reveal">
+                  <div className="f-index">02</div>
+                  <h3>Student Oversight</h3>
+                  <p>Monitor student academic profiles, verification status and institutional readiness from one place.</p>
+                </div>
+
+                <div className="feature-card fc-yellow reveal">
+                  <div className="f-index">03</div>
+                  <h3>Skill Gap Mapping</h3>
+                  <p>Compare skills requested by live opportunities against recorded, verified student skills to see exactly where the gaps are.</p>
+                </div>
+
+                <div className="feature-card fc-yellow reveal">
+                  <div className="f-index">04</div>
+                  <h3>Portfolio Verification</h3>
+                  <p>Review certifications and achievements students submit and add institutional verification where it counts.</p>
+                </div>
+
+                <div className="feature-card fc-yellow reveal">
+                  <div className="f-index">05</div>
+                  <h3>Training Recommendations</h3>
+                  <p>Turn identified academia-industry skill gaps into targeted workshops, courses and certifications.</p>
+                </div>
+
+                <div className="feature-card fc-yellow reveal">
+                  <div className="f-index">06</div>
+                  <h3>Institution Analytics</h3>
+                  <p>Track institution-wide student readiness and placement trends over time.</p>
+                </div>
+
+                <div className="feature-card fc-yellow reveal">
+                  <div className="f-index">07</div>
+                  <h3>Placement &amp; Internship Monitoring</h3>
+                  <p>Track student participation, recruitment progress and internship outcomes across your institution using live activity.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* RECRUITER */}
+            <div
+              className={`feature-group ${
+                featureFilter === "all" || featureFilter === "recruiter"
+                  ? ""
+                  : "is-hidden"
+              }`}
+            >
+              <div className="feature-group-head">
+                <span className="dot red"></span>
+                <h4>For recruiters</h4>
+                <span className="f-count">6</span>
+              </div>
+
+              <div className="feature-grid">
+                <div className="feature-card fc-red reveal">
+                  <div className="f-index">01</div>
+                  <h3>Opportunity Management</h3>
+                  <p>Post, edit and publish hiring roles, then control exactly when they open for student eligibility matching.</p>
+                </div>
+
+                <div className="feature-card fc-red reveal">
+                  <div className="f-index">02</div>
+                  <h3>Smart Candidate Matching</h3>
+                  <p>Define eligibility and required skills, and SkillBridge filters and ranks candidates by fit automatically.</p>
+                </div>
+
+                <div className="feature-card fc-red reveal">
+                  <div className="f-index">03</div>
+                  <h3>Candidate Review &amp; Shortlisting</h3>
+                  <p>Review every applicant&apos;s profile and resume, then shortlist candidates for the next hiring stage.</p>
+                </div>
+
+                <div className="feature-card fc-red reveal">
+                  <div className="f-index">04</div>
+                  <h3>Recruitment Analytics</h3>
+                  <p>Track hiring funnel performance across every opportunity you&apos;ve posted.</p>
+                </div>
+
+                <div className="feature-card fc-red reveal">
+                  <div className="f-index">05</div>
+                  <h3>Internship Oversight</h3>
+                  <p>Track selected students, monitor internship progress and keep mentor feedback and completion records in one place.</p>
+                </div>
+
+                <div className="feature-card fc-red reveal">
+                  <div className="f-index">06</div>
+                  <h3>Faculty Collaboration Postings</h3>
+                  <p>Publish faculty development, research and consultancy opportunities straight to academia.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================
+            HOW IT WORKS
+        ========================== */}
+
+        <section id="how" className="how">
+          <div className="section-inner">
+            <div className="section-head reveal">
+              <div className="eyebrow">// how it works</div>
+
+              <h2>
+                From profile to{" "}
+                <span className="accent-text">opportunity</span>
+              </h2>
+
+              <p className="lede">
+                SkillBridge connects student data, college insights and
+                recruiter requirements through one intelligent matching
+                system.
+              </p>
+            </div>
+
+            <div className="step-grid">
+              <div className="step-card reveal">
+                <div className="step-num">01</div>
+                <h3>Build your skill profile</h3>
+                <p>
+                  Students complete their academic profile and upload a resume.
+                  SkillBridge identifies skills, projects and relevant
+                  experience.
+                </p>
+              </div>
+
+              <div className="step-card reveal">
+                <div className="step-num">02</div>
+                <h3>Recruiters define requirements</h3>
+                <p>
+                  Companies create internship or placement opportunities with
+                  eligibility requirements, required skills and preferred
+                  skills.
+                </p>
+              </div>
+
+              <div className="step-card reveal">
+                <div className="step-num">03</div>
+                <h3>SkillBridge finds the match</h3>
+                <p>
+                  Ineligible candidates are filtered first. Eligible students
+                  are then ranked according to their skills, projects and
+                  overall role compatibility.
+                </p>
+              </div>
+
+              <div className="step-card reveal">
+                <div className="step-num">04</div>
+                <h3>Colleges &amp; faculty close the loop</h3>
+                <p>
+                  Colleges turn skill gaps into training and verify student
+                  portfolios, while faculty take up industry collaboration,
+                  research and consultancy opportunities.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================
+            SKILL GAP / PROOF
+        ========================== */}
+
+        <section id="proof" className="proof">
+          <div className="section-inner">
+            <div className="section-head reveal">
+              <div className="eyebrow">// academia meets industry</div>
+
+              <h2>
+                Turn the <span className="accent-text">skill gap</span> into
+                actionable insight
+              </h2>
+
+              <p className="lede">
+                SkillBridge helps colleges understand what industry wants and
+                helps students understand what they need to improve.
+              </p>
+            </div>
+
+            <div className="proof-split">
+              <div className="proof-quote reveal">
+                <svg
+                  className="quote-mark"
+                  viewBox="0 0 32 24"
+                  width="30"
+                  height="22"
+                >
+                  <path d="M9.5 0C4.5 3 0 8.4 0 14.7 0 19.9 3.6 24 8.6 24c4 0 7-3 7-6.9 0-3.6-2.6-6.4-6-6.4-.7 0-1.4.1-1.9.3C8.6 6.7 12 3 16.6.9L9.5 0Zm17 0C21.5 3 17 8.4 17 14.7 17 19.9 20.6 24 25.6 24c4 0 7-3 7-6.9 0-3.6-2.6-6.4-6-6.4-.7 0-1.4.1-1.9.3C25.6 6.7 29 3 33.6.9L26.5 0Z" />
+                </svg>
+
+                <p>
+                  Instead of asking students to apply blindly, SkillBridge
+                  shows how closely their current abilities match an
+                  opportunity and what is preventing a stronger match.
+                </p>
+
+                <div className="proof-by">
+                  <div className="n">Skill-first matching</div>
+                  <div className="r">
+                    Built into the SkillBridge workflow
+                  </div>
+                </div>
+              </div>
+
+              <div className="proof-rows reveal">
+                <div className="proof-row">
+                  <div>
+                    <div className="rn">Industry Demand</div>
+                    <div className="rs">
+                      Skills recruiters are currently requesting
+                    </div>
+                  </div>
+                  <div className="rv">Demand</div>
+                </div>
+
+                <div className="proof-row">
+                  <div>
+                    <div className="rn">Student Skill Supply</div>
+                    <div className="rs">
+                      Skills available across students and departments
+                    </div>
+                  </div>
+                  <div className="rv">Supply</div>
+                </div>
+
+                <div className="proof-row">
+                  <div>
+                    <div className="rn">Skill Gap</div>
+                    <div className="rs">
+                      Difference between industry needs and student readiness
+                    </div>
+                  </div>
+                  <div className="rv">Gap</div>
+                </div>
+
+                <div className="proof-row">
+                  <div>
+                    <div className="rn">Training Recommendation</div>
+                    <div className="rs">
+                      Areas colleges can prioritize before placement season
+                    </div>
+                  </div>
+                  <div className="rv">Action</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================
+            CONTACT
+        ========================== */}
+
+        <section id="contact" className="contact">
+          <div className="section-inner">
+            <div className="contact-inner cta-band reveal">
+              <div>
+                <div className="eyebrow">// get involved</div>
+
+                <h2>
+                  Ready to{" "}
+                  <span className="accent-text">cross the bridge?</span>
+                </h2>
+
+                <p className="lede">
+                  Your next opportunity is one connection away. Whether
+                  you&apos;re a student, faculty, college or recruiter,
+                  SkillBridge is designed to bring the right people and
+                  skills together.
+                </p>
+              </div>
+
+              <div className="contact-actions">
+                <button
+                  type="button"
+                  className="btn btn-ghost"
+                  style={{ padding: "14px 32px", fontSize: "1rem" }}
+                  onClick={() => {
+                    setContactStatus("");
+                    setContactOpen(true);
+                  }}
+                >
+                  Contact us
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================
+            FOOTER
+        ========================== */}
+
+        <footer className="footer">
+          <span>© 2026 SkillBridge</span>
+          <span>
+            Built for students, faculty, colleges &amp; recruiters —
+            together.
+          </span>
+        </footer>
+      </div>
+
+      {/* =========================
+          CONTACT MODAL
+      ========================== */}
+
+      <div
+        className={`modal-overlay ${contactOpen ? "open" : ""}`}
+        aria-hidden={!contactOpen}
+        onMouseDown={(event) => {
+          if (event.target === event.currentTarget) {
+            setContactOpen(false);
+          }
+        }}
+      >
+        <div
+          className="modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="contactModalTitle"
+        >
+          <button
+            type="button"
+            className="modal-close"
+            aria-label="Close contact form"
+            onClick={() => setContactOpen(false)}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
+
+          <div className="modal-panel active">
+            <div className="eyebrow">// get in touch</div>
+            <h3 id="contactModalTitle">Contact us</h3>
+
+            <form className="modal-form" onSubmit={handleContactSubmit}>
+              <label>
+                Name
+                <input type="text" required placeholder="Your name" />
+              </label>
+
+              <label>
+                Email
+                <input
+                  type="email"
+                  required
+                  placeholder="you@example.com"
+                />
+              </label>
+
+              <label>
+                Message
+                <textarea
+                  required
+                  rows="4"
+                  placeholder="How can we help?"
+                ></textarea>
+              </label>
+
+              <button
+                type="submit"
+                className="btn btn-primary modal-submit"
+              >
+                Send message
+              </button>
+            </form>
+
+            {contactStatus && (
+              <p className="modal-switch" role="status">
+                {contactStatus}
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default Landing;
