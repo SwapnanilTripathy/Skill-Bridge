@@ -2,6 +2,14 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Landing.css";
 
+const FEATURE_FILTERS = [
+  { id: "all", label: "All" },
+  { id: "student", label: "Students" },
+  { id: "faculty", label: "Faculty" },
+  { id: "college", label: "Colleges" },
+  { id: "recruiter", label: "Recruiters" },
+];
+
 function Landing() {
   const navigate = useNavigate();
 
@@ -11,6 +19,7 @@ function Landing() {
   const [selectedPillar, setSelectedPillar] = useState(null);
   const [contactOpen, setContactOpen] = useState(false);
   const [contactStatus, setContactStatus] = useState("");
+  const [featureFilter, setFeatureFilter] = useState("all");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -382,6 +391,27 @@ function Landing() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   >
+                    <path d="M4 5c3-1.3 6-1.3 8 0v14c-2-1.3-5-1.3-8 0V5Z" />
+                    <path d="M20 5c-3-1.3-6-1.3-8 0v14c2-1.3 5-1.3 8 0V5Z" />
+                  </svg>
+                  Faculty
+                </div>
+
+                <div className="m-val">540</div>
+
+                <div className="m-foot">Faculty members connected</div>
+              </div>
+
+              <div className="mtile reveal">
+                <div className="m-label">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <path d="M12 22s7-6.5 7-12.5A7 7 0 0 0 5 9.5C5 15.5 12 22 12 22Z" />
                     <circle cx="12" cy="9.5" r="2.6" />
                   </svg>
@@ -415,27 +445,6 @@ function Landing() {
                 <div className="m-val">86</div>
 
                 <div className="m-foot">Companies actively hiring</div>
-              </div>
-
-              <div className="mtile reveal">
-                <div className="m-label">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M4 5c3-1.3 6-1.3 8 0v14c-2-1.3-5-1.3-8 0V5Z" />
-                    <path d="M20 5c-3-1.3-6-1.3-8 0v14c2-1.3 5-1.3 8 0V5Z" />
-                  </svg>
-                  Faculty
-                </div>
-
-                <div className="m-val">540</div>
-
-                <div className="m-foot">Faculty members connected</div>
               </div>
 
               <div className="mtile wide reveal">
@@ -579,6 +588,43 @@ function Landing() {
                 </div>
               </div>
 
+              {/* FACULTY */}
+              <div className={pillarClass("pillar-blue", "faculty")}>
+                <button
+                  type="button"
+                  className="pillar-icon"
+                  aria-label="Highlight faculty role"
+                  onClick={() =>
+                    setSelectedPillar((current) =>
+                      current === "faculty" ? null : "faculty"
+                    )
+                  }
+                >
+                  <svg
+                    viewBox="0 0 24 22"
+                    width="19"
+                    height="17"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M4 4c3-1.3 6-1.3 8 0v15c-2-1.3-5-1.3-8 0V4Z" />
+                    <path d="M20 4c-3-1.3-6-1.3-8 0v15c2-1.3 5-1.3 8 0V4Z" />
+                  </svg>
+                </button>
+
+                <div>
+                  <h3>Faculty</h3>
+                  <p>
+                    Connect with industry for professional development,
+                    research collaboration and consultancy — while feeding
+                    expertise back into the skill ecosystem.
+                  </p>
+                </div>
+              </div>
+
               {/* COLLEGE */}
               <div className={pillarClass("pillar-yellow", "college")}>
                 <button
@@ -658,43 +704,6 @@ function Landing() {
                   </p>
                 </div>
               </div>
-
-              {/* FACULTY */}
-              <div className={pillarClass("pillar-blue", "faculty")}>
-                <button
-                  type="button"
-                  className="pillar-icon"
-                  aria-label="Highlight faculty role"
-                  onClick={() =>
-                    setSelectedPillar((current) =>
-                      current === "faculty" ? null : "faculty"
-                    )
-                  }
-                >
-                  <svg
-                    viewBox="0 0 24 22"
-                    width="19"
-                    height="17"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M4 4c3-1.3 6-1.3 8 0v15c-2-1.3-5-1.3-8 0V4Z" />
-                    <path d="M20 4c-3-1.3-6-1.3-8 0v15c2-1.3 5-1.3 8 0V4Z" />
-                  </svg>
-                </button>
-
-                <div>
-                  <h3>Faculty</h3>
-                  <p>
-                    Connect with industry for professional development,
-                    research collaboration and consultancy — while feeding
-                    expertise back into the skill ecosystem.
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -720,208 +729,241 @@ function Landing() {
               </p>
             </div>
 
+            <div
+              className="feature-tabs reveal"
+              role="tablist"
+              aria-label="Filter features by role"
+            >
+              {FEATURE_FILTERS.map((filter) => (
+                <button
+                  key={filter.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={featureFilter === filter.id}
+                  className={`feature-tab ${
+                    featureFilter === filter.id ? "active" : ""
+                  }`}
+                  onClick={() => setFeatureFilter(filter.id)}
+                >
+                  {filter.label}
+                </button>
+              ))}
+            </div>
+
             {/* STUDENT */}
-            <div className="feature-group">
+            <div
+              className={`feature-group ${
+                featureFilter === "all" || featureFilter === "student"
+                  ? ""
+                  : "is-hidden"
+              }`}
+            >
               <div className="feature-group-head">
                 <span className="dot green"></span>
                 <h4>For students</h4>
+                <span className="f-count">9</span>
               </div>
 
               <div className="feature-grid">
                 <div className="feature-card fc-green reveal">
                   <div className="f-index">01</div>
                   <h3>Resume Intelligence</h3>
-                  <p>
-                    Upload a resume and SkillBridge extracts relevant skills,
-                    projects and experience to build a structured student
-                    profile.
-                  </p>
+                  <p>Upload a resume and SkillBridge extracts relevant skills, projects and experience to build a structured student profile.</p>
                 </div>
 
                 <div className="feature-card fc-green reveal">
                   <div className="f-index">02</div>
-                  <h3>Skill Assessment</h3>
-                  <p>
-                    Take skill-specific assessments so your proficiency
-                    levels are backed by more than a self-rating.
-                  </p>
+                  <h3>Portfolio Builder</h3>
+                  <p>Bring your academic profile, verified skills, projects, certifications and achievements together in one industry-ready portfolio.</p>
                 </div>
 
                 <div className="feature-card fc-green reveal">
                   <div className="f-index">03</div>
-                  <h3>Skill Roadmap</h3>
-                  <p>
-                    Build a focused roadmap for any opportunity, tracking
-                    exactly which skills close the gap to a stronger match.
-                  </p>
+                  <h3>Skill Assessment</h3>
+                  <p>Take skill-specific assessments so your proficiency levels are backed by more than a self-rating.</p>
                 </div>
 
                 <div className="feature-card fc-green reveal">
                   <div className="f-index">04</div>
-                  <h3>Opportunity Matching</h3>
-                  <p>
-                    SkillBridge checks eligibility first, then ranks every
-                    opportunity against your saved skills and proficiency
-                    levels.
-                  </p>
+                  <h3>Career Guidance</h3>
+                  <p>Explore career directions based on your skills, interests and the requirements of opportunities currently live on SkillBridge.</p>
                 </div>
 
                 <div className="feature-card fc-green reveal">
                   <div className="f-index">05</div>
-                  <h3>Internship Progress Tracking</h3>
-                  <p>
-                    Follow every milestone of an internship once a match
-                    turns into an offer.
-                  </p>
+                  <h3>Skill Roadmap</h3>
+                  <p>Build a focused roadmap for any opportunity, tracking exactly which skills close the gap to a stronger match.</p>
                 </div>
-              </div>
-            </div>
 
-            {/* RECRUITER */}
-            <div className="feature-group">
-              <div className="feature-group-head">
-                <span className="dot red"></span>
-                <h4>For recruiters</h4>
-              </div>
-
-              <div className="feature-grid">
-                <div className="feature-card fc-red reveal">
+                <div className="feature-card fc-green reveal">
                   <div className="f-index">06</div>
-                  <h3>Opportunity Management</h3>
-                  <p>
-                    Post, edit and publish hiring roles, then control exactly
-                    when they open for student eligibility matching.
-                  </p>
+                  <h3>Learning Hub</h3>
+                  <p>Turn skill gaps into actionable learning, with recommendations drawn from open opportunities and your institution&apos;s training.</p>
                 </div>
 
-                <div className="feature-card fc-red reveal">
+                <div className="feature-card fc-green reveal">
                   <div className="f-index">07</div>
-                  <h3>Smart Candidate Matching</h3>
-                  <p>
-                    Define eligibility and required skills, and SkillBridge
-                    filters and ranks candidates by fit automatically.
-                  </p>
+                  <h3>Opportunity Matching</h3>
+                  <p>SkillBridge checks eligibility first, then ranks every opportunity against your saved skills and proficiency levels.</p>
                 </div>
 
-                <div className="feature-card fc-red reveal">
+                <div className="feature-card fc-green reveal">
                   <div className="f-index">08</div>
-                  <h3>Candidate Review &amp; Shortlisting</h3>
-                  <p>
-                    Review every applicant&apos;s profile and resume, then
-                    shortlist candidates for the next hiring stage.
-                  </p>
+                  <h3>Application Tracking</h3>
+                  <p>Follow every internship and job application from submission through to the final recruiter decision.</p>
                 </div>
 
-                <div className="feature-card fc-red reveal">
+                <div className="feature-card fc-green reveal">
                   <div className="f-index">09</div>
-                  <h3>Recruitment Analytics</h3>
-                  <p>
-                    Track hiring funnel performance across every opportunity
-                    you&apos;ve posted.
-                  </p>
-                </div>
-
-                <div className="feature-card fc-red reveal">
-                  <div className="f-index">10</div>
-                  <h3>Faculty Collaboration Postings</h3>
-                  <p>
-                    Publish faculty development, research and consultancy
-                    opportunities straight to academia.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* COLLEGE */}
-            <div className="feature-group">
-              <div className="feature-group-head">
-                <span className="dot yellow"></span>
-                <h4>For colleges</h4>
-              </div>
-
-              <div className="feature-grid">
-                <div className="feature-card fc-yellow reveal">
-                  <div className="f-index">11</div>
-                  <h3>Department Setup</h3>
-                  <p>
-                    Configure the academic departments that every student
-                    record in your institution is built on.
-                  </p>
-                </div>
-
-                <div className="feature-card fc-yellow reveal">
-                  <div className="f-index">12</div>
-                  <h3>Student Oversight</h3>
-                  <p>
-                    Monitor student academic profiles, verification status
-                    and institutional readiness from one place.
-                  </p>
-                </div>
-
-                <div className="feature-card fc-yellow reveal">
-                  <div className="f-index">13</div>
-                  <h3>Skill Gap Mapping</h3>
-                  <p>
-                    Compare skills requested by live opportunities against
-                    recorded, verified student skills to see exactly where
-                    the gaps are.
-                  </p>
-                </div>
-
-                <div className="feature-card fc-yellow reveal">
-                  <div className="f-index">14</div>
-                  <h3>Training Recommendations</h3>
-                  <p>
-                    Turn identified academia-industry skill gaps into
-                    targeted workshops, courses and certifications.
-                  </p>
-                </div>
-
-                <div className="feature-card fc-yellow reveal">
-                  <div className="f-index">15</div>
-                  <h3>Institution Analytics</h3>
-                  <p>
-                    Track institution-wide student readiness and placement
-                    trends over time.
-                  </p>
+                  <h3>Internship Progress Tracking</h3>
+                  <p>Follow every milestone of an internship once a match turns into an offer.</p>
                 </div>
               </div>
             </div>
 
             {/* FACULTY */}
-            <div className="feature-group">
+            <div
+              className={`feature-group ${
+                featureFilter === "all" || featureFilter === "faculty"
+                  ? ""
+                  : "is-hidden"
+              }`}
+            >
               <div className="feature-group-head">
                 <span className="dot blue"></span>
                 <h4>For faculty</h4>
+                <span className="f-count">3</span>
               </div>
 
               <div className="feature-grid">
                 <div className="feature-card fc-blue reveal">
-                  <div className="f-index">16</div>
+                  <div className="f-index">01</div>
                   <h3>Faculty Profile</h3>
-                  <p>
-                    Maintain your academic expertise, research interests and
-                    professional information for industry collaboration.
-                  </p>
+                  <p>Maintain your academic expertise, research interests and professional information for industry collaboration.</p>
                 </div>
 
                 <div className="feature-card fc-blue reveal">
-                  <div className="f-index">17</div>
+                  <div className="f-index">02</div>
                   <h3>Opportunity Discovery</h3>
-                  <p>
-                    Discover faculty development programmes, research
-                    collaborations and consultancy work posted directly by
-                    industry.
-                  </p>
+                  <p>Discover faculty development programmes, research collaborations and consultancy work posted directly by industry.</p>
                 </div>
 
                 <div className="feature-card fc-blue reveal">
-                  <div className="f-index">18</div>
+                  <div className="f-index">03</div>
                   <h3>Application Tracking</h3>
-                  <p>
-                    Track your faculty development, research and training
-                    applications from submission through to outcome.
-                  </p>
+                  <p>Track your faculty development, research and training applications from submission through to outcome.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* COLLEGE */}
+            <div
+              className={`feature-group ${
+                featureFilter === "all" || featureFilter === "college"
+                  ? ""
+                  : "is-hidden"
+              }`}
+            >
+              <div className="feature-group-head">
+                <span className="dot yellow"></span>
+                <h4>For colleges</h4>
+                <span className="f-count">7</span>
+              </div>
+
+              <div className="feature-grid">
+                <div className="feature-card fc-yellow reveal">
+                  <div className="f-index">01</div>
+                  <h3>Department Setup</h3>
+                  <p>Configure the academic departments that every student record in your institution is built on.</p>
+                </div>
+
+                <div className="feature-card fc-yellow reveal">
+                  <div className="f-index">02</div>
+                  <h3>Student Oversight</h3>
+                  <p>Monitor student academic profiles, verification status and institutional readiness from one place.</p>
+                </div>
+
+                <div className="feature-card fc-yellow reveal">
+                  <div className="f-index">03</div>
+                  <h3>Skill Gap Mapping</h3>
+                  <p>Compare skills requested by live opportunities against recorded, verified student skills to see exactly where the gaps are.</p>
+                </div>
+
+                <div className="feature-card fc-yellow reveal">
+                  <div className="f-index">04</div>
+                  <h3>Portfolio Verification</h3>
+                  <p>Review certifications and achievements students submit and add institutional verification where it counts.</p>
+                </div>
+
+                <div className="feature-card fc-yellow reveal">
+                  <div className="f-index">05</div>
+                  <h3>Training Recommendations</h3>
+                  <p>Turn identified academia-industry skill gaps into targeted workshops, courses and certifications.</p>
+                </div>
+
+                <div className="feature-card fc-yellow reveal">
+                  <div className="f-index">06</div>
+                  <h3>Institution Analytics</h3>
+                  <p>Track institution-wide student readiness and placement trends over time.</p>
+                </div>
+
+                <div className="feature-card fc-yellow reveal">
+                  <div className="f-index">07</div>
+                  <h3>Placement &amp; Internship Monitoring</h3>
+                  <p>Track student participation, recruitment progress and internship outcomes across your institution using live activity.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* RECRUITER */}
+            <div
+              className={`feature-group ${
+                featureFilter === "all" || featureFilter === "recruiter"
+                  ? ""
+                  : "is-hidden"
+              }`}
+            >
+              <div className="feature-group-head">
+                <span className="dot red"></span>
+                <h4>For recruiters</h4>
+                <span className="f-count">6</span>
+              </div>
+
+              <div className="feature-grid">
+                <div className="feature-card fc-red reveal">
+                  <div className="f-index">01</div>
+                  <h3>Opportunity Management</h3>
+                  <p>Post, edit and publish hiring roles, then control exactly when they open for student eligibility matching.</p>
+                </div>
+
+                <div className="feature-card fc-red reveal">
+                  <div className="f-index">02</div>
+                  <h3>Smart Candidate Matching</h3>
+                  <p>Define eligibility and required skills, and SkillBridge filters and ranks candidates by fit automatically.</p>
+                </div>
+
+                <div className="feature-card fc-red reveal">
+                  <div className="f-index">03</div>
+                  <h3>Candidate Review &amp; Shortlisting</h3>
+                  <p>Review every applicant&apos;s profile and resume, then shortlist candidates for the next hiring stage.</p>
+                </div>
+
+                <div className="feature-card fc-red reveal">
+                  <div className="f-index">04</div>
+                  <h3>Recruitment Analytics</h3>
+                  <p>Track hiring funnel performance across every opportunity you&apos;ve posted.</p>
+                </div>
+
+                <div className="feature-card fc-red reveal">
+                  <div className="f-index">05</div>
+                  <h3>Internship Oversight</h3>
+                  <p>Track selected students, monitor internship progress and keep mentor feedback and completion records in one place.</p>
+                </div>
+
+                <div className="feature-card fc-red reveal">
+                  <div className="f-index">06</div>
+                  <h3>Faculty Collaboration Postings</h3>
+                  <p>Publish faculty development, research and consultancy opportunities straight to academia.</p>
                 </div>
               </div>
             </div>
@@ -977,6 +1019,16 @@ function Landing() {
                   Ineligible candidates are filtered first. Eligible students
                   are then ranked according to their skills, projects and
                   overall role compatibility.
+                </p>
+              </div>
+
+              <div className="step-card reveal">
+                <div className="step-num">04</div>
+                <h3>Colleges &amp; faculty close the loop</h3>
+                <p>
+                  Colleges turn skill gaps into training and verify student
+                  portfolios, while faculty take up industry collaboration,
+                  research and consultancy opportunities.
                 </p>
               </div>
             </div>
