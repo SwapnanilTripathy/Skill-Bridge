@@ -300,8 +300,8 @@ function Signup() {
           </h1>
 
           <p className="signup-subtitle">
-            Connect your skills with opportunities,
-            recruiters and institutions.
+            Connect students, faculty, colleges and
+            recruiters through one skill-first network.
           </p>
 
           {/* =========================
@@ -358,6 +358,22 @@ function Signup() {
               Smart skill-based opportunity
               matching
             </div>
+
+            <div className="signup-perk">
+              <span className="signup-perk-icon blue">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                >
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+              </span>
+
+              Industry collaboration for faculty
+            </div>
           </div>
 
           {/* =========================
@@ -389,6 +405,28 @@ function Signup() {
 
                 <span className="signup-role-name">
                   Student
+                </span>
+              </button>
+
+              {/* FACULTY */}
+
+              <button
+                type="button"
+                className={`signup-role-card faculty ${
+                  selectedRole === "faculty"
+                    ? "active"
+                    : ""
+                }`}
+                onClick={() =>
+                  setSelectedRole("faculty")
+                }
+              >
+                <span className="signup-role-icon">
+                  📚
+                </span>
+
+                <span className="signup-role-name">
+                  Faculty
                 </span>
               </button>
 
@@ -433,28 +471,6 @@ function Signup() {
 
                 <span className="signup-role-name">
                   Recruiter
-                </span>
-              </button>
-
-              {/* FACULTY */}
-
-              <button
-                type="button"
-                className={`signup-role-card faculty ${
-                  selectedRole === "faculty"
-                    ? "active"
-                    : ""
-                }`}
-                onClick={() =>
-                  setSelectedRole("faculty")
-                }
-              >
-                <span className="signup-role-icon">
-                  👩‍🏫
-                </span>
-
-                <span className="signup-role-name">
-                  Faculty
                 </span>
               </button>
             </div>
