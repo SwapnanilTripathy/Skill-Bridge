@@ -19,7 +19,7 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #6b7280;
+  color: #666666;
 }
 
 .college-training-header h1 {
@@ -27,13 +27,13 @@
   font-size: clamp(2rem, 4vw, 3.2rem);
   line-height: 1;
   letter-spacing: -0.04em;
-  color: #111827;
+  color: #171717;
 }
 
 .college-training-header p {
   max-width: 760px;
   margin: 14px 0 0;
-  color: #6b7280;
+  color: #666666;
   line-height: 1.7;
 }
 
@@ -51,7 +51,7 @@
 .college-training-summary article {
   min-width: 0;
   padding: 20px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e6e6e6;
   border-radius: 14px;
   background: #ffffff;
 }
@@ -63,7 +63,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #6b7280;
+  color: #666666;
 }
 
 .college-training-summary strong {
@@ -71,14 +71,14 @@
   margin-bottom: 8px;
   font-size: 2rem;
   line-height: 1;
-  color: #111827;
+  color: #171717;
 }
 
 .college-training-summary p {
   margin: 0;
   font-size: 0.82rem;
   line-height: 1.5;
-  color: #6b7280;
+  color: #666666;
 }
 
 /* =========================
@@ -114,7 +114,7 @@
   min-width: 0;
   margin-bottom: 24px;
   padding: 24px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e6e6e6;
   border-radius: 16px;
   background: #ffffff;
 }
@@ -126,14 +126,14 @@
 .college-training-section-heading h2 {
   margin: 0;
   font-size: 1.35rem;
-  color: #111827;
+  color: #171717;
 }
 
 .college-training-section-heading p {
   margin: 7px 0 0;
   font-size: 0.88rem;
   line-height: 1.6;
-  color: #6b7280;
+  color: #666666;
 }
 
 .college-training-section-heading.program-heading {
@@ -166,7 +166,7 @@
   margin-bottom: 7px;
   font-size: 0.78rem;
   font-weight: 700;
-  color: #374151;
+  color: #4f4f4f;
 }
 
 .college-training-field input,
@@ -175,10 +175,10 @@
 .college-training-status-filter {
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid #d1d5db;
+  border: 1px solid #dddddd;
   border-radius: 9px;
   background: #ffffff;
-  color: #111827;
+  color: #171717;
   font: inherit;
   font-size: 0.88rem;
   outline: none;
@@ -204,13 +204,13 @@
 .college-training-field select:focus,
 .college-training-field textarea:focus,
 .college-training-status-filter:focus {
-  border-color: #6b7280;
+  border-color: #666666;
   box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.1);
 }
 
 .college-training-field input::placeholder,
 .college-training-field textarea::placeholder {
-  color: #9ca3af;
+  color: #808080;
 }
 
 .college-training-form-actions {
@@ -222,9 +222,9 @@
 
 .college-training-form-actions button,
 .college-training-card-actions button {
-  border: 1px solid #111827;
+  border: 1px solid #171717;
   border-radius: 8px;
-  background: #111827;
+  background: #171717;
   color: #ffffff;
   font: inherit;
   font-size: 0.82rem;
@@ -282,19 +282,19 @@
 .college-training-empty > span {
   font-size: 2rem;
   font-weight: 800;
-  color: #e5e7eb;
+  color: #e6e6e6;
 }
 
 .college-training-empty h3 {
   margin: 0 0 5px;
   font-size: 1rem;
-  color: #111827;
+  color: #171717;
 }
 
 .college-training-empty p {
   margin: 0;
   font-size: 0.84rem;
-  color: #6b7280;
+  color: #666666;
 }
 
 /* =========================
@@ -309,7 +309,7 @@
 .college-training-card {
   min-width: 0;
   padding: 20px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e6e6e6;
   border-radius: 13px;
   background: #ffffff;
 }
@@ -334,17 +334,17 @@
   min-height: 24px;
   padding: 0 8px;
   border-radius: 5px;
-  background: #f3f4f6;
+  background: #f5f5f5;
   font-size: 0.67rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #4b5563;
+  color: #4f4f4f;
 }
 
 .college-training-card-tags .status.planned {
-  background: #f3f4f6;
-  color: #4b5563;
+  background: #f5f5f5;
+  color: #4f4f4f;
 }
 
 .college-training-card-tags .status.active {
@@ -365,7 +365,7 @@
 .college-training-card h3 {
   margin: 0 0 8px;
   font-size: 1.08rem;
-  color: #111827;
+  color: #171717;
 }
 
 .college-training-card-top > div:first-child > p {
@@ -373,14 +373,14 @@
   margin: 0;
   font-size: 0.84rem;
   line-height: 1.6;
-  color: #6b7280;
+  color: #666666;
 }
 
 .college-training-target {
   padding: 13px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e6e6e6;
   border-radius: 9px;
-  background: #f9fafb;
+  background: #fafafa;
 }
 
 .college-training-target span {
@@ -390,14 +390,14 @@
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: #9ca3af;
+  color: #808080;
 }
 
 .college-training-target strong {
   display: block;
   overflow-wrap: anywhere;
   font-size: 0.88rem;
-  color: #111827;
+  color: #171717;
 }
 
 /* =========================
@@ -424,14 +424,14 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #9ca3af;
+  color: #808080;
 }
 
 .college-training-card-details strong {
   display: block;
   overflow-wrap: anywhere;
   font-size: 0.8rem;
-  color: #374151;
+  color: #4f4f4f;
 }
 
 /* =========================
@@ -452,9 +452,9 @@
 }
 
 .college-training-card-actions button.secondary {
-  border-color: #d1d5db;
+  border-color: #dddddd;
   background: #ffffff;
-  color: #374151;
+  color: #4f4f4f;
 }
 
 .college-training-card-actions button.secondary.danger {
@@ -476,7 +476,7 @@
 
 .college-training-updating {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: #666666;
 }
 
 /* =========================
@@ -485,11 +485,11 @@
 
 .college-training-state {
   padding: 32px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e6e6e6;
   border-radius: 14px;
   background: #ffffff;
   font-size: 0.9rem;
-  color: #6b7280;
+  color: #666666;
 }
 
 /* =========================
