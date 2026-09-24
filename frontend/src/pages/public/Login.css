@@ -443,97 +443,92 @@
    ROLE SELECTOR
 ========================= */
 
-.login-role-row {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
+.login-role-label {
+  margin-bottom: 10px;
 
-  margin-bottom: 22px;
-}
-
-.login-role-chip {
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-
-  padding: 9px 6px;
-
-  border: 1px solid var(--login-border);
-  border-radius: 9px;
-
-  background: var(--login-panel-2);
   color: var(--login-muted);
-
-  cursor: pointer;
 
   font-family: var(--login-font-mono);
   font-size: 0.72rem;
   font-weight: 500;
 
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.07em;
+}
+
+.login-role-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+
+  margin-bottom: 22px;
+}
+
+.login-role-card {
+  min-height: 108px;
+
+  padding: 14px 10px;
+
+  border: 1px solid var(--login-border);
+  border-radius: 12px;
+
+  background: var(--login-panel-2);
+  color: var(--login-muted);
+
+  cursor: pointer;
+
+  text-align: center;
 
   transition:
     border-color .2s var(--login-ease),
-    color .2s var(--login-ease),
     background .2s var(--login-ease),
-    transform .15s var(--login-ease-pop);
+    transform .15s var(--login-ease-pop),
+    box-shadow .2s var(--login-ease);
 }
 
-.login-role-chip .dot {
-  width: 6px;
-  height: 6px;
+.login-role-card:hover {
+  transform: translateY(-2px);
 
-  flex: none;
-
-  border-radius: 50%;
+  box-shadow:
+    0 8px 18px -14px rgba(0,0,0,0.35);
 }
 
-.login-role-chip.student .dot {
-  background: var(--login-student);
+.login-role-icon {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 1.7rem;
 }
 
-.login-role-chip.college .dot {
-  background: var(--login-college);
+.login-role-name {
+  font-family: var(--login-font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.login-role-chip.recruiter .dot {
-  background: var(--login-recruiter);
-}
-
-.login-role-chip.faculty .dot {
-  background: var(--login-faculty);
-}
-
-.login-role-chip:hover {
-  border-color: var(--login-brand);
-  color: var(--login-ink);
-
-  transform: translateY(-1px);
-}
-
-.login-role-chip.active.student {
+.login-role-card.active.student {
   border-color: var(--login-student);
   background: rgba(0,184,163,0.08);
   color: var(--login-student);
 }
 
-.login-role-chip.active.college {
+.login-role-card.active.college {
   border-color: var(--login-college);
   background: rgba(139,92,246,0.08);
   color: var(--login-college);
 }
 
-.login-role-chip.active.recruiter {
+.login-role-card.active.recruiter {
   border-color: var(--login-recruiter);
   background: rgba(255,55,95,0.08);
   color: var(--login-recruiter);
 }
 
-.login-role-chip.active.faculty {
+.login-role-card.active.faculty {
   border-color: var(--login-faculty);
   background: rgba(56,189,248,0.08);
   color: var(--login-faculty);
