@@ -301,49 +301,55 @@ function Login() {
 
           {/* ROLE SELECTION */}
 
+          <div className="login-role-label">I am signing in as</div>
+
           <div className="login-role-row">
             <button
               type="button"
-              className={`login-role-chip student ${
+              className={`login-role-card student ${
                 selectedRole === "student" ? "active" : ""
               }`}
               onClick={() => setSelectedRole("student")}
             >
-              <span className="dot"></span>
-              Student
+              <span className="login-role-icon">🎓</span>
+
+              <span className="login-role-name">Student</span>
             </button>
 
             <button
               type="button"
-              className={`login-role-chip college ${
-                selectedRole === "college" ? "active" : ""
-              }`}
-              onClick={() => setSelectedRole("college")}
-            >
-              <span className="dot"></span>
-              College
-            </button>
-
-            <button
-              type="button"
-              className={`login-role-chip recruiter ${
-                selectedRole === "recruiter" ? "active" : ""
-              }`}
-              onClick={() => setSelectedRole("recruiter")}
-            >
-              <span className="dot"></span>
-              Recruiter
-            </button>
-
-            <button
-              type="button"
-              className={`login-role-chip faculty ${
+              className={`login-role-card faculty ${
                 selectedRole === "faculty" ? "active" : ""
               }`}
               onClick={() => setSelectedRole("faculty")}
             >
-              <span className="dot"></span>
-              Faculty
+              <span className="login-role-icon">📚</span>
+
+              <span className="login-role-name">Faculty</span>
+            </button>
+
+            <button
+              type="button"
+              className={`login-role-card college ${
+                selectedRole === "college" ? "active" : ""
+              }`}
+              onClick={() => setSelectedRole("college")}
+            >
+              <span className="login-role-icon">🏛️</span>
+
+              <span className="login-role-name">College</span>
+            </button>
+
+            <button
+              type="button"
+              className={`login-role-card recruiter ${
+                selectedRole === "recruiter" ? "active" : ""
+              }`}
+              onClick={() => setSelectedRole("recruiter")}
+            >
+              <span className="login-role-icon">💼</span>
+
+              <span className="login-role-name">Recruiter</span>
             </button>
           </div>
 
