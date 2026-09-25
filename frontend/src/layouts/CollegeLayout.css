@@ -830,7 +830,27 @@ main.college-content {
   --cp-accent-tint: #f5f0ff;
   --cp-accent-border: #c9b6f5;
 
-  --cp-mono: "Courier New", monospace;
+  --cp-mono: "IBM Plex Mono", monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  main.college-content {
+    --cp-ink: #f3f3f5;
+    --cp-body: #c8c8cd;
+    --cp-muted: #a8a8ae;
+    --cp-label: #96969c;
+
+    --cp-card: #222222;
+    --cp-card-soft: #292929;
+    --cp-border: #343434;
+    --cp-border-soft: #2e2e2e;
+
+    --cp-accent: #8b5cf6;
+    --cp-accent-text: #b79cf7;
+    --cp-accent-strong: #c4b0fa;
+    --cp-accent-tint: rgba(139, 92, 246, 0.16);
+    --cp-accent-border: rgba(139, 92, 246, 0.42);
+  }
 }
 
 /* =========================================================
@@ -852,11 +872,11 @@ main.college-content
   display: inline-block;
   margin-bottom: 0;
 
-  color: var(--cp-accent-text);
-  font-family: var(--cp-mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 1.6px;
+  color: var(--college-shell-accent);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -874,13 +894,20 @@ main.college-content
     .placement-hero
   ) {
   box-sizing: border-box;
-  margin-bottom: 20px;
-  padding: 44px 52px;
+  margin-bottom: 18px;
+  padding: 32px 40px;
 
-  background: var(--cp-card);
+  background:
+    radial-gradient(
+      ellipse at 100% 0%,
+      rgba(124, 58, 237, 0.1),
+      transparent 60%
+    ),
+    var(--cp-card);
   border: 1px solid var(--cp-border);
-  border-radius: 22px;
+  border-radius: 20px;
   color: var(--cp-ink);
+  text-align: left;
 }
 
 main.college-content
@@ -893,13 +920,14 @@ main.college-content
     .placement-hero
   )
   h1 {
-  margin: 16px 0 12px;
+  margin: 8px 0 10px;
 
   color: var(--cp-ink);
-  font-size: clamp(36px, 5vw, 58px);
+  font-family: "Fraunces", serif;
+  font-size: clamp(2.1rem, 4vw, 3.25rem);
   font-weight: 500;
   line-height: 1;
-  letter-spacing: -2px;
+  letter-spacing: -0.03em;
 }
 
 main.college-content
@@ -913,7 +941,7 @@ main.college-content
   )
   h1
   span {
-  color: var(--cp-accent);
+  color: var(--college-shell-accent);
 }
 
 main.college-content
@@ -926,17 +954,12 @@ main.college-content
     .placement-hero
   )
   p {
-  max-width: 650px;
+  max-width: 720px;
   margin: 0;
 
-  color: var(--cp-body);
-  font-size: 15px;
-  line-height: 1.8;
-}
-
-/* pages whose hero is a centred single column */
-main.college-content .college-analytics-hero > p {
-  margin-inline: auto;
+  color: var(--college-shell-muted);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 /* hero side blocks (count box / filter) */
@@ -960,7 +983,7 @@ main.college-content
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
 
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 
   overflow: visible;
   border: 0;
@@ -977,20 +1000,20 @@ main.college-content
   ) {
   box-sizing: border-box;
   min-width: 0;
-  min-height: 150px;
-  padding: 28px 22px 24px;
+  min-height: 0;
+  padding: 20px 22px;
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
 
   background: var(--cp-card);
   border: 1px solid var(--cp-border);
-  border-radius: 18px;
+  border-radius: 16px;
   box-shadow: none;
 
-  text-align: center;
+  text-align: left;
 }
 
 main.college-content
@@ -1003,13 +1026,13 @@ main.college-content
   > span {
   margin: 0;
 
-  color: var(--cp-label);
-  font-family: var(--cp-mono);
-  font-size: 9px;
-  font-weight: 600;
+  color: var(--college-shell-muted);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 400;
   line-height: 1.4;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 main.college-content
@@ -1020,10 +1043,11 @@ main.college-content
     .verification-stats article
   )
   > strong {
-  margin: 14px 0 8px;
+  margin: 12px 0 8px;
 
   color: var(--cp-ink);
-  font-size: 34px;
+  font-family: "Fraunces", serif;
+  font-size: 2rem;
   font-weight: 700;
   line-height: 1;
 }
@@ -1038,9 +1062,9 @@ main.college-content
   > p {
   margin: 0;
 
-  color: var(--cp-muted);
-  font-size: 13px;
-  line-height: 1.5;
+  color: var(--college-shell-muted);
+  font-size: 0.72rem;
+  line-height: 1.45;
 }
 
 /* =========================================================
@@ -1057,16 +1081,12 @@ main.college-content .skill-gap-header > div:first-child {
   min-width: 0;
 }
 
-main.college-content :is(.skill-gap-header, .placement-hero) h1 {
-  font-size: clamp(32px, 4vw, 48px);
-}
-
 /* =========================================================
    ANALYTICS METRIC ICONS  (single accent, centred)
 ========================================================= */
 
 main.college-content .analytics-metric-top {
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 main.college-content
@@ -1106,7 +1126,7 @@ main.college-content
       .college-analytics-hero,
       .placement-hero
     ) {
-    padding: 30px 24px;
+    padding: 24px 20px;
   }
 }
 
@@ -1120,4 +1140,173 @@ main.college-content
     ) {
     grid-template-columns: 1fr;
   }
+}
+
+
+/* =========================================================
+   LAYOUT & SPACE
+   ---------------------------------------------------------
+   index.css still carries the Vite-template #root rule
+   (1126px wide, centred, text-align:center). Reset it for the
+   college shell only, then stop each page from adding its own
+   max-width/padding on top of the shell's padding.
+========================================================= */
+
+#root:has(.college-shell) {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  border-inline: 0;
+  text-align: left;
+}
+
+main.college-content {
+  max-width: 1480px;
+  padding: clamp(20px, 2.6vw, 34px) clamp(18px, 3vw, 44px) 64px;
+}
+
+main.college-content
+  :is(
+    .college-dashboard,
+    .department-setup-page,
+    .college-students-page,
+    .college-training-page,
+    .portfolio-verification-page,
+    .skill-gap-page,
+    .college-analytics-page,
+    .placement-monitoring-page
+  ) {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0 0 24px;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   LIST DENSITY  (use the width instead of one long column)
+========================================================= */
+
+main.college-content .college-students-list {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 500px), 1fr));
+}
+
+
+/* =========================================================
+   CONSISTENCY PASS
+========================================================= */
+
+/* left-aligned cards everywhere (matches the summary cards) */
+main.college-content :is(.analytics-metric-card, .placement-summary-card) {
+  align-items: flex-start;
+  text-align: left;
+}
+
+main.college-content .placement-summary-grid {
+  gap: 14px;
+}
+
+/* dashboard-style pages: same hero card, but theme-aware
+   so it still works with the shell's dark mode */
+main.college-content :is(.college-dashboard-hero, .department-setup-hero) {
+  box-sizing: border-box;
+  margin-bottom: 18px;
+  padding: 32px 40px;
+
+  background:
+    radial-gradient(
+      ellipse at 100% 0%,
+      color-mix(in srgb, var(--college-shell-accent) 12%, transparent),
+      transparent 60%
+    ),
+    var(--college-shell-panel);
+  border: 1px solid var(--college-shell-border);
+  border-radius: 20px;
+}
+
+@media (max-width: 760px) {
+  main.college-content :is(.college-dashboard-hero, .department-setup-hero) {
+    padding: 24px 20px;
+  }
+}
+
+/* mobile: the top nav scrolls inside itself instead of widening the page */
+@media (max-width: 760px) {
+  .college-sidebar-nav {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .college-sidebar-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .college-sidebar-nav .college-nav-item {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}
+
+/* Analytics panels are always light cards, so their headings must stay dark
+   even when the shell is in dark mode */
+main.college-content .college-analytics-page :is(h2, h3) {
+  color: var(--cp-ink);
+}
+
+
+/* =========================================================
+   SECTION HEADINGS  (same as the dashboard card headings)
+========================================================= */
+
+main.college-content
+  :is(
+    .college-students-page,
+    .college-training-page,
+    .portfolio-verification-page,
+    .skill-gap-page,
+    .college-analytics-page,
+    .placement-monitoring-page
+  )
+  h2 {
+  font-family: "Fraunces", serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+/* Placement summary cards: same stat-card typography as the dashboard.
+   (The labels are written in capitals in the markup, so they are
+   lower-cased here and the first letter is capitalised.) */
+main.college-content .placement-summary-card {
+  min-height: 0;
+  padding: 20px 22px;
+  border-radius: 16px;
+}
+
+main.college-content .placement-summary-card > span {
+  min-height: 0;
+
+  color: var(--college-shell-muted);
+  font-family: inherit;
+  font-size: 0.8rem;
+  letter-spacing: 0;
+  text-transform: lowercase;
+}
+
+main.college-content .placement-summary-card > span::first-letter {
+  text-transform: uppercase;
+}
+
+main.college-content .placement-summary-card strong {
+  margin: 12px 0 8px;
+  color: var(--cp-ink);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+main.college-content .placement-summary-card p {
+  color: var(--college-shell-muted);
+  font-size: 0.72rem;
+  line-height: 1.45;
 }
