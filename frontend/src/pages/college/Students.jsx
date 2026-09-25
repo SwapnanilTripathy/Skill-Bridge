@@ -402,7 +402,9 @@ function Students() {
           // institution monitoring
         </span>
 
-        <h1>Students</h1>
+        <h1>
+          <span>Students</span>.
+        </h1>
 
         <p>
           Monitor student academic profiles, verification
