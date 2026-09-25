@@ -491,7 +491,9 @@ function SkillGapMap() {
             // academia × industry intelligence
           </span>
 
-          <h1>Skill Gap Map</h1>
+          <h1>
+            Skill Gap <span>Map</span>.
+          </h1>
 
           <p>
             Compare skills requested by current industry
