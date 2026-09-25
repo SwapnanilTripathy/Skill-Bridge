@@ -871,7 +871,7 @@ function PlacementMonitoring() {
           <h1>
             Placement & Internship
             <br />
-            Monitoring
+            <span>Monitoring</span>.
           </h1>
 
           <p>
