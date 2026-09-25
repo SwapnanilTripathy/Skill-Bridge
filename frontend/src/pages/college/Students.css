@@ -460,3 +460,162 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* =========================================================
+   DARK MODE (generated from the light palette above)
+   Light mode is untouched; this only re-colours cards, text,
+   borders, badges and buttons when the OS is in dark mode.
+========================================================= */
+
+@media (prefers-color-scheme: dark) {
+  .college-students-page {
+    color: #f3f3f5;
+  }
+
+  .college-students-kicker {
+    color: #b79cf7;
+  }
+
+  .college-students-header p {
+    color: #c8c8cd;
+  }
+
+  .college-students-overview {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+  }
+
+  .college-students-stat {
+    border-right: 1px solid #3a3a3a;
+  }
+
+  .college-students-stat span {
+    color: #a8a8ae;
+  }
+
+  .college-students-stat p {
+    color: #a8a8ae;
+  }
+
+  .college-students-count {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+    color: #c8c8cd;
+  }
+
+  .college-students-search {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+  }
+
+  .college-students-search svg {
+    color: #a8a8ae;
+  }
+
+  .college-students-search input {
+    color: #f3f3f5;
+  }
+
+  .college-students-search input::placeholder {
+    color: #96969c;
+  }
+
+  .college-students-filters select {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+    color: #f3f3f5;
+  }
+
+  .college-student-card {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+  }
+
+  .college-student-avatar {
+    background: rgba(139,92,246,0.16);
+    color: #b79cf7;
+  }
+
+  .college-student-identity > p {
+    color: #a8a8ae;
+  }
+
+  .college-student-status.verified {
+    background: #292929;
+    color: #7ddc9d;
+  }
+
+  .college-student-status.pending {
+    background: rgba(245,158,11,0.14);
+    color: #f2c14e;
+  }
+
+  .college-student-status.rejected {
+    background: rgba(248,81,73,0.14);
+    color: #ff8f8a;
+  }
+
+  .college-student-tags span {
+    background: #292929;
+    color: #c8c8cd;
+  }
+
+  .college-student-details {
+    border: 1px solid #3a3a3a;
+  }
+
+  .college-student-details > div {
+    border-right: 1px solid #3a3a3a;
+  }
+
+  .college-student-details span {
+    color: #a8a8ae;
+  }
+
+  .college-student-details strong {
+    color: #f3f3f5;
+  }
+
+  .college-student-progress {
+    background: #333333;
+  }
+
+  .college-students-empty {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+  }
+
+  .college-students-empty > span {
+    background: #f3f3f5;
+    color: #171717;
+  }
+
+  .college-students-empty p {
+    color: #a8a8ae;
+  }
+
+  .college-students-state {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+  }
+
+  .college-students-state p {
+    color: #a8a8ae;
+  }
+}
+
+@media (prefers-color-scheme: dark) and (max-width: 1000px) {
+    .college-students-stat:nth-child(-n + 2) {
+      border-bottom: 1px solid #3a3a3a;
+    }
+
+    .college-student-details > div {
+      border-bottom: 1px solid #3a3a3a;
+    }
+}
+
+@media (prefers-color-scheme: dark) and (max-width: 720px) {
+    .college-students-stat {
+      border-bottom: 1px solid #3a3a3a;
+    }
+}
