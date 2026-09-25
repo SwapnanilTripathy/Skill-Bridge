@@ -532,3 +532,196 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================================================
+   DARK MODE (generated from the light palette above)
+   Light mode is untouched; this only re-colours cards, text,
+   borders, badges and buttons when the OS is in dark mode.
+========================================================= */
+
+@media (prefers-color-scheme: dark) {
+  .portfolio-verification-state {
+    color: #c8c8cd;
+  }
+
+  .portfolio-verification-hero {
+    background: #222222;
+    border: 1px solid #3a3a3a;
+  }
+
+  .verification-kicker {
+    color: #a8a8ae;
+  }
+
+  .portfolio-verification-hero h1 {
+    color: #f3f3f5;
+  }
+
+  .portfolio-verification-hero h1 span {
+    color: #a8a8ae;
+  }
+
+  .portfolio-verification-hero p {
+    color: #c8c8cd;
+  }
+
+  .verification-alert.error {
+    background: rgba(248,81,73,0.14);
+    border: 1px solid rgba(248,81,73,0.38);
+    color: #ff8f8a;
+  }
+
+  .verification-alert.success {
+    background: rgba(34,197,94,0.14);
+    border: 1px solid rgba(34,197,94,0.38);
+    color: #7ddc9d;
+  }
+
+  .verification-stats article {
+    background: #222222;
+    border: 1px solid #3a3a3a;
+  }
+
+  .verification-stats article > span {
+    color: #a8a8ae;
+  }
+
+  .verification-stats strong {
+    color: #f3f3f5;
+  }
+
+  .verification-stats p {
+    color: #a8a8ae;
+  }
+
+  .verification-toolbar {
+    background: #222222;
+    border: 1px solid #3a3a3a;
+  }
+
+  .verification-toolbar strong {
+    color: #f3f3f5;
+  }
+
+  .verification-toolbar span {
+    color: #a8a8ae;
+  }
+
+  .verification-toolbar select {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+    color: #f3f3f5;
+  }
+
+  .verification-toolbar select:focus {
+    border-color: #555555;
+  }
+
+  .verification-section {
+    background: #222222;
+    border: 1px solid #3a3a3a;
+  }
+
+  .verification-section-heading h2 {
+    color: #f3f3f5;
+  }
+
+  .verification-section-heading > span {
+    background: #292929;
+    color: #c8c8cd;
+  }
+
+  .verification-empty {
+    border: 1px dashed #3a3a3a;
+  }
+
+  .verification-empty strong {
+    color: #f3f3f5;
+  }
+
+  .verification-empty p {
+    color: #a8a8ae;
+  }
+
+  .verification-card {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+  }
+
+  .verification-badge.self {
+    background: #292929;
+    color: #c8c8cd;
+  }
+
+  .verification-badge.verified {
+    background: rgba(34,197,94,0.14);
+    color: #7ddc9d;
+  }
+
+  .verification-record-type {
+    color: #96969c;
+  }
+
+  .verification-card h3 {
+    color: #f3f3f5;
+  }
+
+  .verification-provider {
+    color: #a8a8ae;
+  }
+
+  .verification-description {
+    color: #c8c8cd;
+  }
+
+  .verification-student {
+    background: #292929;
+  }
+
+  .verification-student > span {
+    color: #96969c;
+  }
+
+  .verification-student strong {
+    color: #f3f3f5;
+  }
+
+  .verification-student small {
+    color: #a8a8ae;
+  }
+
+  .verification-details > div {
+    border: 1px solid #2e2e2e;
+    background: #222222;
+  }
+
+  .verification-details span {
+    color: #96969c;
+  }
+
+  .verification-details strong {
+    color: #f3f3f5;
+  }
+
+  .verification-links a {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+    color: #f3f3f5;
+  }
+
+  .verification-links a:hover {
+    border-color: #555555;
+  }
+
+  .verify-button {
+    border: 1px solid #f3f3f5;
+    background: #f3f3f5;
+    color: #171717;
+  }
+
+  .remove-verification-button {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+    color: #c8c8cd;
+  }
+}
