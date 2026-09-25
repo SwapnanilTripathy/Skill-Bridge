@@ -475,8 +475,7 @@ function PortfolioVerification() {
           </span>
 
           <h1>
-            Portfolio
-            <span> verification.</span>
+            Portfolio <span>verification</span>.
           </h1>
 
           <p>
