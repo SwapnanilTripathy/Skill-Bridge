@@ -556,3 +556,197 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================================================
+   DARK MODE (generated from the light palette above)
+   Light mode is untouched; this only re-colours cards, text,
+   borders, badges and buttons when the OS is in dark mode.
+========================================================= */
+
+@media (prefers-color-scheme: dark) {
+  .college-training-kicker {
+    color: #c8c8cd;
+  }
+
+  .college-training-header h1 {
+    color: #f3f3f5;
+  }
+
+  .college-training-header p {
+    color: #c8c8cd;
+  }
+
+  .college-training-summary article {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+  }
+
+  .college-training-summary article > span {
+    color: #c8c8cd;
+  }
+
+  .college-training-summary strong {
+    color: #f3f3f5;
+  }
+
+  .college-training-summary p {
+    color: #c8c8cd;
+  }
+
+  .college-training-message.success {
+    border: 1px solid rgba(34,197,94,0.38);
+    background: rgba(34,197,94,0.14);
+    color: #7ddc9d;
+  }
+
+  .college-training-message.error {
+    border: 1px solid rgba(248,81,73,0.38);
+    background: #292929;
+    color: #ff8f8a;
+  }
+
+  .college-training-create, .college-training-programs {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+  }
+
+  .college-training-section-heading h2 {
+    color: #f3f3f5;
+  }
+
+  .college-training-section-heading p {
+    color: #c8c8cd;
+  }
+
+  .college-training-field label {
+    color: #c8c8cd;
+  }
+
+  .college-training-field input, .college-training-field select, .college-training-field textarea, .college-training-status-filter {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+    color: #f3f3f5;
+  }
+
+  .college-training-field input:focus, .college-training-field select:focus, .college-training-field textarea:focus, .college-training-status-filter:focus {
+    border-color: #555555;
+  }
+
+  .college-training-field input::placeholder, .college-training-field textarea::placeholder {
+    color: #a8a8ae;
+  }
+
+  .college-training-form-actions button, .college-training-card-actions button {
+    border: 1px solid #f3f3f5;
+    background: #f3f3f5;
+    color: #171717;
+  }
+
+  .college-training-empty {
+    border-top: 1px solid #2e2e2e;
+  }
+
+  .college-training-empty > span {
+    color: #96969c;
+  }
+
+  .college-training-empty h3 {
+    color: #f3f3f5;
+  }
+
+  .college-training-empty p {
+    color: #c8c8cd;
+  }
+
+  .college-training-card {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+  }
+
+  .college-training-card-tags > span {
+    background: #292929;
+    color: #c8c8cd;
+  }
+
+  .college-training-card-tags .status.planned {
+    background: #292929;
+    color: #c8c8cd;
+  }
+
+  .college-training-card-tags .status.active {
+    background: rgba(59,130,246,0.14);
+    color: #86b6ff;
+  }
+
+  .college-training-card-tags .status.completed {
+    background: rgba(34,197,94,0.14);
+    color: #7ddc9d;
+  }
+
+  .college-training-card-tags .status.cancelled {
+    background: #292929;
+    color: #ff8f8a;
+  }
+
+  .college-training-card h3 {
+    color: #f3f3f5;
+  }
+
+  .college-training-card-top > div:first-child > p {
+    color: #c8c8cd;
+  }
+
+  .college-training-target {
+    border: 1px solid #3a3a3a;
+    background: #292929;
+  }
+
+  .college-training-target span {
+    color: #a8a8ae;
+  }
+
+  .college-training-target strong {
+    color: #f3f3f5;
+  }
+
+  .college-training-card-details {
+    border-top: 1px solid #2e2e2e;
+  }
+
+  .college-training-card-details span {
+    color: #a8a8ae;
+  }
+
+  .college-training-card-details strong {
+    color: #c8c8cd;
+  }
+
+  .college-training-card-actions button.secondary {
+    border-color: #3a3a3a;
+    background: #222222;
+    color: #c8c8cd;
+  }
+
+  .college-training-card-actions button.secondary.danger {
+    border-color: rgba(248,81,73,0.38);
+    color: #ff8f8a;
+  }
+
+  .college-training-finished {
+    color: #7ddc9d;
+  }
+
+  .college-training-cancelled {
+    color: #ff8f8a;
+  }
+
+  .college-training-updating {
+    color: #c8c8cd;
+  }
+
+  .college-training-state {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+    color: #c8c8cd;
+  }
+}
