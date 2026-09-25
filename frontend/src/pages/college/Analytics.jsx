@@ -517,7 +517,7 @@ function Analytics() {
         </div>
 
         <h1>
-          Institution <span>Analytics</span>
+          Institution <span>Analytics</span>.
         </h1>
 
         <p>
