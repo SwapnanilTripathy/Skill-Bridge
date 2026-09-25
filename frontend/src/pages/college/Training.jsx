@@ -446,7 +446,9 @@ function Training() {
           // skill development intervention
         </span>
 
-        <h1>Training</h1>
+        <h1>
+          <span>Training</span>.
+        </h1>
 
         <p>
           Turn identified academia–industry skill gaps into
