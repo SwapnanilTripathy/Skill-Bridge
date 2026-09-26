@@ -1,599 +1,503 @@
-.ra-page {
+/* =========================================================
+   COLLEGE — ANALYTICS
+   Reuses the shell's --college-shell-* tokens.
+   ========================================================= */
+
+.college-analytics-page {
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
-  padding: 70px 38px 100px;
-  color: #101522;
+  padding: 0 0 40px;
+
+  --analytics-info: #38bdf8;
 }
 
-.ra-hero {
-  text-align: center;
-  margin-bottom: 48px;
-}
-
-.ra-kicker {
-  margin: 0 0 14px;
-  color: #ef3155;
-  font-family: "Courier New", monospace;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.ra-hero h1 {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(48px, 6vw, 78px);
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -3px;
-}
-
-.ra-hero h1 span {
-  color: #ef3155;
-}
-
-.ra-hero-copy {
-  max-width: 760px;
-  margin: 24px auto 0;
-  color: #697184;
-  font-size: 19px;
-  line-height: 1.65;
-}
-
-.ra-company-pill {
-  width: fit-content;
-  max-width: 100%;
-  margin: 30px auto 0;
-  padding: 16px 24px;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  border: 1px solid #d8dce5;
-  border-radius: 12px;
-  background: #ffffff;
-}
-
-.ra-company-pill span {
-  color: #9299aa;
-  font-family: "Courier New", monospace;
-  font-size: 12px;
-  letter-spacing: 1.4px;
-}
-
-.ra-company-pill strong {
-  font-size: 16px;
-}
-
-/* =========================
-   SUMMARY
-========================= */
-
-.ra-summary-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-  margin-bottom: 22px;
-}
-
-.ra-summary-card {
-  min-height: 235px;
-  padding: 28px 24px;
+.college-analytics-state {
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid #d9dde5;
-  border-radius: 20px;
-  background: #ffffff;
+  gap: 14px;
+  color: var(--college-shell-muted);
   text-align: center;
 }
 
-.ra-card-icon {
-  width: 52px;
-  height: 52px;
+.college-analytics-state.error h2 {
+  font-family: "Fraunces", serif;
+  color: var(--college-shell-ink);
+  margin-bottom: 6px;
+}
+
+.college-analytics-loader {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 3px solid var(--college-shell-border);
+  border-top-color: var(--college-shell-accent);
+  animation: college-analytics-spin 0.8s linear infinite;
+}
+
+@keyframes college-analytics-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.college-analytics-hero {
   margin-bottom: 22px;
+}
+
+.college-analytics-kicker {
+  margin-bottom: 12px;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--college-shell-accent);
+}
+
+.college-analytics-hero h1 {
+  margin: 0 0 12px;
+
+  font-family: "Fraunces", serif;
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--college-shell-ink);
+}
+
+.college-analytics-hero h1 span {
+  color: var(--college-shell-accent);
+}
+
+.college-analytics-hero > p {
+  max-width: 620px;
+  margin: 0 0 18px;
+  color: var(--college-shell-muted);
+  line-height: 1.6;
+}
+
+.college-analytics-institution {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--college-shell-border);
+  background: var(--college-shell-panel);
+}
+
+.college-analytics-institution span {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  color: var(--college-shell-muted);
+}
+
+.college-analytics-institution strong {
+  font-size: 0.85rem;
+  color: var(--college-shell-ink);
+}
+
+/* =========================================================
+   METRIC CARDS
+   ========================================================= */
+
+.college-analytics-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.analytics-metric-card {
+  padding: 20px;
+  border: 1px solid var(--college-shell-border);
+  border-radius: 16px;
+  background: var(--college-shell-panel);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.analytics-metric-top {
+  margin-bottom: 14px;
+}
+
+.analytics-metric-icon {
+  width: 34px;
+  height: 34px;
+
   display: grid;
   place-items: center;
-  border-radius: 14px;
-  font-size: 21px;
-  font-weight: 700;
+  border-radius: 9px;
+
+  font-size: 1rem;
+  line-height: 1;
 }
 
-.ra-card-icon.purple {
-  color: #7435ff;
-  background: #f0e7ff;
+.analytics-metric-icon.purple { background: var(--college-shell-accent-soft); color: var(--college-shell-accent); }
+.analytics-metric-icon.blue { background: rgba(56, 189, 248, 0.14); color: var(--analytics-info); }
+.analytics-metric-icon.green { background: rgba(0, 184, 163, 0.14); color: var(--college-shell-success); }
+.analytics-metric-icon.orange { background: rgba(255, 161, 22, 0.14); color: var(--college-shell-brand); }
+
+.analytics-metric-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--college-shell-muted);
+  font-size: 0.8rem;
 }
 
-.ra-card-icon.blue {
-  color: #1389ec;
-  background: #e4f3ff;
+.analytics-metric-number {
+  display: block;
+  font-family: "Fraunces", serif;
+  font-size: 1.9rem;
+  color: var(--college-shell-ink);
 }
 
-.ra-card-icon.orange {
-  color: #ef8614;
-  background: #fff1df;
+.analytics-metric-card p {
+  margin: 6px 0 0;
+  color: var(--college-shell-muted);
+  font-size: 0.76rem;
 }
 
-.ra-card-icon.green {
-  color: #00a56d;
-  background: #e4f8f1;
+/* =========================================================
+   PANELS (shared)
+   ========================================================= */
+
+.college-analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
 }
 
-.ra-card-label {
-  color: #687084;
-  font-size: 16px;
+.analytics-panel,
+.analytics-wide-panel {
+  padding: 22px;
+  margin-bottom: 14px;
+
+  border: 1px solid var(--college-shell-border);
+  border-radius: 16px;
+  background: var(--college-shell-panel);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
 }
 
-.ra-summary-card > strong {
-  margin-top: 10px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 44px;
-  font-weight: 500;
+.college-analytics-grid .analytics-panel {
+  margin-bottom: 0;
 }
 
-.ra-summary-card p {
-  margin: 10px 0 0;
-  color: #8a92a4;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-/* =========================
-   PANELS
-========================= */
-
-.ra-panel {
-  padding: 36px;
-  border: 1px solid #d9dde5;
-  border-radius: 22px;
-  background: #ffffff;
-}
-
-.ra-section-heading {
+.analytics-panel-heading {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 20px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #e0e3e9;
+  gap: 16px;
+  margin-bottom: 18px;
 }
 
-.ra-section-heading h2 {
+.analytics-eyebrow {
+  display: block;
+  margin-bottom: 8px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.66rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--college-shell-accent);
+}
+
+.analytics-panel-heading h2 {
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 34px;
-  font-weight: 500;
+  font-family: "Fraunces", serif;
+  font-size: 1.15rem;
+  color: var(--college-shell-ink);
 }
 
-.ra-link-button {
-  padding: 14px 19px;
-  border: 1px solid #d7dce6;
-  border-radius: 12px;
-  background: #ffffff;
-  color: #ef3155;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
+.analytics-panel-heading button {
+  flex: none;
+  padding: 8px 14px;
 
-.ra-link-button:hover {
-  border-color: #ef3155;
-  background: #fff7f9;
-}
-
-/* =========================
-   PIPELINE
-========================= */
-
-.ra-pipeline-grid {
-  margin-top: 32px;
-  display: grid;
-  grid-template-columns:
-    minmax(130px, 1fr)
-    35px
-    minmax(130px, 1fr)
-    35px
-    minmax(130px, 1fr)
-    35px
-    minmax(130px, 1fr);
-  align-items: center;
-  gap: 8px;
-}
-
-.ra-pipeline-item {
-  min-height: 140px;
-  padding: 22px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #dde1e8;
-  border-radius: 16px;
-  background: #f9fafc;
-}
-
-.ra-pipeline-item span {
-  color: #7d8598;
-  font-size: 14px;
-}
-
-.ra-pipeline-item strong {
-  margin-top: 8px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 42px;
-  font-weight: 500;
-}
-
-.ra-pipeline-item.selected {
-  border-color: #bfeadb;
-  background: #f1fcf8;
-}
-
-.ra-pipeline-item.selected strong {
-  color: #009a67;
-}
-
-.ra-pipeline-arrow {
-  color: #a6adba;
-  font-size: 24px;
-  text-align: center;
-}
-
-.ra-pipeline-secondary {
-  margin-top: 24px;
-  padding-top: 20px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 30px;
-  border-top: 1px solid #eceef2;
-  color: #7a8294;
-}
-
-.ra-pipeline-secondary strong {
-  margin-left: 5px;
-  color: #111827;
-}
-
-/* =========================
-   TWO COLUMN SECTION
-========================= */
-
-.ra-two-column {
-  margin: 22px 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
-}
-
-/* =========================
-   SKILLS
-========================= */
-
-.ra-skill-list {
-  margin-top: 10px;
-}
-
-.ra-skill-row {
-  padding: 21px 4px;
-  display: grid;
-  grid-template-columns: 48px 1fr auto;
-  align-items: center;
-  gap: 15px;
-  border-bottom: 1px solid #eceef2;
-}
-
-.ra-skill-row:last-child {
-  border-bottom: none;
-}
-
-.ra-rank {
-  color: #ef3155;
-  font-family: "Courier New", monospace;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.ra-skill-main {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.ra-skill-main strong {
-  font-size: 17px;
-}
-
-.ra-skill-main span {
-  color: #939aab;
-  font-size: 13px;
-}
-
-.ra-skill-demand {
-  min-width: 64px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  background: #fff0f3;
-  color: #ef3155;
-  text-align: center;
-}
-
-.ra-skill-demand strong {
-  font-family: "Courier New", monospace;
-  font-size: 15px;
-}
-
-.ra-skill-demand span {
-  margin-left: 4px;
-  font-size: 11px;
-}
-
-/* =========================
-   CONVERSION
-========================= */
-
-.ra-conversion {
-  padding: 34px 0 20px;
-  text-align: center;
-}
-
-.ra-conversion-number {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 72px;
-  line-height: 1;
-}
-
-.ra-conversion p {
-  max-width: 350px;
-  margin: 16px auto 0;
-  color: #7c8497;
-  line-height: 1.6;
-}
-
-.ra-conversion-bar {
-  height: 10px;
-  margin: 15px 0 32px;
-  overflow: hidden;
+  border: 1px solid var(--college-shell-border);
   border-radius: 999px;
-  background: #eceef2;
+  background: var(--college-shell-panel-soft);
+  color: var(--college-shell-ink);
+
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
 }
 
-.ra-conversion-fill {
+.analytics-panel-heading button:hover {
+  border-color: var(--college-shell-accent);
+  color: var(--college-shell-accent);
+}
+
+.analytics-empty {
+  padding: 24px;
+  border: 1px dashed var(--college-shell-border);
+  border-radius: 12px;
+  color: var(--college-shell-muted);
+  font-size: 0.86rem;
+  text-align: center;
+}
+
+.analytics-muted {
+  color: var(--college-shell-muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.analytics-muted.center {
+  text-align: center;
+}
+
+/* =========================================================
+   READINESS
+   ========================================================= */
+
+.analytics-readiness-number {
+  font-family: "Fraunces", serif;
+  font-size: 2.4rem;
+  color: var(--college-shell-ink);
+}
+
+.analytics-progress {
+  height: 6px;
+  margin: 14px 0 20px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: var(--college-shell-panel-soft);
+}
+
+.analytics-progress > div {
   height: 100%;
   border-radius: inherit;
-  background: #ef3155;
-  transition: width 0.35s ease;
+  background: var(--college-shell-accent);
 }
 
-.ra-outcome-grid {
+.analytics-mini-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: 1px solid #e0e3e9;
-  border-radius: 16px;
-  overflow: hidden;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
 }
 
-.ra-outcome-grid div {
-  min-height: 105px;
+.analytics-mini-grid > div {
+  padding: 12px;
+  border: 1px solid var(--college-shell-border);
+  border-radius: 10px;
+  background: var(--college-shell-panel-soft);
+}
+
+.analytics-mini-grid span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--college-shell-muted);
+  font-size: 0.7rem;
+}
+
+.analytics-mini-grid strong {
+  font-size: 0.95rem;
+  color: var(--college-shell-ink);
+}
+
+.analytics-coverage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.analytics-coverage-grid > div {
   padding: 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+
+  border: 1px solid var(--college-shell-border);
+  border-radius: 12px;
+  background: var(--college-shell-panel-soft);
 }
 
-.ra-outcome-grid div:nth-child(odd) {
-  border-right: 1px solid #e0e3e9;
+.analytics-coverage-grid strong {
+  display: block;
+  margin-bottom: 6px;
+  font-family: "Fraunces", serif;
+  font-size: 1.7rem;
+  color: var(--college-shell-ink);
 }
 
-.ra-outcome-grid div:nth-child(-n + 2) {
-  border-bottom: 1px solid #e0e3e9;
+.analytics-coverage-grid span {
+  color: var(--college-shell-muted);
+  font-size: 0.76rem;
 }
 
-.ra-outcome-grid span {
-  color: #8b93a4;
-  font-size: 13px;
-}
+/* =========================================================
+   PIPELINE / TRAINING GRID
+   ========================================================= */
 
-.ra-outcome-grid strong {
-  margin-top: 7px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 28px;
-  font-weight: 500;
-}
-
-/* =========================
-   OPPORTUNITY PERFORMANCE
-========================= */
-
-.ra-opportunity-list {
-  margin-top: 8px;
-}
-
-.ra-opportunity-row {
-  padding: 25px 10px;
+.analytics-pipeline,
+.analytics-training-grid {
   display: grid;
-  grid-template-columns:
-    minmax(250px, 2fr)
-    repeat(3, minmax(90px, 0.7fr))
-    auto;
-  align-items: center;
-  gap: 18px;
-  border-bottom: 1px solid #e8eaf0;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
 }
 
-.ra-opportunity-row:last-child {
-  border-bottom: none;
+.analytics-training-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-.ra-opportunity-title {
+.analytics-pipeline > div,
+.analytics-training-grid > div {
+  padding: 14px;
+  text-align: center;
+
+  border: 1px solid var(--college-shell-border);
+  border-radius: 12px;
+  background: var(--college-shell-panel-soft);
+}
+
+.analytics-pipeline span,
+.analytics-training-grid span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--college-shell-muted);
+  font-size: 0.76rem;
+}
+
+.analytics-pipeline strong,
+.analytics-training-grid strong {
+  font-family: "Fraunces", serif;
+  font-size: 1.5rem;
+  color: var(--college-shell-ink);
+}
+
+/* =========================================================
+   SKILL DEMAND / GAP LISTS
+   ========================================================= */
+
+.analytics-skill-list {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 4px;
 }
 
-.ra-opportunity-title span {
-  color: #ef3155;
-  font-family: "Courier New", monospace;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+.analytics-skill-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 4px;
 }
 
-.ra-opportunity-title strong {
-  font-size: 17px;
+.analytics-skill-row:not(:last-child) {
+  border-bottom: 1px solid var(--college-shell-border);
 }
 
-.ra-opportunity-stat {
+.analytics-rank {
+  flex: none;
+  width: 26px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  color: var(--college-shell-muted);
+}
+
+.analytics-skill-copy {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 5px;
+  gap: 3px;
 }
 
-.ra-opportunity-stat span {
-  color: #9299aa;
-  font-size: 12px;
+.analytics-skill-copy strong {
+  font-size: 0.88rem;
+  color: var(--college-shell-ink);
 }
 
-.ra-opportunity-stat strong {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 25px;
-  font-weight: 500;
+.analytics-skill-copy span {
+  color: var(--college-shell-muted);
+  font-size: 0.74rem;
 }
 
-.ra-status {
-  padding: 9px 13px;
-  border: 1px solid #d8dce5;
+.analytics-demand {
+  flex: none;
+  padding: 4px 11px;
   border-radius: 999px;
-  color: #70788a;
-  font-family: "Courier New", monospace;
-  font-size: 11px;
-  text-transform: uppercase;
+  background: var(--college-shell-accent-soft);
+  color: var(--college-shell-accent);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
 }
 
-.ra-status.open {
-  border-color: #9ee3d1;
-  color: #009b71;
-  background: #f4fffb;
-}
-
-.ra-status.closed,
-.ra-status.cancelled {
-  border-color: #f0c4cd;
-  color: #dc3152;
-  background: #fff8f9;
-}
-
-/* =========================
-   STATES
-========================= */
-
-.ra-empty {
-  padding: 50px 20px;
-  color: #8991a3;
-  line-height: 1.6;
-  text-align: center;
-}
-
-.ra-state {
-  min-height: 500px;
-  display: grid;
-  place-items: center;
-  padding: 40px;
-  color: #737b8d;
-  text-align: center;
-}
-
-.ra-state.ra-error {
+.analytics-gap-list {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 4px;
 }
 
-.ra-state.ra-error h2 {
-  margin: 0 0 10px;
-  color: #101522;
+.analytics-gap-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 4px;
 }
 
-/* =========================
+.analytics-gap-row:not(:last-child) {
+  border-bottom: 1px solid var(--college-shell-border);
+}
+
+.analytics-gap-row strong {
+  color: var(--college-shell-ink);
+  font-size: 0.88rem;
+}
+
+.analytics-gap-row span {
+  color: var(--college-shell-muted);
+  font-size: 0.76rem;
+}
+
+.analytics-gap-row > strong {
+  color: var(--college-shell-danger);
+  font-family: "Fraunces", serif;
+  font-size: 1.1rem;
+}
+
+/* =========================================================
    RESPONSIVE
-========================= */
+   ========================================================= */
 
-@media (max-width: 1050px) {
-  .ra-summary-grid {
-    grid-template-columns: 1fr 1fr;
+@media (max-width: 1000px) {
+  .college-analytics-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .ra-two-column {
+  .college-analytics-grid {
     grid-template-columns: 1fr;
   }
 
-  .ra-pipeline-grid {
-    grid-template-columns: 1fr;
+  .analytics-pipeline {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .ra-pipeline-arrow {
-    transform: rotate(90deg);
-  }
-
-  .ra-opportunity-row {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .ra-opportunity-title {
-    grid-column: 1 / -1;
+  .analytics-training-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 650px) {
-  .ra-page {
-    padding: 45px 18px 80px;
-  }
-
-  .ra-hero h1 {
-    font-size: 48px;
-    letter-spacing: -2px;
-  }
-
-  .ra-summary-grid {
+@media (max-width: 640px) {
+  .college-analytics-metrics {
     grid-template-columns: 1fr;
   }
 
-  .ra-panel {
-    padding: 25px 20px;
-  }
-
-  .ra-section-heading {
-    flex-direction: column;
-  }
-
-  .ra-company-pill {
-    flex-direction: column;
-    gap: 7px;
-  }
-
-  .ra-outcome-grid {
+  .analytics-mini-grid,
+  .analytics-coverage-grid {
     grid-template-columns: 1fr;
   }
 
-  .ra-outcome-grid div {
-    border-right: none !important;
-    border-bottom: 1px solid #e0e3e9;
-  }
-
-  .ra-outcome-grid div:last-child {
-    border-bottom: none;
-  }
-
-  .ra-opportunity-row {
-    grid-template-columns: 1fr;
-  }
-
-  .ra-opportunity-stat {
-    align-items: flex-start;
+  .analytics-pipeline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
