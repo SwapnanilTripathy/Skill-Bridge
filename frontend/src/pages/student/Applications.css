@@ -1,0 +1,792 @@
+/* =========================================================
+   STUDENT APPLICATION TRACKER
+========================================================= */
+
+.applications-page {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 32px 28px 80px;
+  color: #171717;
+}
+
+.applications-kicker {
+  display: inline-block;
+  color: #008f87;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.applications-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+
+  padding: 48px 52px;
+  margin-bottom: 20px;
+
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 22px;
+}
+
+.applications-hero > div:first-child {
+  max-width: 680px;
+}
+
+.applications-hero h1 {
+  margin: 16px 0 12px;
+  font-size: clamp(36px, 5vw, 58px);
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.applications-hero p {
+  margin: 0;
+  max-width: 650px;
+
+  color: #5e5e5e;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.applications-hero-count {
+  min-width: 145px;
+  height: 125px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: #fafafa;
+  border: 1px solid #dddddd;
+  border-radius: 18px;
+}
+
+.applications-hero-count strong {
+  display: block;
+  margin-bottom: 10px;
+
+  font-size: 36px;
+  line-height: 1;
+}
+
+.applications-hero-count span {
+  color: #696969;
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+/* =========================================================
+   SUMMARY CARDS
+========================================================= */
+
+.applications-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+
+  margin-bottom: 42px;
+}
+
+.applications-summary-card {
+  min-height: 170px;
+  padding: 28px 24px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 18px;
+}
+
+.applications-summary-card > span {
+  color: #707070;
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  letter-spacing: 1.2px;
+}
+
+.applications-summary-card strong {
+  margin: 17px 0 9px;
+
+  font-size: 34px;
+  line-height: 1;
+}
+
+.applications-summary-card p {
+  margin: 0;
+
+  color: #666666;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.applications-summary-card.selected {
+  border-color: #8adbd5;
+  background: #f5fdfc;
+}
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.applications-toolbar {
+  margin-bottom: 20px;
+}
+
+.applications-toolbar h2 {
+  margin: 10px 0 20px;
+
+  font-size: 28px;
+  letter-spacing: -0.7px;
+}
+
+.applications-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.applications-filter {
+  padding: 10px 16px;
+
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 999px;
+
+  color: #4f4f4f;
+
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.applications-filter:hover {
+  border-color: #bdbdbd;
+  transform: translateY(-1px);
+}
+
+.applications-filter.active {
+  color: #007f78;
+  background: #effbf9;
+  border-color: #73d7d0;
+}
+
+/* =========================================================
+   APPLICATION LIST
+========================================================= */
+
+.applications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.application-card {
+  overflow: hidden;
+
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 20px;
+}
+
+.application-card.closed {
+  background: #fcfcfc;
+}
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.application-card-header {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 20px;
+
+  padding: 30px 32px 25px;
+
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.application-card-number {
+  color: #008f87;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.application-title-area h2 {
+  margin: 8px 0 6px;
+
+  font-size: 25px;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.application-title-area > p {
+  margin: 0;
+
+  color: #606060;
+  font-size: 14px;
+}
+
+.application-type-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.application-type,
+.application-company-verified {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 6px 9px;
+
+  border-radius: 7px;
+
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.application-type {
+  color: #505050;
+  background: #f2f2f2;
+}
+
+.application-company-verified {
+  color: #007e77;
+  background: #eafaf8;
+  border: 1px solid #b5ebe6;
+}
+
+/* =========================================================
+   STATUS BADGES
+========================================================= */
+
+.application-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 100px;
+  padding: 9px 14px;
+
+  border: 1px solid #dddddd;
+  border-radius: 999px;
+
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.application-status-applied {
+  color: #505050;
+  background: #f5f5f5;
+}
+
+.application-status-shortlisted {
+  color: #006d67;
+  background: #effbf9;
+  border-color: #9adfd9;
+}
+
+.application-status-interview {
+  color: #765500;
+  background: #fff9e8;
+  border-color: #ecd68b;
+}
+
+.application-status-selected {
+  color: #006f58;
+  background: #eafbf5;
+  border-color: #8edcc4;
+}
+
+.application-status-rejected {
+  color: #9a3737;
+  background: #fff4f4;
+  border-color: #efbaba;
+}
+
+.application-status-withdrawn {
+  color: #696969;
+  background: #f4f4f4;
+}
+
+/* =========================================================
+   APPLICATION INFORMATION
+========================================================= */
+
+.application-info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  margin: 0 32px;
+  padding: 24px 0;
+
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.application-info-grid > div {
+  min-height: 62px;
+  padding: 5px 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  border-right: 1px solid #e5e5e5;
+}
+
+.application-info-grid > div:first-child {
+  padding-left: 0;
+}
+
+.application-info-grid > div:last-child {
+  border-right: none;
+}
+
+.application-info-grid span {
+  margin-bottom: 8px;
+
+  color: #808080;
+  font-family: "Courier New", monospace;
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+.application-info-grid strong {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   PIPELINE
+========================================================= */
+
+.application-pipeline {
+  display: flex;
+  align-items: flex-start;
+
+  padding: 32px 42px 30px;
+
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.application-stage-wrapper {
+  position: relative;
+
+  flex: 1;
+
+  display: flex;
+  align-items: flex-start;
+}
+
+.application-stage {
+  position: relative;
+  z-index: 2;
+
+  min-width: 85px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+.application-stage-marker {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 9px;
+
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 50%;
+
+  color: #777777;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.application-stage span {
+  color: #858585;
+
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+.application-stage.completed .application-stage-marker {
+  color: #ffffff;
+  background: #079d93;
+  border-color: #079d93;
+}
+
+.application-stage.completed span {
+  color: #007f78;
+}
+
+.application-stage.current .application-stage-marker {
+  color: #007e77;
+  background: #eafaf8;
+  border: 2px solid #24b9af;
+}
+
+.application-stage.current span {
+  color: #007e77;
+  font-weight: 700;
+}
+
+.application-stage-line {
+  position: absolute;
+  z-index: 1;
+
+  top: 16px;
+  left: calc(50% + 17px);
+  right: calc(-50% + 17px);
+
+  height: 1px;
+
+  background: #d9d9d9;
+}
+
+.application-stage-line.completed {
+  background: #079d93;
+}
+
+.application-stage-wrapper:last-child
+  .application-stage-line {
+  display: none;
+}
+
+/* =========================================================
+   CLOSED APPLICATION STATE
+========================================================= */
+
+.application-closed-state {
+  margin: 26px 32px 0;
+  padding: 20px 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  border-radius: 12px;
+}
+
+.application-closed-state span {
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.application-closed-state strong {
+  font-size: 13px;
+}
+
+.application-closed-state.rejected {
+  color: #8d3434;
+  background: #fff4f4;
+  border: 1px solid #f0c3c3;
+}
+
+.application-closed-state.withdrawn {
+  color: #666666;
+  background: #f5f5f5;
+  border: 1px solid #dddddd;
+}
+
+/* =========================================================
+   CARD FOOTER
+========================================================= */
+
+.application-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+
+  padding: 24px 32px;
+}
+
+.application-card-footer > div {
+  max-width: 700px;
+}
+
+.application-card-footer span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #858585;
+  font-family: "Courier New", monospace;
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+.application-card-footer p {
+  margin: 0;
+
+  color: #505050;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.applications-primary-button,
+.applications-secondary-button {
+  min-height: 44px;
+  padding: 11px 18px;
+
+  border-radius: 9px;
+
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.applications-primary-button {
+  color: #ffffff;
+  background: #1d1d1d;
+  border: 1px solid #1d1d1d;
+}
+
+.applications-primary-button:hover {
+  background: #000000;
+  transform: translateY(-1px);
+}
+
+.applications-secondary-button {
+  color: #171717;
+  background: #ffffff;
+  border: 1px solid #d8d8d8;
+}
+
+.applications-secondary-button:hover {
+  border-color: #aaaaaa;
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   EMPTY / ERROR / LOADING STATES
+========================================================= */
+
+.applications-state-card,
+.applications-empty {
+  padding: 55px 40px;
+
+  text-align: center;
+
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 20px;
+}
+
+.applications-state-card {
+  margin-top: 30px;
+}
+
+.applications-state-card h1,
+.applications-empty h2 {
+  margin: 15px 0 10px;
+}
+
+.applications-state-card p,
+.applications-empty p {
+  max-width: 620px;
+  margin: 0 auto 24px;
+
+  color: #626262;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 950px) {
+  .applications-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .application-info-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .application-info-grid > div:nth-child(2) {
+    border-right: none;
+  }
+
+  .application-info-grid > div {
+    padding: 14px;
+  }
+
+  .application-info-grid > div:first-child {
+    padding: 14px;
+  }
+}
+
+@media (max-width: 760px) {
+  .applications-page {
+    padding: 20px 15px 60px;
+  }
+
+  .applications-hero {
+    padding: 32px 25px;
+
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .applications-hero-count {
+    width: 100%;
+    height: auto;
+    min-height: 105px;
+  }
+
+  .applications-summary-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .application-card-header {
+    grid-template-columns: 1fr;
+  }
+
+  .application-card-number {
+    display: none;
+  }
+
+  .application-status {
+    width: fit-content;
+  }
+
+  .application-info-grid {
+    grid-template-columns: 1fr;
+
+    margin: 0 22px;
+  }
+
+  .application-info-grid > div,
+  .application-info-grid > div:first-child {
+    padding: 15px 0;
+
+    border-right: none;
+    border-bottom: 1px solid #ededed;
+  }
+
+  .application-info-grid > div:last-child {
+    border-bottom: none;
+  }
+
+  .application-pipeline {
+    padding: 28px 15px;
+  }
+
+  .application-stage {
+    min-width: 55px;
+  }
+
+  .application-stage span {
+    font-size: 7px;
+  }
+
+  .application-stage-marker {
+    width: 28px;
+    height: 28px;
+  }
+
+  .application-stage-line {
+    top: 13px;
+    left: calc(50% + 14px);
+    right: calc(-50% + 14px);
+  }
+
+  .application-card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .application-closed-state {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 520px) {
+  .applications-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .applications-summary-card {
+    min-height: 135px;
+  }
+
+  .applications-filters {
+    gap: 6px;
+  }
+
+  .applications-filter {
+    padding: 9px 12px;
+    font-size: 11px;
+  }
+
+  .application-pipeline {
+    overflow-x: auto;
+  }
+
+  .application-stage-wrapper {
+    min-width: 100px;
+  }
+}

@@ -1,0 +1,778 @@
+.faculty-opps-page {
+  width: 100%;
+}
+
+.faculty-opps-hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 28px;
+}
+
+.faculty-opps-eyebrow,
+.faculty-opps-panel-kicker {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--recruiter-shell-accent);
+}
+
+.faculty-opps-hero h1 {
+  margin: 8px 0 10px;
+  font-family: "Fraunces", serif;
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.faculty-opps-hero h1 span {
+  color: var(--recruiter-shell-accent);
+}
+
+.faculty-opps-hero p {
+  max-width: 650px;
+  margin: 0;
+  color: var(--recruiter-shell-muted);
+  line-height: 1.6;
+}
+
+.faculty-opps-company {
+  display: inline-flex;
+  gap: 5px;
+  margin-top: 14px;
+  padding: 7px 10px;
+  border: 1px solid var(--recruiter-shell-border);
+  border-radius: 8px;
+  background: var(--recruiter-shell-panel);
+  color: var(--recruiter-shell-muted);
+  font-size: 0.76rem;
+}
+
+.faculty-opps-company strong {
+  color: var(--recruiter-shell-ink);
+}
+
+.faculty-opps-create {
+  flex: none;
+  min-height: 44px;
+  padding: 0 17px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  border: 0;
+  border-radius: 10px;
+
+  background: var(--recruiter-shell-accent);
+  color: #ffffff;
+
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.faculty-opps-create span {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.faculty-opps-error {
+  margin-bottom: 18px;
+  padding: 13px 15px;
+
+  border: 1px solid rgba(255, 55, 95, 0.3);
+  border-radius: 10px;
+
+  background: var(--recruiter-shell-accent-soft);
+  color: var(--recruiter-shell-danger);
+
+  font-size: 0.82rem;
+}
+
+.faculty-opps-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.faculty-opps-stat {
+  min-height: 130px;
+  padding: 18px;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid var(--recruiter-shell-border);
+  border-radius: 14px;
+
+  background: var(--recruiter-shell-panel);
+}
+
+.faculty-opps-stat span,
+.faculty-opps-stat small {
+  color: var(--recruiter-shell-muted);
+}
+
+.faculty-opps-stat span {
+  font-size: 0.78rem;
+}
+
+.faculty-opps-stat strong {
+  margin: 10px 0 auto;
+  font-family: "Fraunces", serif;
+  font-size: 2rem;
+}
+
+.faculty-opps-stat small {
+  margin-top: 6px;
+  font-size: 0.7rem;
+}
+
+.faculty-opps-panel {
+  padding: 22px;
+
+  border: 1px solid var(--recruiter-shell-border);
+  border-radius: 16px;
+
+  background: var(--recruiter-shell-panel);
+}
+
+.faculty-opps-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+
+  border-bottom: 1px solid var(--recruiter-shell-border);
+}
+
+.faculty-opps-panel-header h2 {
+  margin: 6px 0 0;
+  font-family: "Fraunces", serif;
+  font-size: 1.35rem;
+}
+
+.faculty-opps-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.faculty-opps-filter label {
+  color: var(--recruiter-shell-muted);
+  font-size: 0.75rem;
+}
+
+.faculty-opps-filter select {
+  min-height: 38px;
+  padding: 0 34px 0 11px;
+
+  border: 1px solid var(--recruiter-shell-border);
+  border-radius: 8px;
+
+  background: var(--recruiter-shell-panel-soft);
+  color: var(--recruiter-shell-ink);
+
+  outline: none;
+}
+
+.faculty-opps-empty {
+  min-height: 310px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.faculty-opps-empty-icon {
+  width: 52px;
+  height: 52px;
+
+  display: grid;
+  place-items: center;
+
+  margin-bottom: 15px;
+
+  border-radius: 14px;
+
+  background: var(--recruiter-shell-accent-soft);
+  color: var(--recruiter-shell-accent);
+
+  font-size: 1.6rem;
+}
+
+.faculty-opps-empty h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.faculty-opps-empty p {
+  max-width: 500px;
+  margin: 0;
+
+  color: var(--recruiter-shell-muted);
+  line-height: 1.6;
+  font-size: 0.82rem;
+}
+
+.faculty-opps-empty button {
+  margin-top: 18px;
+  border: 0;
+  background: transparent;
+  color: var(--recruiter-shell-accent);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.faculty-opps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faculty-opps-card {
+  padding: 18px;
+
+  border: 1px solid var(--recruiter-shell-border);
+  border-radius: 13px;
+
+  background: var(--recruiter-shell-panel-soft);
+}
+
+.faculty-opps-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.faculty-opps-type {
+  font-family: "IBM Plex Mono", monospace;
+  color: var(--recruiter-shell-accent);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.faculty-opps-card h3 {
+  margin: 6px 0 0;
+  font-size: 1.05rem;
+}
+
+.faculty-opps-status {
+  flex: none;
+
+  padding: 5px 9px;
+
+  border: 1px solid var(--recruiter-shell-border);
+  border-radius: 999px;
+
+  color: var(--recruiter-shell-muted);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+}
+
+.faculty-opps-status.open {
+  border-color: rgba(0, 184, 163, 0.3);
+  color: var(--recruiter-shell-success);
+}
+
+.faculty-opps-status.draft {
+  color: var(--recruiter-shell-brand);
+}
+
+.faculty-opps-status.cancelled {
+  color: var(--recruiter-shell-danger);
+}
+
+.faculty-opps-description {
+  margin: 14px 0 16px;
+
+  color: var(--recruiter-shell-muted);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.faculty-opps-meta {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.faculty-opps-meta > div {
+  min-height: 65px;
+  padding: 11px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  border: 1px solid var(--recruiter-shell-border);
+  border-radius: 9px;
+
+  background: var(--recruiter-shell-panel);
+}
+
+.faculty-opps-meta span {
+  margin-bottom: 5px;
+
+  color: var(--recruiter-shell-muted);
+  font-size: 0.65rem;
+}
+
+.faculty-opps-meta strong {
+  overflow-wrap: anywhere;
+  font-size: 0.77rem;
+}
+
+.faculty-opps-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  margin-top: 14px;
+  padding-top: 13px;
+
+  border-top: 1px solid var(--recruiter-shell-border);
+
+  color: var(--recruiter-shell-muted);
+  font-size: 0.7rem;
+}
+
+.faculty-opps-card-footer strong {
+  color: var(--recruiter-shell-ink);
+}
+
+.faculty-opps-card-footer > span {
+  color: var(--recruiter-shell-accent);
+  font-weight: 700;
+}
+
+.faculty-opps-state {
+  min-height: 55vh;
+
+  display: grid;
+  place-items: center;
+
+  color: var(--recruiter-shell-muted);
+}
+
+@media (max-width: 1000px) {
+  .faculty-opps-stats,
+  .faculty-opps-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .faculty-opps-hero,
+  .faculty-opps-panel-header,
+  .faculty-opps-card-top,
+  .faculty-opps-card-footer {
+    flex-direction: column;
+  }
+
+  .faculty-opps-create {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .faculty-opps-stats,
+  .faculty-opps-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .faculty-opps-filter {
+    width: 100%;
+  }
+
+  .faculty-opps-filter select {
+    flex: 1;
+  }
+}
+
+/* =========================================================
+   FACULTY APPLICANTS
+========================================================= */
+
+.faculty-applicants-section {
+  margin-top: 28px;
+  padding-top: 26px;
+  border-top: 1px solid #d9dde5;
+}
+
+.faculty-applicants-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+
+.faculty-applicants-kicker {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #ff3158;
+}
+
+.faculty-applicants-header h4 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 26px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.faculty-applicant-count {
+  padding: 8px 14px;
+  border: 1px solid #d7dbe4;
+  border-radius: 999px;
+  background: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  color: #5f6675;
+}
+
+/* EMPTY STATE */
+
+.faculty-applicants-empty {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px;
+  border: 1px dashed #d4d8e1;
+  border-radius: 14px;
+  background: #fafafa;
+}
+
+.faculty-applicants-empty > span {
+  font-size: 25px;
+  color: #7c3cff;
+}
+
+.faculty-applicants-empty strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #111827;
+}
+
+.faculty-applicants-empty p {
+  margin: 0;
+  font-size: 14px;
+  color: #747b8a;
+}
+
+/* APPLICANT LIST */
+
+.faculty-applicants-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faculty-applicant-card {
+  padding: 22px;
+  border: 1px solid #d8dce5;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.faculty-applicant-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.faculty-applicant-person {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.faculty-applicant-avatar {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: #efe7ff;
+
+  color: #713cff;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.faculty-applicant-person h5 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  color: #111827;
+}
+
+.faculty-applicant-person p {
+  margin: 0;
+  font-size: 14px;
+  color: #747b8a;
+}
+
+/* APPLICATION STATUS */
+
+.faculty-application-status {
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+.faculty-application-status.applied {
+  background: #f2edff;
+  color: #713cff;
+}
+
+.faculty-application-status.shortlisted {
+  background: #fff5d9;
+  color: #9a6800;
+}
+
+.faculty-application-status.selected {
+  background: #e7faf2;
+  color: #008c62;
+}
+
+.faculty-application-status.rejected {
+  background: #fff0f2;
+  color: #d7284c;
+}
+
+.faculty-application-status.withdrawn {
+  background: #eceef2;
+  color: #666d7b;
+}
+
+/* FACULTY DETAILS */
+
+.faculty-applicant-details {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.faculty-applicant-details > div {
+  min-height: 82px;
+  padding: 14px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  border: 1px solid #e0e3e9;
+  border-radius: 12px;
+  background: #fafbfc;
+}
+
+.faculty-applicant-details span,
+.faculty-applicant-research > span,
+.faculty-applicant-statement > span {
+  display: block;
+  margin-bottom: 6px;
+
+  font-size: 12px;
+  color: #8a91a0;
+}
+
+.faculty-applicant-details strong {
+  font-size: 14px;
+  line-height: 1.45;
+  color: #111827;
+}
+
+/* RESEARCH */
+
+.faculty-applicant-research {
+  margin-bottom: 14px;
+  padding: 15px 16px;
+
+  border: 1px solid #e0e3e9;
+  border-radius: 12px;
+  background: #fafbfc;
+}
+
+.faculty-applicant-research p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555e6f;
+}
+
+/* STATEMENT */
+
+.faculty-applicant-statement {
+  padding: 16px;
+  border-left: 3px solid #7c3cff;
+  border-radius: 0 10px 10px 0;
+  background: #f8f5ff;
+}
+
+.faculty-applicant-statement p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: #4f5665;
+}
+
+/* BOTTOM ROW */
+
+.faculty-applicant-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  margin-top: 18px;
+  padding-top: 17px;
+
+  border-top: 1px solid #e2e5ea;
+}
+
+.faculty-applicant-meta-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  font-size: 12px;
+  color: #858c9a;
+}
+
+/* ACTION BUTTONS */
+
+.faculty-applicant-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.faculty-action-button {
+  min-height: 38px;
+  padding: 8px 15px;
+
+  border-radius: 9px;
+  background: #ffffff;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: 0.18s ease;
+}
+
+.faculty-action-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.faculty-action-button.shortlist {
+  border: 1px solid #d8c7ff;
+  color: #713cff;
+}
+
+.faculty-action-button.shortlist:hover:not(:disabled) {
+  background: #f4efff;
+}
+
+.faculty-action-button.select {
+  border: 1px solid #9fe2cc;
+  color: #008c62;
+}
+
+.faculty-action-button.select:hover:not(:disabled) {
+  background: #ecfbf5;
+}
+
+.faculty-action-button.reject {
+  border: 1px solid #ffc5cf;
+  color: #df3152;
+}
+
+.faculty-action-button.reject:hover:not(:disabled) {
+  background: #fff3f5;
+}
+
+/* FINAL STATUS */
+
+.faculty-final-status {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 8px 13px;
+  border-radius: 9px;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.faculty-final-status.selected {
+  background: #e9faf4;
+  color: #008c62;
+}
+
+.faculty-final-status.rejected {
+  background: #fff0f2;
+  color: #d7284c;
+}
+
+.faculty-final-status.withdrawn {
+  background: #eef0f3;
+  color: #686f7d;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+  .faculty-applicant-details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .faculty-applicants-header,
+  .faculty-applicant-top,
+  .faculty-applicant-bottom {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .faculty-applicant-details {
+    grid-template-columns: 1fr;
+  }
+
+  .faculty-applicant-actions {
+    justify-content: flex-start;
+  }
+}

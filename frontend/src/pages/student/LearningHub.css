@@ -1,0 +1,713 @@
+.learning-page {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 16px 0 64px;
+  color: #171717;
+}
+
+.learning-kicker {
+  display: inline-block;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #008f86;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.learning-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 42px 44px;
+  border: 1px solid #dedede;
+  border-radius: 22px;
+  background: #ffffff;
+}
+
+.learning-hero > div:first-child {
+  max-width: 720px;
+}
+
+.learning-hero h1 {
+  margin: 14px 0 12px;
+  font-size: clamp(34px, 5vw, 54px);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  color: #111111;
+}
+
+.learning-hero p {
+  max-width: 680px;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #626262;
+}
+
+.learning-hero-badge {
+  min-width: 140px;
+  padding: 25px 20px;
+  border: 1px solid #d9d9d9;
+  border-radius: 17px;
+  text-align: center;
+  background: #fafafa;
+}
+
+.learning-hero-badge strong {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 34px;
+  line-height: 1;
+}
+
+.learning-hero-badge span {
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #777777;
+}
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.learning-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.learning-summary-card {
+  min-height: 160px;
+  padding: 25px 22px;
+  border: 1px solid #dedede;
+  border-radius: 17px;
+  background: #ffffff;
+}
+
+.learning-summary-card > span {
+  display: block;
+  min-height: 26px;
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #777777;
+}
+
+.learning-summary-card strong {
+  display: block;
+  margin: 15px 0 8px;
+  font-size: 31px;
+  line-height: 1;
+}
+
+.learning-summary-card p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #696969;
+}
+
+/* =========================================================
+   EXPLANATION
+========================================================= */
+
+.learning-explanation {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 50px;
+  align-items: center;
+  margin-top: 18px;
+  padding: 36px 40px;
+  border: 1px solid #dedede;
+  border-radius: 17px;
+  background: #ffffff;
+}
+
+.learning-explanation h2 {
+  max-width: 390px;
+  margin: 13px 0 0;
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.learning-explanation > p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #5f5f5f;
+}
+
+/* =========================================================
+   GENERAL SECTIONS
+========================================================= */
+
+.learning-section {
+  margin-top: 54px;
+}
+
+.learning-section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 22px;
+}
+
+.learning-section-heading h2 {
+  margin: 10px 0 0;
+  font-size: 29px;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.learning-count {
+  padding: 8px 12px;
+  border: 1px solid #dddddd;
+  border-radius: 999px;
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #666666;
+  background: #ffffff;
+}
+
+/* =========================================================
+   RECOMMENDED PROGRAMS
+========================================================= */
+
+.learning-program-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.learning-program-card {
+  overflow: hidden;
+  border: 1px solid #dadada;
+  border-radius: 19px;
+  background: #ffffff;
+}
+
+.learning-program-card.recommended {
+  border-color: #9bded9;
+}
+
+.learning-program-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 22px;
+  border-bottom: 1px solid #e7e7e7;
+  background: #fbfbfb;
+}
+
+.learning-program-number {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  color: #008f86;
+}
+
+.learning-recommended-pill {
+  padding: 7px 10px;
+  border: 1px solid #83d7d1;
+  border-radius: 999px;
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  letter-spacing: 0.09em;
+  color: #007f77;
+  background: #effcfb;
+}
+
+.learning-program-content {
+  padding: 28px 28px 25px;
+}
+
+.learning-program-type {
+  display: inline-block;
+  margin-bottom: 9px;
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #008f86;
+}
+
+.learning-program-content h3,
+.learning-other-card h3 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.learning-program-description {
+  max-width: 790px;
+  margin: 11px 0 0;
+  font-size: 14px;
+  line-height: 1.75;
+  color: #636363;
+}
+
+.learning-skill-box {
+  margin-top: 24px;
+  padding: 19px 20px;
+  border: 1px solid #d8eeee;
+  border-radius: 13px;
+  background: #f5fbfb;
+}
+
+.learning-skill-box > span,
+.learning-reason > span {
+  display: block;
+  margin-bottom: 8px;
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: #777777;
+}
+
+.learning-skill-box strong {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 17px;
+}
+
+.learning-skill-box p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #666666;
+}
+
+.learning-reason {
+  margin-top: 20px;
+}
+
+.learning-reason p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #595959;
+}
+
+.learning-reason strong {
+  color: #111111;
+}
+
+.learning-program-meta {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.learning-program-meta > div {
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 11px;
+}
+
+.learning-program-meta span {
+  display: block;
+  margin-bottom: 6px;
+  font-family: "Courier New", monospace;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  color: #858585;
+}
+
+.learning-program-meta strong {
+  display: block;
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.45;
+  text-overflow: ellipsis;
+}
+
+.learning-program-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 18px 28px;
+  border-top: 1px solid #e7e7e7;
+  background: #fafafa;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.learning-primary-button,
+.learning-secondary-button {
+  min-height: 42px;
+  padding: 0 17px;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.learning-primary-button {
+  border: 1px solid #181818;
+  color: #ffffff;
+  background: #181818;
+}
+
+.learning-primary-button:hover {
+  background: #000000;
+  transform: translateY(-1px);
+}
+
+.learning-secondary-button {
+  border: 1px solid #d7d7d7;
+  color: #181818;
+  background: #ffffff;
+}
+
+.learning-secondary-button:hover {
+  border-color: #bdbdbd;
+  background: #f8f8f8;
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   GAP LIST
+========================================================= */
+
+.learning-gap-list {
+  overflow: hidden;
+  border: 1px solid #dedede;
+  border-radius: 17px;
+  background: #ffffff;
+}
+
+.learning-gap-row {
+  display: grid;
+  grid-template-columns:
+    60px
+    minmax(190px, 1fr)
+    130px
+    120px
+    160px;
+  gap: 16px;
+  align-items: center;
+  padding: 20px 22px;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.learning-gap-row:last-child {
+  border-bottom: 0;
+}
+
+.learning-gap-rank {
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  color: #008f86;
+}
+
+.learning-gap-main strong {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+
+.learning-gap-main span {
+  font-size: 11px;
+  color: #757575;
+}
+
+.learning-gap-stat span {
+  display: block;
+  margin-bottom: 5px;
+  font-family: "Courier New", monospace;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  color: #888888;
+}
+
+.learning-gap-stat strong {
+  font-size: 14px;
+}
+
+.learning-training-status {
+  justify-self: end;
+  padding: 7px 9px;
+  border: 1px solid #dddddd;
+  border-radius: 999px;
+  font-family: "Courier New", monospace;
+  font-size: 8px;
+  letter-spacing: 0.06em;
+  color: #777777;
+  background: #fafafa;
+}
+
+.learning-training-status.available {
+  border-color: #83d7d1;
+  color: #007d75;
+  background: #effcfb;
+}
+
+/* =========================================================
+   OTHER PROGRAMS
+========================================================= */
+
+.learning-other-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.learning-other-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+  padding: 23px;
+  border: 1px solid #dedede;
+  border-radius: 15px;
+  background: #ffffff;
+}
+
+.learning-other-card p {
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #666666;
+}
+
+.learning-other-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 1px solid #e7e7e7;
+  font-size: 11px;
+}
+
+.learning-other-footer span {
+  color: #656565;
+}
+
+.learning-other-footer strong {
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #008f86;
+}
+
+/* =========================================================
+   EMPTY / STATE CARDS
+========================================================= */
+
+.learning-empty-card,
+.learning-state-card {
+  padding: 35px;
+  border: 1px solid #dedede;
+  border-radius: 17px;
+  background: #ffffff;
+}
+
+.learning-empty-card h3,
+.learning-state-card h1 {
+  margin: 12px 0 9px;
+}
+
+.learning-empty-card p,
+.learning-state-card p {
+  max-width: 700px;
+  margin: 0 0 20px;
+  font-size: 13px;
+  line-height: 1.75;
+  color: #666666;
+}
+
+.learning-state-card {
+  margin-top: 40px;
+}
+
+/* =========================================================
+   DEVELOPMENT LOOP
+========================================================= */
+
+.learning-loop {
+  margin-top: 54px;
+  padding: 38px;
+  border: 1px solid #dcdcdc;
+  border-radius: 20px;
+  background: #ffffff;
+}
+
+.learning-loop > h2 {
+  margin: 11px 0 28px;
+  font-size: 28px;
+  letter-spacing: -0.03em;
+}
+
+.learning-loop-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.learning-loop-grid > div {
+  min-height: 180px;
+  padding: 19px;
+  border: 1px solid #e0e0e0;
+  border-radius: 13px;
+  background: #fafafa;
+}
+
+.learning-loop-grid span {
+  display: block;
+  margin-bottom: 25px;
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  color: #008f86;
+}
+
+.learning-loop-grid strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.learning-loop-grid p {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.65;
+  color: #6e6e6e;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+  .learning-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .learning-program-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .learning-gap-row {
+    grid-template-columns:
+      45px
+      minmax(180px, 1fr)
+      110px
+      130px;
+  }
+
+  .learning-gap-stat:nth-of-type(2) {
+    display: none;
+  }
+
+  .learning-loop-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .learning-page {
+    padding-top: 0;
+  }
+
+  .learning-hero {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 30px 24px;
+  }
+
+  .learning-hero-badge {
+    width: 100%;
+  }
+
+  .learning-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .learning-explanation {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 28px 24px;
+  }
+
+  .learning-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .learning-program-content {
+    padding: 23px 20px;
+  }
+
+  .learning-program-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .learning-program-actions {
+    flex-direction: column;
+    padding: 17px 20px;
+  }
+
+  .learning-program-actions button {
+    width: 100%;
+  }
+
+  .learning-gap-row {
+    grid-template-columns: 35px 1fr;
+    gap: 12px;
+  }
+
+  .learning-gap-stat,
+  .learning-training-status {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .learning-other-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .learning-loop {
+    padding: 28px 22px;
+  }
+
+  .learning-loop-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .learning-hero h1 {
+    font-size: 38px;
+  }
+
+  .learning-program-meta {
+    grid-template-columns: 1fr;
+  }
+}
