@@ -340,28 +340,50 @@
 .college-institution-badge {
   flex: none;
   max-width: 340px;
+  box-sizing: border-box;
 
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
 
-  padding: 8px 12px;
+  padding: 12px 16px;
 
   border: 1px solid var(--college-shell-border);
-  border-radius: 999px;
+  border-radius: 14px;
 
   background: var(--college-shell-panel);
   color: var(--college-shell-muted);
 
   font-size: 0.76rem;
+  line-height: 1.3;
+
+  transition: border-color 0.15s ease, background 0.15s ease,
+    transform 0.15s ease;
+}
+
+.college-institution-badge:hover {
+  border-color: var(--college-shell-accent);
+  background: var(--college-shell-accent-soft);
+  transform: translateY(-1px);
 }
 
 .college-institution-badge span {
   width: 7px;
   height: 7px;
+  margin-top: 5px;
   flex: none;
   border-radius: 50%;
   background: var(--college-shell-accent);
+}
+
+.college-institution-badge small,
+.college-institution-badge strong {
+  display: block;
+  line-height: 1.3;
+}
+
+.college-institution-badge small {
+  margin-bottom: 2px;
 }
 
 .college-stat-grid {
@@ -552,12 +574,21 @@
 }
 
 .college-department-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 110px 110px;
-  gap: 16px;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
+  gap: 10px 20px;
 
-  padding: 14px 0;
+  padding: 14px 10px;
+  margin: 0 -10px;
+  border-radius: 10px;
+
+  transition: background 0.15s ease;
+}
+
+.college-department-row:hover {
+  background: var(--college-shell-panel-soft);
 }
 
 .college-department-row + .college-department-row {
@@ -566,15 +597,22 @@
 
 .college-department-name {
   min-width: 0;
+  flex: 1 1 220px;
 
   display: flex;
   align-items: center;
   gap: 11px;
 }
 
-.college-department-icon {
+/* ".college-department-name span" elsewhere in this codebase sets
+   display:block for the department-code text under the name — this
+   icon is also a span inside .college-department-name, so the
+   selector here has to out-specify that rule or it silently loses
+   its grid centering. */
+.college-department-name > span.college-department-icon {
   width: 38px;
   height: 38px;
+  line-height: normal;
 
   flex: none;
   display: grid;
@@ -588,6 +626,14 @@
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.7rem;
   font-weight: 700;
+
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.college-department-row:hover .college-department-icon {
+  background: var(--college-shell-accent);
+  color: #ffffff;
+  transform: scale(1.05);
 }
 
 .college-department-name > div {
@@ -611,6 +657,9 @@
 }
 
 .college-department-metric {
+  flex: 0 0 auto;
+  min-width: 64px;
+
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -762,8 +811,8 @@
     grid-template-columns: 1fr;
   }
 
-  .college-department-row {
-    grid-template-columns: minmax(0, 1fr) 80px 80px;
+  .college-card-heading {
+    align-items: flex-start;
   }
 }
 
@@ -786,11 +835,8 @@
     flex-direction: column;
   }
 
-  .college-department-row {
-    grid-template-columns: 1fr;
-  }
-
   .college-department-metric {
+    flex: 1 1 auto;
     align-items: flex-start;
   }
 }
@@ -1309,4 +1355,113 @@ main.college-content .placement-summary-card p {
   color: var(--college-shell-muted);
   font-size: 0.72rem;
   line-height: 1.45;
+}
+
+/* =========================================================
+   HOVER INTERACTIONS
+   ---------------------------------------------------------
+   A shared hover layer for the whole college portal. Placed
+   last in this file so it reliably wins the cascade (this
+   stylesheet loads after every individual page stylesheet).
+
+   Read-only tiles and record cards get a quiet highlight
+   (border + soft shadow, tiny lift, no pointer cursor, since
+   they are not clickable). Real buttons get a slightly
+   stronger lift plus a brightness change, which works even
+   on buttons styled with inline JS styles because filter and
+   transform are not set inline anywhere in this codebase.
+========================================================= */
+
+/* ---- buttons (covers class-based AND inline-styled buttons) ---- */
+
+main.college-content button:not(:disabled):not(.college-nav-item) {
+  transition: transform 0.15s ease, filter 0.15s ease,
+    box-shadow 0.15s ease, background-color 0.15s ease,
+    border-color 0.15s ease, color 0.15s ease;
+}
+
+main.college-content button:not(:disabled):not(.college-nav-item):hover {
+  transform: translateY(-1px);
+  filter: brightness(1.07);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+main.college-content button:not(:disabled):not(.college-nav-item):active {
+  transform: translateY(0);
+  filter: brightness(0.97);
+  box-shadow: none;
+}
+
+main.college-content button:disabled {
+  cursor: not-allowed;
+}
+
+/* ---- read-only tiles: stat cards & summary cards ---- */
+
+main.college-content
+  :is(
+    .college-stat-card,
+    .college-students-stat,
+    .skill-gap-summary article,
+    .college-training-summary article,
+    .verification-stats article,
+    .placement-summary-card,
+    .analytics-metric-card
+  ) {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+main.college-content
+  :is(
+    .college-stat-card,
+    .college-students-stat,
+    .skill-gap-summary article,
+    .college-training-summary article,
+    .verification-stats article,
+    .placement-summary-card,
+    .analytics-metric-card
+  ):hover {
+  border-color: var(--college-shell-accent);
+  box-shadow: 0 8px 22px rgba(124, 58, 237, 0.12);
+  transform: translateY(-2px);
+}
+
+/* ---- read-only record cards: one per student / programme / etc. ---- */
+
+main.college-content
+  :is(
+    .college-student-card,
+    .college-training-card,
+    .verification-card,
+    .placement-application-card,
+    .placement-internship-card
+  ) {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+main.college-content
+  :is(
+    .college-student-card,
+    .college-training-card,
+    .verification-card,
+    .placement-application-card,
+    .placement-internship-card
+  ):hover {
+  border-color: var(--college-shell-accent);
+  box-shadow: 0 6px 18px rgba(124, 58, 237, 0.1);
+  transform: translateY(-1px);
+}
+
+/* ---- a few bespoke button hovers on top of the generic lift ---- */
+
+main.college-content .department-remove-button:hover {
+  border-color: #f85149;
+  background: rgba(248, 81, 73, 0.1);
+  color: #f85149;
+}
+
+main.college-content .department-secondary-button:hover {
+  border-color: var(--college-shell-accent);
 }
