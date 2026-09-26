@@ -411,7 +411,7 @@ function DepartmentSetup() {
           <span className="department-setup-kicker">// department setup</span>
 
           <h1>
-            Configure your <span>departments</span>
+            Configure your <span>departments</span>.
           </h1>
 
           <p>
