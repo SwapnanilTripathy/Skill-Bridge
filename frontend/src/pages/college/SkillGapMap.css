@@ -1,954 +1,772 @@
-import { useEffect, useState } from "react";
-
-import { supabase } from "../../services/supabase";
-import { useAuth } from "../../hooks/useAuth";
-
-import "./PortfolioVerification.css";
-
-function PortfolioVerification() {
-  const { user } = useAuth();
-
-  const [certifications, setCertifications] = useState([]);
-  const [achievements, setAchievements] = useState([]);
-  const [studentMap, setStudentMap] = useState({});
-
-  const [loading, setLoading] = useState(true);
-  const [updatingId, setUpdatingId] = useState(null);
-
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-
-  const [filter, setFilter] = useState("all");
-
-  /* =========================================================
-     LOAD PORTFOLIO VERIFICATION DATA
-  ========================================================= */
-
-  useEffect(() => {
-    if (!user?.id) {
-      return;
-    }
-
-    let cancelled = false;
-
-    async function loadVerificationData() {
-      try {
-        setLoading(true);
-        setError("");
-
-        /* -----------------------------------------
-           GET LOGGED-IN COLLEGE'S INSTITUTION
-        ----------------------------------------- */
-
-        const { data: memberData, error: memberError } =
-          await supabase
-            .from("institution_members")
-            .select("institution_id")
-            .eq("user_id", user.id)
-            .maybeSingle();
-
-        if (memberError) {
-          throw memberError;
-        }
-
-        if (!memberData?.institution_id) {
-          throw new Error(
-            "Institution membership could not be found."
-          );
-        }
-
-        /* -----------------------------------------
-           LOAD STUDENTS FROM SAME INSTITUTION
-        ----------------------------------------- */
-
-        const { data: studentRows, error: studentsError } =
-          await supabase
-            .from("student_profiles")
-            .select(
-              `
-                id,
-                user_id,
-                student_id,
-                degree,
-                current_year,
-                department_id,
-                verification_status
-              `
-            )
-            .eq(
-              "institution_id",
-              memberData.institution_id
-            );
-
-        if (studentsError) {
-          throw studentsError;
-        }
-
-        const students = studentRows || [];
-
-        const studentIds = students.map(
-          (student) => student.id
-        );
-
-        if (studentIds.length === 0) {
-          if (!cancelled) {
-            setStudentMap({});
-            setCertifications([]);
-            setAchievements([]);
-          }
-
-          return;
-        }
-
-        /* -----------------------------------------
-           LOAD STUDENT PROFILE NAMES
-        ----------------------------------------- */
-
-        const userIds = students
-          .map((student) => student.user_id)
-          .filter(Boolean);
-
-        let profileMap = {};
-
-        if (userIds.length > 0) {
-          const {
-            data: profileRows,
-            error: profileError,
-          } = await supabase
-            .from("profiles")
-            .select("id, full_name, email")
-            .in("id", userIds);
-
-          if (profileError) {
-            console.warn(
-              "Could not load profile names:",
-              profileError
-            );
-          } else {
-            profileMap = Object.fromEntries(
-              (profileRows || []).map((profile) => [
-                profile.id,
-                profile,
-              ])
-            );
-          }
-        }
-
-        /* -----------------------------------------
-           LOAD DEPARTMENTS
-        ----------------------------------------- */
-
-        const departmentIds = [
-          ...new Set(
-            students
-              .map(
-                (student) => student.department_id
-              )
-              .filter(Boolean)
-          ),
-        ];
-
-        let departmentMap = {};
-
-        if (departmentIds.length > 0) {
-          const {
-            data: departmentRows,
-            error: departmentError,
-          } = await supabase
-            .from("departments")
-            .select("id, name")
-            .in("id", departmentIds);
-
-          if (departmentError) {
-            console.warn(
-              "Could not load departments:",
-              departmentError
-            );
-          } else {
-            departmentMap = Object.fromEntries(
-              (departmentRows || []).map(
-                (department) => [
-                  department.id,
-                  department.name,
-                ]
-              )
-            );
-          }
-        }
-
-        /* -----------------------------------------
-           CREATE STUDENT LOOKUP MAP
-        ----------------------------------------- */
-
-        const combinedStudentMap =
-          Object.fromEntries(
-            students.map((student) => {
-              const profile =
-                profileMap[student.user_id] || {};
-
-              return [
-                student.id,
-                {
-                  ...student,
-
-                  name:
-                    profile.full_name ||
-                    profile.email ||
-                    student.student_id ||
-                    "Student",
-
-                  email: profile.email || "",
-
-                  department:
-                    departmentMap[
-                      student.department_id
-                    ] || "Not specified",
-                },
-              ];
-            })
-          );
-
-        /* -----------------------------------------
-           LOAD CERTIFICATIONS
-        ----------------------------------------- */
-
-        const {
-          data: certificationRows,
-          error: certificationError,
-        } = await supabase
-          .from("certifications")
-          .select("*")
-          .in("student_id", studentIds)
-          .order("created_at", {
-            ascending: false,
-          });
-
-        if (certificationError) {
-          throw certificationError;
-        }
-
-        /* -----------------------------------------
-           LOAD ACHIEVEMENTS
-        ----------------------------------------- */
-
-        const {
-          data: achievementRows,
-          error: achievementError,
-        } = await supabase
-          .from("achievements")
-          .select("*")
-          .in("student_id", studentIds)
-          .order("created_at", {
-            ascending: false,
-          });
-
-        if (achievementError) {
-          throw achievementError;
-        }
-
-        /* -----------------------------------------
-           UPDATE STATE
-        ----------------------------------------- */
-
-        if (!cancelled) {
-          setStudentMap(combinedStudentMap);
-          setCertifications(
-            certificationRows || []
-          );
-          setAchievements(
-            achievementRows || []
-          );
-        }
-      } catch (err) {
-        console.error(
-          "Portfolio verification loading error:",
-          err
-        );
-
-        if (!cancelled) {
-          setError(
-            err?.message ||
-              "Could not load student portfolio records."
-          );
-        }
-      } finally {
-        if (!cancelled) {
-          setLoading(false);
-        }
-      }
-    }
-
-    loadVerificationData();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [user?.id]);
-
-  /* =========================================================
-     SUCCESS MESSAGE
-  ========================================================= */
-
-  function showSuccess(message) {
-    setSuccess(message);
-
-    window.setTimeout(() => {
-      setSuccess("");
-    }, 3000);
-  }
-
-  /* =========================================================
-     VERIFY / REMOVE VERIFICATION
-  ========================================================= */
-
-  async function updateVerification(
-    table,
-    recordId,
-    verified
-  ) {
-    try {
-      setUpdatingId(recordId);
-      setError("");
-
-      const { error: updateError } = await supabase
-        .from(table)
-        .update({
-          verified,
-        })
-        .eq("id", recordId);
-
-      if (updateError) {
-        throw updateError;
-      }
-
-      if (table === "certifications") {
-        setCertifications((current) =>
-          current.map((item) =>
-            item.id === recordId
-              ? {
-                  ...item,
-                  verified,
-                }
-              : item
-          )
-        );
-      }
-
-      if (table === "achievements") {
-        setAchievements((current) =>
-          current.map((item) =>
-            item.id === recordId
-              ? {
-                  ...item,
-                  verified,
-                }
-              : item
-          )
-        );
-      }
-
-      showSuccess(
-        verified
-          ? "Portfolio record institution verified."
-          : "Institution verification removed."
-      );
-    } catch (err) {
-      console.error(
-        "Portfolio verification update error:",
-        err
-      );
-
-      setError(
-        err?.message ||
-          "Could not update verification status."
-      );
-    } finally {
-      setUpdatingId(null);
-    }
-  }
-
-  /* =========================================================
-     HELPERS
-  ========================================================= */
-
-  function formatDate(value) {
-    if (!value) {
-      return "Not specified";
-    }
-
-    const date = new Date(`${value}T00:00:00`);
-
-    return date.toLocaleDateString("en-IN", {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    });
-  }
-
-  function displayType(value) {
-    if (!value) {
-      return "Achievement";
-    }
-
-    return value
-      .replaceAll("_", " ")
-      .replace(/\b\w/g, (letter) =>
-        letter.toUpperCase()
-      );
-  }
-
-  /* =========================================================
-     COUNTS
-  ========================================================= */
-
-  const allRecords = [
-    ...certifications.map((item) => ({
-      ...item,
-      recordType: "certification",
-    })),
-
-    ...achievements.map((item) => ({
-      ...item,
-      recordType: "achievement",
-    })),
-  ];
-
-  const verifiedCount = allRecords.filter(
-    (item) => item.verified
-  ).length;
-
-  const selfReportedCount =
-    allRecords.length - verifiedCount;
-
-  /* =========================================================
-     FILTERING
-  ========================================================= */
-
-  const displayedCertifications =
-    filter === "verified"
-      ? certifications.filter(
-          (item) => item.verified
-        )
-      : filter === "self-reported"
-        ? certifications.filter(
-            (item) => !item.verified
-          )
-        : certifications;
-
-  const displayedAchievements =
-    filter === "verified"
-      ? achievements.filter(
-          (item) => item.verified
-        )
-      : filter === "self-reported"
-        ? achievements.filter(
-            (item) => !item.verified
-          )
-        : achievements;
-
-  /* =========================================================
-     LOADING
-  ========================================================= */
-
-  if (loading) {
-    return (
-      <div className="portfolio-verification-state">
-        Loading student portfolio records...
-      </div>
-    );
-  }
-
-  /* =========================================================
-     PAGE
-  ========================================================= */
-
-  return (
-    <div className="portfolio-verification-page">
-      {/* =========================
-          HEADER
-      ========================= */}
-
-      <section className="portfolio-verification-hero">
-        <div>
-          <span className="verification-kicker">
-            // PORTFOLIO TRUST LAYER
-          </span>
-
-          <h1>
-            Portfolio <span>verification</span>.
-          </h1>
-
-          <p>
-            Review evidence submitted by students and
-            optionally add institutional verification.
-            Self-reported credentials remain part of the
-            student's portfolio even when they are not
-            institution verified.
-          </p>
-        </div>
-      </section>
-
-      {/* =========================
-          MESSAGES
-      ========================= */}
-
-      {error && (
-        <div className="verification-alert error">
-          {error}
-        </div>
-      )}
-
-      {success && (
-        <div className="verification-alert success">
-          {success}
-        </div>
-      )}
-
-      {/* =========================
-          SUMMARY
-      ========================= */}
-
-      <section className="verification-stats">
-        <article>
-          <span>Total records</span>
-          <strong>{allRecords.length}</strong>
-          <p>Student portfolio credentials</p>
-        </article>
-
-        <article>
-          <span>Self reported</span>
-          <strong>{selfReportedCount}</strong>
-          <p>Not institution verified</p>
-        </article>
-
-        <article>
-          <span>Institution verified</span>
-          <strong>{verifiedCount}</strong>
-          <p>Evidence reviewed</p>
-        </article>
-
-        <article>
-          <span>Students represented</span>
-
-          <strong>
-            {
-              new Set(
-                allRecords.map(
-                  (item) => item.student_id
-                )
-              ).size
-            }
-          </strong>
-
-          <p>With portfolio credentials</p>
-        </article>
-      </section>
-
-      {/* =========================
-          FILTER
-      ========================= */}
-
-      <section className="verification-toolbar">
-        <div>
-          <strong>Portfolio records</strong>
-
-          <span>
-            Verification adds trust — it does not
-            control whether a student may list an
-            achievement or certification.
-          </span>
-        </div>
-
-        <select
-          value={filter}
-          onChange={(event) =>
-            setFilter(event.target.value)
-          }
-        >
-          <option value="all">
-            All records
-          </option>
-
-          <option value="self-reported">
-            Self reported
-          </option>
-
-          <option value="verified">
-            Institution verified
-          </option>
-        </select>
-      </section>
-
-      {/* =========================
-          CERTIFICATIONS
-      ========================= */}
-
-      <section className="verification-section">
-        <div className="verification-section-heading">
-          <div>
-            <span className="verification-kicker">
-              // CERTIFICATIONS
-            </span>
-
-            <h2>Student certifications</h2>
-          </div>
-
-          <span>
-            {displayedCertifications.length} records
-          </span>
-        </div>
-
-        {displayedCertifications.length === 0 ? (
-          <div className="verification-empty">
-            <strong>
-              No certifications in this view
-            </strong>
-
-            <p>
-              Student certifications will appear here
-              when they are added to their portfolios.
-            </p>
-          </div>
-        ) : (
-          <div className="verification-grid">
-            {displayedCertifications.map(
-              (certification) => {
-                const student =
-                  studentMap[
-                    certification.student_id
-                  ] || {};
-
-                return (
-                  <article
-                    className="verification-card"
-                    key={certification.id}
-                  >
-                    <div className="verification-card-top">
-                      <span
-                        className={
-                          certification.verified
-                            ? "verification-badge verified"
-                            : "verification-badge self"
-                        }
-                      >
-                        {certification.verified
-                          ? "INSTITUTION VERIFIED"
-                          : "SELF REPORTED"}
-                      </span>
-
-                      <span className="verification-record-type">
-                        CERTIFICATION
-                      </span>
-                    </div>
-
-                    <h3>
-                      {certification.title}
-                    </h3>
-
-                    <strong className="verification-provider">
-                      {
-                        certification.issuing_organization
-                      }
-                    </strong>
-
-                    <div className="verification-student">
-                      <span>Student</span>
-
-                      <strong>
-                        {student.name || "Student"}
-                      </strong>
-
-                      {student.student_id && (
-                        <small>
-                          ID: {student.student_id}
-                        </small>
-                      )}
-
-                      <small>
-                        {student.department ||
-                          "Department not specified"}
-                      </small>
-                    </div>
-
-                    <div className="verification-details">
-                      <div>
-                        <span>Issued</span>
-
-                        <strong>
-                          {formatDate(
-                            certification.issue_date
-                          )}
-                        </strong>
-                      </div>
-
-                      <div>
-                        <span>Credential ID</span>
-
-                        <strong>
-                          {certification.credential_id ||
-                            "Not provided"}
-                        </strong>
-                      </div>
-                    </div>
-
-                    <div className="verification-links">
-                      {certification.credential_url && (
-                        <a
-                          href={
-                            certification.credential_url
-                          }
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          Check credential ↗
-                        </a>
-                      )}
-
-                      {certification.certificate_url && (
-                        <a
-                          href={
-                            certification.certificate_url
-                          }
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          View proof ↗
-                        </a>
-                      )}
-                    </div>
-
-                    <div className="verification-actions">
-                      {!certification.verified ? (
-                        <button
-                          type="button"
-                          className="verify-button"
-                          disabled={
-                            updatingId ===
-                            certification.id
-                          }
-                          onClick={() =>
-                            updateVerification(
-                              "certifications",
-                              certification.id,
-                              true
-                            )
-                          }
-                        >
-                          {updatingId ===
-                          certification.id
-                            ? "Verifying..."
-                            : "✓ Institution verify"}
-                        </button>
-                      ) : (
-                        <button
-                          type="button"
-                          className="remove-verification-button"
-                          disabled={
-                            updatingId ===
-                            certification.id
-                          }
-                          onClick={() =>
-                            updateVerification(
-                              "certifications",
-                              certification.id,
-                              false
-                            )
-                          }
-                        >
-                          {updatingId ===
-                          certification.id
-                            ? "Updating..."
-                            : "Remove verification"}
-                        </button>
-                      )}
-                    </div>
-                  </article>
-                );
-              }
-            )}
-          </div>
-        )}
-      </section>
-
-      {/* =========================
-          ACHIEVEMENTS
-      ========================= */}
-
-      <section className="verification-section">
-        <div className="verification-section-heading">
-          <div>
-            <span className="verification-kicker">
-              // ACHIEVEMENTS
-            </span>
-
-            <h2>Student achievements</h2>
-          </div>
-
-          <span>
-            {displayedAchievements.length} records
-          </span>
-        </div>
-
-        {displayedAchievements.length === 0 ? (
-          <div className="verification-empty">
-            <strong>
-              No achievements in this view
-            </strong>
-
-            <p>
-              Student achievements will appear here
-              when they are added to their portfolios.
-            </p>
-          </div>
-        ) : (
-          <div className="verification-grid">
-            {displayedAchievements.map(
-              (achievement) => {
-                const student =
-                  studentMap[
-                    achievement.student_id
-                  ] || {};
-
-                return (
-                  <article
-                    className="verification-card"
-                    key={achievement.id}
-                  >
-                    <div className="verification-card-top">
-                      <span
-                        className={
-                          achievement.verified
-                            ? "verification-badge verified"
-                            : "verification-badge self"
-                        }
-                      >
-                        {achievement.verified
-                          ? "INSTITUTION VERIFIED"
-                          : "SELF REPORTED"}
-                      </span>
-
-                      <span className="verification-record-type">
-                        {displayType(
-                          achievement.achievement_type
-                        )}
-                      </span>
-                    </div>
-
-                    <h3>
-                      {achievement.title}
-                    </h3>
-
-                    {achievement.organization && (
-                      <strong className="verification-provider">
-                        {achievement.organization}
-                      </strong>
-                    )}
-
-                    <div className="verification-student">
-                      <span>Student</span>
-
-                      <strong>
-                        {student.name || "Student"}
-                      </strong>
-
-                      {student.student_id && (
-                        <small>
-                          ID: {student.student_id}
-                        </small>
-                      )}
-
-                      <small>
-                        {student.department ||
-                          "Department not specified"}
-                      </small>
-                    </div>
-
-                    {achievement.description && (
-                      <p className="verification-description">
-                        {achievement.description}
-                      </p>
-                    )}
-
-                    <div className="verification-details">
-                      <div>
-                        <span>Date</span>
-
-                        <strong>
-                          {formatDate(
-                            achievement.achievement_date
-                          )}
-                        </strong>
-                      </div>
-                    </div>
-
-                    <div className="verification-links">
-                      {achievement.proof_url && (
-                        <a
-                          href={
-                            achievement.proof_url
-                          }
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          View proof ↗
-                        </a>
-                      )}
-                    </div>
-
-                    <div className="verification-actions">
-                      {!achievement.verified ? (
-                        <button
-                          type="button"
-                          className="verify-button"
-                          disabled={
-                            updatingId ===
-                            achievement.id
-                          }
-                          onClick={() =>
-                            updateVerification(
-                              "achievements",
-                              achievement.id,
-                              true
-                            )
-                          }
-                        >
-                          {updatingId ===
-                          achievement.id
-                            ? "Verifying..."
-                            : "✓ Institution verify"}
-                        </button>
-                      ) : (
-                        <button
-                          type="button"
-                          className="remove-verification-button"
-                          disabled={
-                            updatingId ===
-                            achievement.id
-                          }
-                          onClick={() =>
-                            updateVerification(
-                              "achievements",
-                              achievement.id,
-                              false
-                            )
-                          }
-                        >
-                          {updatingId ===
-                          achievement.id
-                            ? "Updating..."
-                            : "Remove verification"}
-                        </button>
-                      )}
-                    </div>
-                  </article>
-                );
-              }
-            )}
-          </div>
-        )}
-      </section>
-    </div>
-  );
+.skill-gap-page {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 42px 38px 70px;
+  box-sizing: border-box;
+  color: #171717;
 }
 
-export default PortfolioVerification;
+/* =========================
+   HEADER
+========================= */
+
+.skill-gap-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 34px;
+}
+
+.skill-gap-header > div:first-child {
+  max-width: 700px;
+}
+
+.skill-gap-kicker {
+  display: block;
+  margin-bottom: 10px;
+  color: #6d3fd0;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.skill-gap-header h1 {
+  margin: 0 0 10px;
+  font-size: 40px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.skill-gap-header p {
+  margin: 0;
+  color: #666;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.skill-gap-filter {
+  width: 270px;
+  flex-shrink: 0;
+}
+
+.skill-gap-filter label {
+  display: block;
+  margin-bottom: 7px;
+  color: #777;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.skill-gap-filter select {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 13px;
+  border: 1px solid #ddd;
+  border-radius: 9px;
+  outline: none;
+  background: #fff;
+  color: #222;
+  font: inherit;
+  font-size: 13px;
+}
+
+/* =========================
+   SUMMARY
+========================= */
+
+.skill-gap-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 22px;
+  overflow: hidden;
+  border: 1px solid #dddddd;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.skill-gap-summary article {
+  min-height: 145px;
+  padding: 24px;
+  border-right: 1px solid #e6e6e6;
+}
+
+.skill-gap-summary article:last-child {
+  border-right: none;
+}
+
+.skill-gap-summary article > span {
+  display: block;
+  margin-bottom: 13px;
+  color: #777;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.skill-gap-summary article strong {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.skill-gap-summary article p {
+  margin: 0;
+  color: #777;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* =========================
+   READINESS
+========================= */
+
+.skill-gap-coverage-card {
+  margin-bottom: 48px;
+  padding: 25px;
+  border: 1px solid #dddddd;
+  border-radius: 13px;
+  background: #fff;
+}
+
+.skill-gap-readiness-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.skill-gap-coverage-card h2 {
+  margin: 0 0 7px;
+  font-size: 21px;
+}
+
+.skill-gap-coverage-card p {
+  max-width: 720px;
+  margin: 0;
+  color: #777;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.skill-gap-verified-readiness {
+  min-width: 145px;
+  padding: 15px;
+  border: 1px solid #e4e4e4;
+  border-radius: 9px;
+  text-align: center;
+}
+
+.skill-gap-verified-readiness span {
+  display: block;
+  margin-bottom: 6px;
+  color: #888;
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.skill-gap-verified-readiness strong {
+  font-size: 23px;
+}
+
+.skill-gap-big-progress {
+  width: 100%;
+  height: 7px;
+  margin-top: 21px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #ededed;
+}
+
+.skill-gap-big-progress > div {
+  height: 100%;
+  border-radius: inherit;
+  background: #6d3fd0;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.skill-gap-section {
+  min-width: 0;
+  margin-bottom: 48px;
+}
+
+.skill-gap-section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 19px;
+}
+
+.skill-gap-section-heading h2 {
+  margin: 0;
+  font-size: 25px;
+}
+
+.skill-gap-section-heading > span {
+  padding: 8px 13px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  background: #fff;
+  color: #777;
+  font-size: 11px;
+}
+
+.skill-gap-explanation {
+  margin-bottom: 13px;
+  padding: 13px 16px;
+  border: 1px solid #e2d9ef;
+  border-radius: 9px;
+  background: #f8f5fc;
+  color: #675777;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.skill-gap-explanation strong {
+  color: #513678;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.skill-gap-table-wrapper {
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  border: 1px solid #dddddd;
+  border-radius: 13px;
+  background: #fff;
+}
+
+.skill-gap-table {
+  width: 100%;
+  min-width: 720px;
+}
+
+.skill-gap-table-head,
+.skill-gap-row {
+  display: grid;
+  grid-template-columns:
+    minmax(145px, 1.25fr)
+    minmax(120px, 1fr)
+    minmax(125px, 1fr)
+    minmax(105px, 0.85fr)
+    minmax(115px, 0.9fr);
+  gap: 12px;
+  align-items: center;
+}
+
+.skill-gap-table-head {
+  padding: 13px 16px;
+  border-bottom: 1px solid #dddddd;
+  background: #f7f7f7;
+}
+
+.skill-gap-table-head span {
+  color: #777;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.skill-gap-row {
+  min-height: 120px;
+  padding: 18px 16px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.skill-gap-row:last-child {
+  border-bottom: none;
+}
+
+/* =========================
+   SKILL
+========================= */
+
+.skill-gap-skill {
+  min-width: 0;
+}
+
+.skill-gap-skill strong {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.skill-gap-skill > span {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 8px;
+  padding: 4px 7px;
+  border-radius: 5px;
+  background: #f1edf7;
+  color: #6d3fd0;
+  font-size: 8px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.skill-gap-skill small {
+  display: block;
+  color: #888;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+/* =========================
+   METRICS
+========================= */
+
+.skill-gap-metric {
+  min-width: 0;
+}
+
+.skill-gap-metric strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 16px;
+}
+
+.skill-gap-metric small,
+.skill-gap-result small {
+  display: block;
+  margin-bottom: 8px;
+  color: #999;
+  font-size: 8px;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.skill-gap-metric > span {
+  display: block;
+  margin-top: 6px;
+  color: #888;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.skill-gap-mini-bar {
+  width: 100%;
+  max-width: 135px;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #ececec;
+}
+
+.skill-gap-mini-bar > div {
+  height: 100%;
+  border-radius: inherit;
+  background: #6d3fd0;
+}
+
+/* =========================
+   RESULT
+========================= */
+
+.skill-gap-result {
+  min-width: 0;
+}
+
+.skill-gap-result > strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 21px;
+}
+
+.skill-gap-badge {
+  display: inline-flex;
+  max-width: 100%;
+  padding: 5px 8px;
+  border-radius: 999px;
+  font-size: 8px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: normal;
+}
+
+.skill-gap-badge.critical {
+  background: #fbe9e9;
+  color: #9d3f3f;
+}
+
+.skill-gap-badge.moderate {
+  background: #fff3df;
+  color: #99621c;
+}
+
+.skill-gap-badge.low {
+  background: #eaf5ef;
+  color: #347454;
+}
+
+/* =========================
+   TRAINING PRIORITIES
+========================= */
+
+.skill-gap-priorities {
+  overflow: hidden;
+  border: 1px solid #dddddd;
+  border-radius: 13px;
+  background: #fff;
+}
+
+.skill-gap-priorities article {
+  display: grid;
+  grid-template-columns: 45px minmax(0, 1fr) auto;
+  gap: 17px;
+  align-items: center;
+  min-height: 92px;
+  padding: 17px 20px;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.skill-gap-priorities article:last-child {
+  border-bottom: none;
+}
+
+.skill-gap-priority-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #171717;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.skill-gap-priorities h3 {
+  margin: 0 0 5px;
+  font-size: 15px;
+}
+
+.skill-gap-priorities p {
+  margin: 0;
+  color: #777;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* =========================
+   EMPTY / ERROR
+========================= */
+
+.skill-gap-empty {
+  display: flex;
+  gap: 20px;
+  padding: 32px;
+  border: 1px solid #dddddd;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.skill-gap-empty > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #171717;
+  color: #fff;
+  font-size: 10px;
+}
+
+.skill-gap-empty h3 {
+  margin: 1px 0 7px;
+}
+
+.skill-gap-empty p {
+  margin: 0;
+  color: #777;
+  font-size: 12px;
+}
+
+.skill-gap-state {
+  max-width: 620px;
+  margin: 70px auto;
+  padding: 35px;
+  border: 1px solid #dddddd;
+  border-radius: 12px;
+  background: #fff;
+  text-align: center;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+  .skill-gap-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .skill-gap-summary article:nth-child(2) {
+    border-right: none;
+  }
+
+  .skill-gap-summary article:nth-child(-n + 2) {
+    border-bottom: 1px solid #e6e6e6;
+  }
+}
+
+@media (max-width: 720px) {
+  .skill-gap-page {
+    padding: 28px 18px 50px;
+  }
+
+  .skill-gap-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .skill-gap-header h1 {
+    font-size: 32px;
+  }
+
+  .skill-gap-filter {
+    width: 100%;
+  }
+
+  .skill-gap-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-gap-summary article {
+    border-right: none;
+    border-bottom: 1px solid #e6e6e6;
+  }
+
+  .skill-gap-summary article:last-child {
+    border-bottom: none;
+  }
+
+  .skill-gap-readiness-top {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .skill-gap-verified-readiness {
+    width: auto;
+  }
+
+  .skill-gap-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .skill-gap-priorities article {
+    grid-template-columns: 42px minmax(0, 1fr);
+  }
+
+  .skill-gap-priorities article
+    > .skill-gap-badge {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+/* =========================================================
+   DARK MODE (generated from the light palette above)
+   Light mode is untouched; this only re-colours cards, text,
+   borders, badges and buttons when the OS is in dark mode.
+========================================================= */
+
+@media (prefers-color-scheme: dark) {
+  .skill-gap-page {
+    color: #f3f3f5;
+  }
+
+  .skill-gap-kicker {
+    color: #b79cf7;
+  }
+
+  .skill-gap-header p {
+    color: #c8c8cd;
+  }
+
+  .skill-gap-filter label {
+    color: #a8a8ae;
+  }
+
+  .skill-gap-filter select {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+    color: #f3f3f5;
+  }
+
+  .skill-gap-summary {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+  }
+
+  .skill-gap-summary article {
+    border-right: 1px solid #3a3a3a;
+  }
+
+  .skill-gap-summary article > span {
+    color: #a8a8ae;
+  }
+
+  .skill-gap-summary article p {
+    color: #a8a8ae;
+  }
+
+  .skill-gap-coverage-card {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+  }
+
+  .skill-gap-coverage-card p {
+    color: #a8a8ae;
+  }
+
+  .skill-gap-verified-readiness {
+    border: 1px solid #3a3a3a;
+  }
+
+  .skill-gap-verified-readiness span {
+    color: #a8a8ae;
+  }
+
+  .skill-gap-big-progress {
+    background: #333333;
+  }
+
+  .skill-gap-section-heading > span {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+    color: #a8a8ae;
+  }
+
+  .skill-gap-explanation {
+    border: 1px solid rgba(139,92,246,0.42);
+    background: #292929;
+    color: #b79cf7;
+  }
+
+  .skill-gap-explanation strong {
+    color: #b79cf7;
+  }
+
+  .skill-gap-table-wrapper {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+  }
+
+  .skill-gap-table-head {
+    border-bottom: 1px solid #3a3a3a;
+    background: #292929;
+  }
+
+  .skill-gap-table-head span {
+    color: #a8a8ae;
+  }
+
+  .skill-gap-row {
+    border-bottom: 1px solid #3a3a3a;
+  }
+
+  .skill-gap-skill > span {
+    background: #292929;
+    color: #b79cf7;
+  }
+
+  .skill-gap-skill small {
+    color: #a8a8ae;
+  }
+
+  .skill-gap-metric small, .skill-gap-result small {
+    color: #96969c;
+  }
+
+  .skill-gap-metric > span {
+    color: #a8a8ae;
+  }
+
+  .skill-gap-mini-bar {
+    background: #333333;
+  }
+
+  .skill-gap-badge.critical {
+    background: rgba(248,81,73,0.14);
+    color: #ff8f8a;
+  }
+
+  .skill-gap-badge.moderate {
+    background: rgba(245,158,11,0.14);
+    color: #f2c14e;
+  }
+
+  .skill-gap-badge.low {
+    background: #292929;
+    color: #7ddc9d;
+  }
+
+  .skill-gap-priorities {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+  }
+
+  .skill-gap-priorities article {
+    border-bottom: 1px solid #3a3a3a;
+  }
+
+  .skill-gap-priority-number {
+    background: #f3f3f5;
+    color: #171717;
+  }
+
+  .skill-gap-priorities p {
+    color: #a8a8ae;
+  }
+
+  .skill-gap-empty {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+  }
+
+  .skill-gap-empty > span {
+    background: #f3f3f5;
+    color: #171717;
+  }
+
+  .skill-gap-empty p {
+    color: #a8a8ae;
+  }
+
+  .skill-gap-state {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+  }
+}
+
+@media (prefers-color-scheme: dark) and (max-width: 1000px) {
+    .skill-gap-summary article:nth-child(-n + 2) {
+      border-bottom: 1px solid #3a3a3a;
+    }
+}
+
+@media (prefers-color-scheme: dark) and (max-width: 720px) {
+    .skill-gap-summary article {
+      border-bottom: 1px solid #3a3a3a;
+    }
+}
