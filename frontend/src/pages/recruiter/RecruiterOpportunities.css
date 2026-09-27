@@ -1,0 +1,614 @@
+.recruiter-opportunity-state {
+  min-height: 50vh;
+  display: grid;
+  place-items: center;
+  color: var(--recruiter-shell-muted);
+}
+
+.recruiter-opportunity-state.error {
+  color: var(--recruiter-shell-danger);
+}
+
+.recruiter-opportunities-page,
+.create-opportunity-page {
+  width: 100%;
+}
+
+.recruiter-opportunities-head,
+.create-opportunity-head {
+  margin-bottom: 28px;
+}
+
+.recruiter-opportunities-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.recruiter-opportunities-kicker,
+.create-opportunity-head > span {
+  color: var(--recruiter-shell-accent);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.recruiter-opportunities-head h1,
+.create-opportunity-head h1 {
+  margin: 8px 0 10px;
+  font-family: "Fraunces", serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.05;
+}
+
+.recruiter-opportunities-head p,
+.create-opportunity-head p {
+  max-width: 680px;
+  margin: 0;
+  color: var(--recruiter-shell-muted);
+  line-height: 1.6;
+}
+
+.recruiter-opportunities-create {
+  flex: none;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--recruiter-shell-accent);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.recruiter-opportunities-create span {
+  margin-right: 7px;
+}
+
+.recruiter-opportunities-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.recruiter-opportunities-summary article {
+  padding: 20px;
+  border: 1px solid var(--recruiter-shell-border);
+  border-radius: 15px;
+  background: var(--recruiter-shell-panel);
+}
+
+.recruiter-opportunities-summary span {
+  color: var(--recruiter-shell-muted);
+  font-size: 0.78rem;
+}
+
+.recruiter-opportunities-summary strong {
+  display: block;
+  margin-top: 10px;
+  font-family: "Fraunces", serif;
+  font-size: 1.85rem;
+}
+
+.recruiter-opportunities-empty {
+  min-height: 360px;
+  padding: 50px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px dashed var(--recruiter-shell-border);
+  border-radius: 16px;
+  background: var(--recruiter-shell-panel);
+}
+
+.recruiter-opportunities-empty-icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--recruiter-shell-accent-soft);
+  color: var(--recruiter-shell-accent);
+}
+
+.recruiter-opportunities-empty-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.recruiter-opportunities-empty h2 {
+  margin: 18px 0 8px;
+  font-family: "Fraunces", serif;
+}
+
+.recruiter-opportunities-empty p {
+  max-width: 480px;
+  margin: 0 0 22px;
+  color: var(--recruiter-shell-muted);
+  line-height: 1.55;
+}
+
+.recruiter-opportunities-empty button {
+  min-height: 40px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--recruiter-shell-accent);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.recruiter-opportunity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.recruiter-opportunity-card {
+  padding: 22px;
+  border: 1px solid var(--recruiter-shell-border);
+  border-radius: 16px;
+  background: var(--recruiter-shell-panel);
+}
+
+.recruiter-opportunity-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.recruiter-opportunity-card h2 {
+  margin: 8px 0 0;
+  font-family: "Fraunces", serif;
+  font-size: 1.35rem;
+}
+
+.recruiter-opportunity-tags {
+  display: flex;
+  gap: 7px;
+}
+
+.recruiter-opportunity-tags span {
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.63rem;
+  text-transform: uppercase;
+}
+
+.recruiter-opportunity-tags .type {
+  background: var(--recruiter-shell-accent-soft);
+  color: var(--recruiter-shell-accent);
+}
+
+.recruiter-opportunity-tags .status {
+  background: var(--recruiter-shell-panel-soft);
+  color: var(--recruiter-shell-muted);
+}
+
+.recruiter-opportunity-deadline {
+  flex: none;
+  color: var(--recruiter-shell-muted);
+  font-size: 0.76rem;
+}
+
+.recruiter-opportunity-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.recruiter-opportunity-meta span {
+  padding: 6px 9px;
+  border-radius: 8px;
+  background: var(--recruiter-shell-panel-soft);
+  color: var(--recruiter-shell-muted);
+  font-size: 0.74rem;
+}
+
+.recruiter-opportunity-rules {
+  display: grid;
+  grid-template-columns: 150px 150px minmax(0, 1fr);
+  gap: 10px;
+}
+
+.recruiter-opportunity-rules > div {
+  padding: 12px;
+  border: 1px solid var(--recruiter-shell-border);
+  border-radius: 10px;
+}
+
+.recruiter-opportunity-rules span,
+.create-opportunity-fields label > span,
+.selected-opportunity-skills label > span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--recruiter-shell-muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.recruiter-opportunity-rules strong {
+  font-size: 0.82rem;
+}
+
+.create-opportunity-head > button {
+  margin-bottom: 18px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--recruiter-shell-muted);
+  cursor: pointer;
+  font-size: 0.82rem;
+}
+
+.create-opportunity-error {
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 55, 95, 0.35);
+  border-radius: 10px;
+  background: rgba(255, 55, 95, 0.08);
+  color: var(--recruiter-shell-danger);
+  font-size: 0.83rem;
+}
+
+.create-opportunity-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.create-opportunity-section {
+  padding: 22px;
+  border: 1px solid var(--recruiter-shell-border);
+  border-radius: 16px;
+  background: var(--recruiter-shell-panel);
+}
+
+.create-opportunity-section-head {
+  display: flex;
+  gap: 13px;
+  margin-bottom: 22px;
+}
+
+.create-opportunity-section-head > span {
+  width: 30px;
+  height: 30px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: var(--recruiter-shell-accent-soft);
+  color: var(--recruiter-shell-accent);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem;
+}
+
+.create-opportunity-section-head h2 {
+  margin: 0;
+  font-family: "Fraunces", serif;
+  font-size: 1.22rem;
+}
+
+.create-opportunity-section-head p {
+  margin: 5px 0 0;
+  color: var(--recruiter-shell-muted);
+  font-size: 0.8rem;
+}
+
+.create-opportunity-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.create-opportunity-fields label.wide {
+  grid-column: 1 / -1;
+}
+
+.create-opportunity-fields input,
+.create-opportunity-fields select,
+.create-opportunity-fields textarea,
+.selected-opportunity-skills select {
+  width: 100%;
+  border: 1px solid var(--recruiter-shell-border);
+  border-radius: 9px;
+  background: var(--recruiter-shell-bg);
+  color: var(--recruiter-shell-ink);
+  font: inherit;
+}
+
+.create-opportunity-fields input,
+.create-opportunity-fields select,
+.selected-opportunity-skills select {
+  min-height: 42px;
+  padding: 0 12px;
+}
+
+.create-opportunity-fields textarea {
+  padding: 12px;
+  resize: vertical;
+}
+
+.create-opportunity-fields input:focus,
+.create-opportunity-fields select:focus,
+.create-opportunity-fields textarea:focus,
+.selected-opportunity-skills select:focus {
+  outline: none;
+  border-color: var(--recruiter-shell-accent);
+  box-shadow: 0 0 0 3px rgba(255, 55, 95, 0.1);
+}
+
+.create-opportunity-fields small {
+  display: block;
+  margin-top: 6px;
+  color: var(--recruiter-shell-muted);
+  line-height: 1.4;
+}
+
+.create-skill-browser {
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.create-skill-category + .create-skill-category {
+  margin-top: 18px;
+}
+
+.create-skill-category > span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--recruiter-shell-muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.67rem;
+  text-transform: uppercase;
+}
+
+.create-skill-category > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.create-skill-category button {
+  min-height: 34px;
+  padding: 0 10px;
+  border: 1px solid var(--recruiter-shell-border);
+  border-radius: 9px;
+  background: var(--recruiter-shell-panel-soft);
+  color: var(--recruiter-shell-ink);
+  cursor: pointer;
+  font-size: 0.76rem;
+}
+
+.create-skill-category button.selected,
+.create-skill-category button:disabled {
+  border-color: rgba(255, 55, 95, 0.35);
+  background: var(--recruiter-shell-accent-soft);
+  color: var(--recruiter-shell-accent);
+  cursor: default;
+}
+
+.selected-opportunity-skills {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.selected-opportunity-skills article {
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) 140px 170px 90px 34px;
+  gap: 10px;
+  align-items: end;
+  padding: 12px 0;
+}
+
+.selected-opportunity-skills article + article {
+  border-top: 1px solid var(--recruiter-shell-border);
+}
+
+.selected-opportunity-skill-name {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.selected-opportunity-skill-name strong {
+  font-size: 0.86rem;
+}
+
+.selected-opportunity-skill-name span {
+  margin-top: 3px;
+  color: var(--recruiter-shell-muted);
+  font-size: 0.7rem;
+}
+
+.selected-opportunity-skills .remove {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--recruiter-shell-border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--recruiter-shell-muted);
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.selected-opportunity-skills .remove:hover {
+  color: var(--recruiter-shell-danger);
+}
+
+.create-opportunity-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 8px 0 20px;
+}
+
+.create-opportunity-actions button {
+  min-height: 42px;
+  padding: 0 17px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.create-opportunity-actions .secondary {
+  border: 1px solid var(--recruiter-shell-border);
+  background: var(--recruiter-shell-panel);
+  color: var(--recruiter-shell-ink);
+}
+
+.create-opportunity-actions .primary {
+  border: 0;
+  background: var(--recruiter-shell-accent);
+  color: #fff;
+}
+
+.create-opportunity-actions button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .recruiter-opportunity-rules,
+  .selected-opportunity-skills article {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .selected-opportunity-skill-name {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 650px) {
+  .recruiter-opportunities-head {
+    flex-direction: column;
+  }
+
+  .recruiter-opportunities-create {
+    width: 100%;
+  }
+
+  .recruiter-opportunities-summary,
+  .create-opportunity-fields,
+  .recruiter-opportunity-rules,
+  .selected-opportunity-skills article {
+    grid-template-columns: 1fr;
+  }
+
+  .recruiter-opportunity-card-top {
+    flex-direction: column;
+  }
+
+  .recruiter-opportunity-deadline {
+    flex: none;
+  }
+
+  .selected-opportunity-skill-name {
+    grid-column: auto;
+  }
+
+  .create-opportunity-actions {
+    flex-direction: column-reverse;
+  }
+
+  .create-opportunity-actions button {
+    width: 100%;
+  }
+}
+
+
+/* ---------- publish / close controls ---------- */
+
+.recruiter-opportunity-tags .status-draft {
+  background: rgba(255, 161, 22, 0.10);
+  color: var(--recruiter-shell-brand);
+}
+
+.recruiter-opportunity-tags .status-open {
+  background: rgba(0, 184, 163, 0.10);
+  color: var(--recruiter-shell-success);
+}
+
+.recruiter-opportunity-tags .status-closed {
+  background: var(--recruiter-shell-panel-soft);
+  color: var(--recruiter-shell-muted);
+}
+
+.recruiter-opportunity-status-actions {
+  margin-top: 18px;
+  padding-top: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+
+  border-top: 1px solid var(--recruiter-shell-border);
+}
+
+.recruiter-opportunity-status-actions > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.recruiter-opportunity-status-actions strong {
+  font-size: 0.84rem;
+}
+
+.recruiter-opportunity-status-actions span {
+  color: var(--recruiter-shell-muted);
+  font-size: 0.74rem;
+}
+
+.recruiter-opportunity-status-actions button {
+  flex: none;
+  min-height: 38px;
+  padding: 0 14px;
+
+  border-radius: 9px;
+  cursor: pointer;
+
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.recruiter-opportunity-status-actions button.publish {
+  border: 0;
+  background: var(--recruiter-shell-accent);
+  color: #ffffff;
+}
+
+.recruiter-opportunity-status-actions button.close {
+  border: 1px solid var(--recruiter-shell-border);
+  background: var(--recruiter-shell-panel-soft);
+  color: var(--recruiter-shell-ink);
+}
+
+.recruiter-opportunity-status-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 650px) {
+  .recruiter-opportunity-status-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .recruiter-opportunity-status-actions button {
+    width: 100%;
+  }
+}

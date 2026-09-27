@@ -1,0 +1,805 @@
+.faculty-dashboard {
+  width: 100%;
+  max-width: 1450px;
+  margin: 0 auto;
+
+  padding: 34px 38px 60px;
+
+  color: #1f2937;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.faculty-dashboard-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+
+  margin-bottom: 28px;
+}
+
+.faculty-dashboard-eyebrow,
+.faculty-panel-eyebrow {
+  margin: 0 0 7px;
+
+  color: #7c3aed;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.faculty-dashboard-header h1 {
+  margin: 0;
+
+  color: #111827;
+
+  font-family: "Fraunces", serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+
+  line-height: 1.08;
+}
+
+.faculty-dashboard-intro {
+  max-width: 720px;
+
+  margin: 10px 0 0;
+
+  color: #6b7280;
+
+  font-size: 0.97rem;
+  line-height: 1.65;
+}
+
+.faculty-dashboard-primary-button {
+  flex: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 12px 18px;
+
+  border: 0;
+  border-radius: 10px;
+
+  background: #7c3aed;
+  color: #ffffff;
+
+  cursor: pointer;
+
+  font-size: 0.88rem;
+  font-weight: 700;
+
+  box-shadow:
+    0 10px 22px -14px rgba(124, 58, 237, 0.7);
+
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.faculty-dashboard-primary-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 14px 28px -14px rgba(124, 58, 237, 0.8);
+}
+
+/* =========================
+   PROFILE STRIP
+========================= */
+
+.faculty-profile-strip {
+  display: grid;
+  grid-template-columns: auto minmax(180px, 1fr) minmax(220px, 0.8fr) auto;
+  align-items: center;
+  gap: 18px;
+
+  margin-bottom: 24px;
+  padding: 18px 20px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 6px 20px -18px rgba(17, 24, 39, 0.25);
+}
+
+.faculty-profile-avatar {
+  width: 52px;
+  height: 52px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 14px;
+
+  background: #f3e8ff;
+  color: #7c3aed;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.faculty-profile-strip-label {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #9ca3af;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.67rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.faculty-profile-strip-main h2 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 1rem;
+}
+
+.faculty-profile-strip-main p {
+  margin: 4px 0 0;
+
+  color: #6b7280;
+
+  font-size: 0.82rem;
+}
+
+.faculty-profile-specialization {
+  padding-left: 18px;
+
+  border-left: 1px solid #e5e7eb;
+}
+
+.faculty-profile-specialization span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #9ca3af;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.65rem;
+
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.faculty-profile-specialization strong {
+  color: #374151;
+
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.faculty-profile-view-button {
+  padding: 9px 13px;
+
+  border: 1px solid #ddd6fe;
+  border-radius: 9px;
+
+  background: #faf5ff;
+  color: #7c3aed;
+
+  cursor: pointer;
+
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.faculty-profile-view-button:hover {
+  border-color: #7c3aed;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.faculty-dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+
+  margin-bottom: 24px;
+}
+
+.faculty-stat-card {
+  min-width: 0;
+
+  padding: 18px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 6px 18px -18px rgba(17, 24, 39, 0.3);
+}
+
+.faculty-stat-top {
+  min-height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 10px;
+}
+
+.faculty-stat-icon {
+  width: 30px;
+  height: 30px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 9px;
+
+  font-weight: 800;
+}
+
+.faculty-stat-icon.purple {
+  background: #f3e8ff;
+  color: #7c3aed;
+}
+
+.faculty-stat-icon.blue {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+.faculty-stat-icon.orange {
+  background: #fff7ed;
+  color: #ea580c;
+}
+
+.faculty-stat-icon.green {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.faculty-stat-tag {
+  padding: 4px 7px;
+
+  border-radius: 20px;
+
+  background: #ecfdf5;
+  color: #059669;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.58rem;
+  font-weight: 800;
+
+  letter-spacing: 0.06em;
+}
+
+.faculty-stat-card > strong {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #111827;
+
+  font-family: "Fraunces", serif;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.faculty-stat-card > span {
+  color: #374151;
+
+  font-size: 0.83rem;
+  font-weight: 700;
+}
+
+.faculty-stat-card > p {
+  margin: 7px 0 0;
+
+  color: #9ca3af;
+
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+/* =========================
+   MAIN GRID
+========================= */
+
+.faculty-dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.75fr);
+  gap: 20px;
+}
+
+.faculty-dashboard-panel {
+  min-width: 0;
+
+  padding: 22px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 8px 24px -20px rgba(17, 24, 39, 0.3);
+}
+
+.faculty-panel-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding-bottom: 17px;
+
+  border-bottom: 1px solid #f0f1f3;
+}
+
+.faculty-panel-heading h2 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 1.05rem;
+}
+
+.faculty-panel-heading button {
+  border: 0;
+  padding: 0;
+
+  background: transparent;
+  color: #7c3aed;
+
+  cursor: pointer;
+
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+/* =========================
+   OPPORTUNITIES
+========================= */
+
+.faculty-opportunity-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.faculty-opportunity-item {
+  padding: 18px 2px;
+
+  border-bottom: 1px solid #f0f1f3;
+}
+
+.faculty-opportunity-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 2px;
+}
+
+.faculty-opportunity-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  margin-bottom: 8px;
+}
+
+.faculty-opportunity-type {
+  display: inline-flex;
+
+  padding: 5px 8px;
+
+  border-radius: 6px;
+
+  background: #f3e8ff;
+  color: #7c3aed;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.61rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.faculty-opportunity-open {
+  position: relative;
+
+  padding-left: 11px;
+
+  color: #059669;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+.faculty-opportunity-open::before {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  top: 50%;
+
+  width: 6px;
+  height: 6px;
+
+  transform: translateY(-50%);
+
+  border-radius: 50%;
+
+  background: #10b981;
+}
+
+.faculty-opportunity-item h3 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 0.96rem;
+}
+
+.faculty-opportunity-company {
+  margin: 4px 0 10px;
+
+  color: #6b7280;
+
+  font-size: 0.77rem;
+}
+
+.faculty-opportunity-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+
+  margin-bottom: 12px;
+
+  color: #9ca3af;
+
+  font-size: 0.7rem;
+}
+
+.faculty-opportunity-item > button {
+  border: 0;
+  padding: 0;
+
+  background: transparent;
+  color: #7c3aed;
+
+  cursor: pointer;
+
+  font-size: 0.73rem;
+  font-weight: 700;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.faculty-status-list {
+  padding: 8px 0 16px;
+}
+
+.faculty-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 13px 2px;
+
+  border-bottom: 1px solid #f0f1f3;
+
+  color: #4b5563;
+
+  font-size: 0.78rem;
+}
+
+.faculty-status-row > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.faculty-status-row strong {
+  color: #111827;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8rem;
+}
+
+.faculty-status-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+}
+
+.faculty-status-dot.applied {
+  background: #3b82f6;
+}
+
+.faculty-status-dot.shortlisted {
+  background: #f59e0b;
+}
+
+.faculty-status-dot.selected {
+  background: #10b981;
+}
+
+.faculty-status-dot.rejected {
+  background: #ef4444;
+}
+
+/* =========================
+   TIP
+========================= */
+
+.faculty-dashboard-tip {
+  display: flex;
+  gap: 11px;
+
+  margin-top: 14px;
+  padding: 14px;
+
+  border: 1px solid #ede9fe;
+  border-radius: 10px;
+
+  background: #faf5ff;
+}
+
+.faculty-dashboard-tip > span {
+  color: #7c3aed;
+
+  font-size: 1.05rem;
+}
+
+.faculty-dashboard-tip strong {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #5b21b6;
+
+  font-size: 0.76rem;
+}
+
+.faculty-dashboard-tip p {
+  margin: 0;
+
+  color: #7c6f94;
+
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
+
+/* =========================
+   EMPTY
+========================= */
+
+.faculty-dashboard-empty {
+  padding: 50px 20px;
+
+  text-align: center;
+}
+
+.faculty-dashboard-empty > span {
+  display: grid;
+  place-items: center;
+
+  width: 44px;
+  height: 44px;
+
+  margin: 0 auto 12px;
+
+  border-radius: 12px;
+
+  background: #f3e8ff;
+  color: #7c3aed;
+
+  font-size: 1.2rem;
+}
+
+.faculty-dashboard-empty h3 {
+  margin: 0 0 6px;
+
+  color: #374151;
+
+  font-size: 0.9rem;
+}
+
+.faculty-dashboard-empty p {
+  max-width: 340px;
+
+  margin: 0 auto;
+
+  color: #9ca3af;
+
+  font-size: 0.74rem;
+  line-height: 1.5;
+}
+
+/* =========================
+   LOADING / ERROR
+========================= */
+
+.faculty-dashboard-state {
+  min-height: 65vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  color: #6b7280;
+}
+
+.faculty-dashboard-loader {
+  width: 34px;
+  height: 34px;
+
+  margin-bottom: 13px;
+
+  border: 3px solid #ede9fe;
+  border-top-color: #7c3aed;
+  border-radius: 50%;
+
+  animation:
+    faculty-dashboard-spin 0.8s linear infinite;
+}
+
+@keyframes faculty-dashboard-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.faculty-dashboard-state > p {
+  font-size: 0.8rem;
+}
+
+.faculty-dashboard-error-card {
+  width: min(420px, 100%);
+
+  padding: 26px;
+
+  border: 1px solid #fecaca;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  text-align: center;
+}
+
+.faculty-dashboard-error-icon {
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+  place-items: center;
+
+  margin: 0 auto 12px;
+
+  border-radius: 50%;
+
+  background: #fee2e2;
+  color: #dc2626;
+
+  font-weight: 800;
+}
+
+.faculty-dashboard-error-card h2 {
+  margin: 0 0 6px;
+
+  color: #111827;
+
+  font-size: 1rem;
+}
+
+.faculty-dashboard-error-card p {
+  margin: 0 0 16px;
+
+  color: #6b7280;
+
+  font-size: 0.78rem;
+}
+
+.faculty-dashboard-error-card button {
+  padding: 9px 14px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: #7c3aed;
+  color: #ffffff;
+
+  cursor: pointer;
+
+  font-weight: 700;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1100px) {
+  .faculty-dashboard-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .faculty-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .faculty-profile-strip {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .faculty-profile-specialization {
+    grid-column: 2 / 3;
+
+    padding-left: 0;
+
+    border-left: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .faculty-dashboard {
+    padding: 24px 18px 45px;
+  }
+
+  .faculty-dashboard-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .faculty-dashboard-primary-button {
+    width: 100%;
+  }
+
+  .faculty-dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .faculty-profile-strip {
+    grid-template-columns: auto 1fr;
+  }
+
+  .faculty-profile-specialization {
+    grid-column: 1 / -1;
+
+    padding-top: 13px;
+
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .faculty-profile-view-button {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,0 +1,833 @@
+.college-analytics-page {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 54px 34px 80px;
+  color: #171717;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.college-analytics-hero {
+  text-align: center;
+  margin-bottom: 38px;
+}
+
+.college-analytics-kicker,
+.analytics-eyebrow {
+  display: block;
+  color: #7c3aed;
+  font-family: monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+}
+
+.college-analytics-hero h1 {
+  margin: 12px 0 10px;
+  font-family: "Fraunces", serif;
+  font-size: clamp(44px, 5vw, 68px);
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -2px;
+}
+
+.college-analytics-hero h1 span {
+  color: #7c3aed;
+}
+
+.college-analytics-hero > p {
+  max-width: 720px;
+  margin: 18px auto 0;
+  color: #666666;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.college-analytics-institution {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 24px;
+  padding: 13px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.college-analytics-institution span {
+  color: #808080;
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.college-analytics-institution strong {
+  font-size: 14px;
+}
+
+/* =========================
+   TOP METRICS
+========================= */
+
+.college-analytics-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.analytics-metric-card {
+  min-height: 230px;
+  padding: 24px;
+  border: 1px solid #dddddd;
+  border-radius: 18px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.analytics-metric-top {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 22px;
+}
+
+.analytics-metric-icon {
+  width: 46px;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.analytics-metric-icon.purple {
+  color: #7c3aed;
+  background: #f0e7ff;
+}
+
+.analytics-metric-icon.blue {
+  color: #178ee8;
+  background: #e8f4ff;
+}
+
+.analytics-metric-icon.green {
+  color: #00a878;
+  background: #e7f8f2;
+}
+
+.analytics-metric-icon.orange {
+  color: #f28c00;
+  background: #fff3e5;
+}
+
+.analytics-metric-label {
+  display: block;
+  color: #666666;
+  font-size: 16px;
+}
+
+.analytics-metric-number {
+  display: block;
+  margin: 10px 0 8px;
+  font-family: "Fraunces", serif;
+  font-size: 46px;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.analytics-metric-card p {
+  margin: 0;
+  color: #808080;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* =========================
+   PANELS
+========================= */
+
+.college-analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.analytics-panel,
+.analytics-wide-panel {
+  border: 1px solid #dddddd;
+  border-radius: 18px;
+  background: #ffffff;
+}
+
+.analytics-panel {
+  padding: 30px;
+}
+
+.analytics-wide-panel {
+  margin-bottom: 20px;
+  padding: 30px;
+}
+
+.analytics-panel-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.analytics-panel-heading h2 {
+  margin: 9px 0 0;
+  font-family: "Fraunces", serif;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.analytics-panel-heading button {
+  flex-shrink: 0;
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 12px 16px;
+  color: #6d28d9;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease;
+}
+
+.analytics-panel-heading button:hover {
+  transform: translateY(-1px);
+  border-color: #bfaaff;
+  background: #faf8ff;
+}
+
+/* =========================
+   READINESS
+========================= */
+
+.analytics-readiness-number {
+  margin-top: 32px;
+  font-family: "Fraunces", serif;
+  font-size: 58px;
+  line-height: 1;
+}
+
+.analytics-muted {
+  color: #808080;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.analytics-muted.center {
+  margin-top: 22px;
+  text-align: center;
+}
+
+.analytics-progress {
+  width: 100%;
+  height: 10px;
+  margin: 18px 0 28px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #ededed;
+}
+
+.analytics-progress > div {
+  height: 100%;
+  border-radius: inherit;
+  background: #7c3aed;
+  transition: width 0.35s ease;
+}
+
+.analytics-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: 1px solid #e6e6e6;
+  border-radius: 13px;
+  overflow: hidden;
+}
+
+.analytics-mini-grid > div {
+  padding: 19px 12px;
+  text-align: center;
+}
+
+.analytics-mini-grid > div + div {
+  border-left: 1px solid #e6e6e6;
+}
+
+.analytics-mini-grid span,
+.analytics-coverage-grid span {
+  display: block;
+  color: #808080;
+  font-size: 13px;
+}
+
+.analytics-mini-grid strong {
+  display: block;
+  margin-top: 7px;
+  font-size: 24px;
+}
+
+/* =========================
+   SKILL COVERAGE
+========================= */
+
+.analytics-coverage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 30px;
+  border: 1px solid #dddddd;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.analytics-coverage-grid > div {
+  padding: 31px 18px;
+  text-align: center;
+}
+
+.analytics-coverage-grid > div + div {
+  border-left: 1px solid #dddddd;
+}
+
+.analytics-coverage-grid strong {
+  display: block;
+  margin-bottom: 10px;
+  font-family: "Fraunces", serif;
+  font-size: 50px;
+  line-height: 1;
+  font-weight: 500;
+}
+
+/* =========================
+   APPLICATION PIPELINE
+========================= */
+
+.analytics-pipeline {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: 28px;
+  border: 1px solid #dddddd;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.analytics-pipeline > div {
+  padding: 27px 15px;
+  text-align: center;
+}
+
+.analytics-pipeline > div + div {
+  border-left: 1px solid #dddddd;
+}
+
+.analytics-pipeline span {
+  display: block;
+  margin-bottom: 10px;
+  color: #808080;
+  font-size: 14px;
+}
+
+.analytics-pipeline strong {
+  font-family: "Fraunces", serif;
+  font-size: 38px;
+  font-weight: 500;
+}
+
+/* =========================
+   INDUSTRY DEMAND
+========================= */
+
+.analytics-skill-list,
+.analytics-gap-list {
+  margin-top: 10px;
+}
+
+.analytics-skill-row {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  align-items: center;
+  gap: 15px;
+  padding: 20px 0;
+  border-bottom: 1px solid #ededed;
+}
+
+.analytics-skill-row:last-child {
+  border-bottom: none;
+}
+
+.analytics-rank {
+  color: #7c3aed;
+  font-family: monospace;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.analytics-skill-copy {
+  min-width: 0;
+}
+
+.analytics-skill-copy strong {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.analytics-skill-copy span {
+  display: block;
+  color: #808080;
+  font-size: 13px;
+}
+
+.analytics-demand {
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: #f2ecff;
+  color: #6d28d9;
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* =========================
+   SKILL GAPS
+========================= */
+
+.analytics-gap-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid #ededed;
+}
+
+.analytics-gap-row:last-child {
+  border-bottom: none;
+}
+
+.analytics-gap-row > div strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 16px;
+}
+
+.analytics-gap-row > div span {
+  color: #808080;
+  font-size: 13px;
+}
+
+.analytics-gap-row > strong {
+  color: #ef4d5d;
+  font-family: "Fraunces", serif;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+/* =========================
+   TRAINING
+========================= */
+
+.analytics-training-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 28px;
+  border: 1px solid #dddddd;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.analytics-training-grid > div {
+  padding: 27px 16px;
+  text-align: center;
+}
+
+.analytics-training-grid > div + div {
+  border-left: 1px solid #dddddd;
+}
+
+.analytics-training-grid span {
+  display: block;
+  color: #808080;
+  font-size: 14px;
+}
+
+.analytics-training-grid strong {
+  display: block;
+  margin-top: 8px;
+  font-family: "Fraunces", serif;
+  font-size: 38px;
+  font-weight: 500;
+}
+
+/* =========================
+   EMPTY / LOADING / ERROR
+========================= */
+
+.analytics-empty {
+  margin-top: 25px;
+  padding: 35px 20px;
+  border: 1px dashed #dddddd;
+  border-radius: 12px;
+  color: #808080;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.college-analytics-state {
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  color: #666666;
+  text-align: center;
+}
+
+.college-analytics-state.error h2 {
+  margin: 0;
+  color: #171717;
+  font-family: "Fraunces", serif;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.college-analytics-state.error p {
+  max-width: 600px;
+  color: #ef4d5d;
+}
+
+.college-analytics-loader {
+  width: 34px;
+  height: 34px;
+  border: 3px solid #e7e0ff;
+  border-top-color: #7c3aed;
+  border-radius: 50%;
+  animation: analytics-spin 0.8s linear infinite;
+}
+
+@keyframes analytics-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1050px) {
+  .college-analytics-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .college-analytics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .college-analytics-page {
+    padding: 35px 18px 60px;
+  }
+
+  .college-analytics-hero h1 {
+    font-size: 45px;
+  }
+
+  .college-analytics-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .analytics-panel,
+  .analytics-wide-panel {
+    padding: 22px;
+  }
+
+  .analytics-panel-heading {
+    flex-direction: column;
+  }
+
+  .analytics-pipeline {
+    grid-template-columns: 1fr;
+  }
+
+  .analytics-pipeline > div + div {
+    border-left: none;
+    border-top: 1px solid #dddddd;
+  }
+
+  .analytics-training-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .analytics-training-grid > div + div {
+    border-left: none;
+  }
+
+  .analytics-training-grid > div:nth-child(even) {
+    border-left: 1px solid #dddddd;
+  }
+
+  .analytics-training-grid > div:nth-child(n + 3) {
+    border-top: 1px solid #dddddd;
+  }
+}
+
+@media (max-width: 520px) {
+  .college-analytics-institution {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .analytics-mini-grid,
+  .analytics-coverage-grid,
+  .analytics-training-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .analytics-mini-grid > div + div,
+  .analytics-coverage-grid > div + div,
+  .analytics-training-grid > div:nth-child(even) {
+    border-left: none;
+  }
+
+  .analytics-mini-grid > div + div,
+  .analytics-coverage-grid > div + div,
+  .analytics-training-grid > div + div {
+    border-top: 1px solid #dddddd;
+  }
+
+  .analytics-skill-row {
+    grid-template-columns: 35px 1fr;
+  }
+
+  .analytics-demand {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+/* =========================================================
+   DARK MODE (generated from the light palette above)
+   Light mode is untouched; this only re-colours cards, text,
+   borders, badges and buttons when the OS is in dark mode.
+========================================================= */
+
+@media (prefers-color-scheme: dark) {
+  .college-analytics-page {
+    color: #f3f3f5;
+  }
+
+  .college-analytics-kicker, .analytics-eyebrow {
+    color: #b79cf7;
+  }
+
+  .college-analytics-hero h1 span {
+    color: #b79cf7;
+  }
+
+  .college-analytics-hero > p {
+    color: #c8c8cd;
+  }
+
+  .college-analytics-institution {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+  }
+
+  .college-analytics-institution span {
+    color: #a8a8ae;
+  }
+
+  .analytics-metric-card {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+  }
+
+  .analytics-metric-icon.purple {
+    color: #b79cf7;
+    background: rgba(139,92,246,0.16);
+  }
+
+  .analytics-metric-icon.blue {
+    color: #86b6ff;
+    background: rgba(59,130,246,0.14);
+  }
+
+  .analytics-metric-icon.green {
+    color: #7ddc9d;
+    background: rgba(34,197,94,0.14);
+  }
+
+  .analytics-metric-icon.orange {
+    color: #f2c14e;
+    background: rgba(245,158,11,0.14);
+  }
+
+  .analytics-metric-label {
+    color: #c8c8cd;
+  }
+
+  .analytics-metric-card p {
+    color: #a8a8ae;
+  }
+
+  .analytics-panel, .analytics-wide-panel {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+  }
+
+  .analytics-panel-heading {
+    border-bottom: 1px solid #3a3a3a;
+  }
+
+  .analytics-panel-heading button {
+    border: 1px solid #3a3a3a;
+    background: #222222;
+    color: #b79cf7;
+  }
+
+  .analytics-panel-heading button:hover {
+    border-color: rgba(59,130,246,0.38);
+    background: #222222;
+  }
+
+  .analytics-muted {
+    color: #a8a8ae;
+  }
+
+  .analytics-progress {
+    background: #333333;
+  }
+
+  .analytics-mini-grid {
+    border: 1px solid #3a3a3a;
+  }
+
+  .analytics-mini-grid > div + div {
+    border-left: 1px solid #3a3a3a;
+  }
+
+  .analytics-mini-grid span, .analytics-coverage-grid span {
+    color: #a8a8ae;
+  }
+
+  .analytics-coverage-grid {
+    border: 1px solid #3a3a3a;
+  }
+
+  .analytics-coverage-grid > div + div {
+    border-left: 1px solid #3a3a3a;
+  }
+
+  .analytics-pipeline {
+    border: 1px solid #3a3a3a;
+  }
+
+  .analytics-pipeline > div + div {
+    border-left: 1px solid #3a3a3a;
+  }
+
+  .analytics-pipeline span {
+    color: #a8a8ae;
+  }
+
+  .analytics-skill-row {
+    border-bottom: 1px solid #3a3a3a;
+  }
+
+  .analytics-rank {
+    color: #b79cf7;
+  }
+
+  .analytics-skill-copy span {
+    color: #a8a8ae;
+  }
+
+  .analytics-demand {
+    background: rgba(139,92,246,0.16);
+    color: #b79cf7;
+  }
+
+  .analytics-gap-row {
+    border-bottom: 1px solid #3a3a3a;
+  }
+
+  .analytics-gap-row > div span {
+    color: #a8a8ae;
+  }
+
+  .analytics-gap-row > strong {
+    color: #ff8f8a;
+  }
+
+  .analytics-training-grid {
+    border: 1px solid #3a3a3a;
+  }
+
+  .analytics-training-grid > div + div {
+    border-left: 1px solid #3a3a3a;
+  }
+
+  .analytics-training-grid span {
+    color: #a8a8ae;
+  }
+
+  .analytics-empty {
+    border: 1px dashed #3a3a3a;
+    color: #a8a8ae;
+  }
+
+  .college-analytics-state {
+    color: #c8c8cd;
+  }
+
+  .college-analytics-state.error h2 {
+    color: #f3f3f5;
+  }
+
+  .college-analytics-state.error p {
+    color: #ff8f8a;
+  }
+
+  .college-analytics-loader {
+    border: 3px solid rgba(59,130,246,0.38);
+  }
+}
+
+@media (prefers-color-scheme: dark) and (max-width: 760px) {
+    .analytics-pipeline > div + div {
+      border-top: 1px solid #3a3a3a;
+    }
+
+    .analytics-training-grid > div:nth-child(even) {
+      border-left: 1px solid #3a3a3a;
+    }
+
+    .analytics-training-grid > div:nth-child(n + 3) {
+      border-top: 1px solid #3a3a3a;
+    }
+}
+
+@media (prefers-color-scheme: dark) and (max-width: 520px) {
+    .analytics-mini-grid > div + div,   .analytics-coverage-grid > div + div,   .analytics-training-grid > div + div {
+      border-top: 1px solid #3a3a3a;
+    }
+}

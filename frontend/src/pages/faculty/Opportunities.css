@@ -1,0 +1,454 @@
+.faculty-opportunities-page {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.faculty-opportunities-hero {
+  padding: 12px 0 28px;
+}
+
+.faculty-opportunities-eyebrow,
+.faculty-opportunities-section-label,
+.faculty-apply-eyebrow {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #7437f5;
+}
+
+.faculty-opportunities-hero h1 {
+  margin: 9px 0 12px;
+  font-family: "Fraunces", serif;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: #111827;
+}
+
+.faculty-opportunities-hero h1 span {
+  color: #7437f5;
+}
+
+.faculty-opportunities-hero p {
+  max-width: 700px;
+  margin: 0;
+  color: #687386;
+  line-height: 1.7;
+  font-size: 0.9rem;
+}
+
+.faculty-opportunities-error,
+.faculty-opportunities-success {
+  margin-bottom: 16px;
+  padding: 13px 15px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+}
+
+.faculty-opportunities-error {
+  border: 1px solid #f2b8b8;
+  background: #fff5f5;
+  color: #b42318;
+}
+
+.faculty-opportunities-success {
+  border: 1px solid #b7e5d3;
+  background: #f1fcf7;
+  color: #087a55;
+}
+
+.faculty-opportunities-profile {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 1px;
+  margin-bottom: 22px;
+  overflow: hidden;
+  border: 1px solid #dedfe5;
+  border-radius: 14px;
+  background: #dedfe5;
+}
+
+.faculty-opportunities-profile > div {
+  min-height: 90px;
+  padding: 17px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #ffffff;
+}
+
+.faculty-opportunities-profile span {
+  margin-bottom: 6px;
+  color: #8b91a1;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.faculty-opportunities-profile strong {
+  color: #161b27;
+  font-size: 0.84rem;
+}
+
+.faculty-opportunities-toolbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.faculty-opportunities-toolbar h2 {
+  margin: 6px 0 0;
+  font-family: "Fraunces", serif;
+  font-size: 1.45rem;
+  color: #111827;
+}
+
+.faculty-opportunities-filter {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.faculty-opportunities-filter label {
+  color: #747b8b;
+  font-size: 0.75rem;
+}
+
+.faculty-opportunities-filter select {
+  min-height: 40px;
+  padding: 0 34px 0 12px;
+  border: 1px solid #d9dbe3;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #161b27;
+  outline: none;
+}
+
+.faculty-opportunities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.faculty-opportunity-card {
+  padding: 22px;
+  border: 1px solid #dedfe5;
+  border-radius: 15px;
+  background: #ffffff;
+}
+
+.faculty-opportunity-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.faculty-opportunity-type {
+  color: #7437f5;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.faculty-opportunity-card h3 {
+  margin: 7px 0 5px;
+  color: #111827;
+  font-size: 1.15rem;
+}
+
+.faculty-opportunity-company {
+  color: #737b8b;
+  font-size: 0.78rem;
+}
+
+.faculty-opportunity-open {
+  padding: 6px 10px;
+  border: 1px solid #b8eadc;
+  border-radius: 999px;
+  color: #008a63;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.62rem;
+}
+
+.faculty-opportunity-description {
+  margin: 18px 0;
+  color: #697386;
+  line-height: 1.65;
+  font-size: 0.84rem;
+}
+
+.faculty-opportunity-details {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.faculty-opportunity-details > div {
+  min-height: 72px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid #e1e2e8;
+  border-radius: 10px;
+  background: #fafafd;
+}
+
+.faculty-opportunity-details span,
+.faculty-opportunity-footer span {
+  margin-bottom: 5px;
+  color: #9298a7;
+  font-size: 0.66rem;
+}
+
+.faculty-opportunity-details strong {
+  overflow-wrap: anywhere;
+  color: #202532;
+  font-size: 0.77rem;
+}
+
+.faculty-opportunity-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 17px;
+  padding-top: 16px;
+  border-top: 1px solid #ececf0;
+}
+
+.faculty-opportunity-footer > div:first-child {
+  display: flex;
+  flex-direction: column;
+}
+
+.faculty-opportunity-footer strong {
+  color: #303645;
+  font-size: 0.76rem;
+}
+
+.faculty-opportunity-footer button {
+  min-height: 41px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 9px;
+  background: #7437f5;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.faculty-opportunity-applied {
+  padding: 9px 14px;
+  border: 1px solid #b8eadc;
+  border-radius: 9px;
+  background: #f1fcf7;
+  color: #008a63;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.faculty-opportunities-empty {
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #dedfe5;
+  border-radius: 15px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.faculty-opportunities-empty > div {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+  border-radius: 13px;
+  background: #f1e9ff;
+  color: #7437f5;
+  font-size: 1.5rem;
+}
+
+.faculty-opportunities-empty h3 {
+  margin: 0 0 7px;
+  color: #171c28;
+}
+
+.faculty-opportunities-empty p {
+  margin: 0;
+  color: #9298a7;
+  font-size: 0.82rem;
+}
+
+.faculty-opportunities-state {
+  min-height: 55vh;
+  display: grid;
+  place-items: center;
+  color: #7a8190;
+}
+
+/* APPLY MODAL */
+
+.faculty-apply-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(18, 21, 30, 0.45);
+}
+
+.faculty-apply-modal {
+  position: relative;
+  width: min(600px, 100%);
+  padding: 28px;
+  border: 1px solid #dedfe5;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.16);
+}
+
+.faculty-apply-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  background: transparent;
+  color: #7b8190;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.faculty-apply-modal h2 {
+  margin: 8px 35px 5px 0;
+  font-family: "Fraunces", serif;
+  color: #111827;
+  font-size: 1.55rem;
+}
+
+.faculty-apply-company {
+  margin: 0 0 22px;
+  color: #777e8e;
+  font-size: 0.8rem;
+}
+
+.faculty-apply-modal form {
+  display: flex;
+  flex-direction: column;
+}
+
+.faculty-apply-modal label {
+  margin-bottom: 8px;
+  color: #222735;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.faculty-apply-modal textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 13px;
+  border: 1px solid #d9dbe3;
+  border-radius: 10px;
+  background: #fafafd;
+  color: #171c28;
+  font: inherit;
+  line-height: 1.6;
+  resize: vertical;
+  outline: none;
+}
+
+.faculty-apply-modal textarea:focus {
+  border-color: #7437f5;
+  box-shadow: 0 0 0 3px rgba(116, 55, 245, 0.08);
+}
+
+.faculty-apply-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.faculty-apply-actions button {
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.faculty-apply-cancel {
+  border: 1px solid #d9dbe3;
+  background: #ffffff;
+  color: #687080;
+}
+
+.faculty-apply-submit {
+  border: 0;
+  background: #7437f5;
+  color: #ffffff;
+}
+
+.faculty-apply-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+@media (max-width: 850px) {
+  .faculty-opportunities-profile {
+    grid-template-columns: 1fr;
+  }
+
+  .faculty-opportunity-details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .faculty-opportunities-toolbar,
+  .faculty-opportunity-card-header,
+  .faculty-opportunity-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .faculty-opportunities-filter {
+    width: 100%;
+  }
+
+  .faculty-opportunities-filter select {
+    flex: 1;
+  }
+
+  .faculty-opportunity-details {
+    grid-template-columns: 1fr;
+  }
+
+  .faculty-opportunity-footer button {
+    width: 100%;
+  }
+
+  .faculty-apply-actions {
+    flex-direction: column-reverse;
+  }
+
+  .faculty-apply-actions button {
+    width: 100%;
+  }
+}

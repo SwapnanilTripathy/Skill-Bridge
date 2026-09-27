@@ -1,0 +1,504 @@
+.faculty-applications-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 68px 64px 90px;
+  background: #f8f8fb;
+  color: #121827;
+}
+
+.faculty-applications-hero {
+  max-width: 900px;
+  margin: 0 auto 42px;
+  text-align: center;
+}
+
+.faculty-applications-kicker {
+  display: block;
+  margin-bottom: 18px;
+  color: #7138ff;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.faculty-applications-hero h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(48px, 6vw, 76px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.faculty-applications-hero h1 span {
+  color: #7138ff;
+}
+
+.faculty-applications-hero p {
+  max-width: 760px;
+  margin: 22px auto 0;
+  color: #667085;
+  font-size: 19px;
+  line-height: 1.7;
+}
+
+.faculty-applications-summary {
+  max-width: 1120px;
+  margin: 0 auto 32px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid #dfe2e8;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.faculty-applications-summary article {
+  min-height: 175px;
+  padding: 30px 24px;
+  text-align: center;
+  border-right: 1px solid #e2e4e9;
+}
+
+.faculty-applications-summary article:last-child {
+  border-right: none;
+}
+
+.faculty-applications-summary span {
+  display: block;
+  color: #7c8496;
+  font-size: 15px;
+}
+
+.faculty-applications-summary strong {
+  display: block;
+  margin: 12px 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 42px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.faculty-applications-summary p {
+  margin: 0;
+  color: #939bad;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.faculty-applications-section {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 34px;
+  background: #ffffff;
+  border: 1px solid #dfe2e8;
+  border-radius: 20px;
+}
+
+.faculty-applications-section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e4e6eb;
+}
+
+.faculty-applications-section-kicker {
+  display: block;
+  margin-bottom: 10px;
+  color: #7138ff;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.7px;
+}
+
+.faculty-applications-section-header h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.faculty-applications-explore {
+  border: 0;
+  background: transparent;
+  color: #7138ff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.faculty-applications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 28px;
+}
+
+.faculty-application-card {
+  padding: 30px;
+  border: 1px solid #dfe2e8;
+  border-radius: 18px;
+  background: #fafbfc;
+}
+
+.faculty-application-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.faculty-application-type {
+  display: inline-block;
+  margin-bottom: 13px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #f0e8ff;
+  color: #7138ff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.faculty-application-card h3 {
+  margin: 0;
+  color: #111827;
+  font-size: 25px;
+  line-height: 1.3;
+}
+
+.faculty-application-company {
+  margin: 9px 0 0;
+  color: #7b8496;
+  font-size: 16px;
+}
+
+.faculty-application-status {
+  flex-shrink: 0;
+  padding: 11px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.faculty-application-status.applied {
+  color: #6535e6;
+  background: #eee7ff;
+}
+
+.faculty-application-status.shortlisted {
+  color: #b46c00;
+  background: #fff2d6;
+}
+
+.faculty-application-status.selected {
+  color: #00865f;
+  background: #ddf8ef;
+}
+
+.faculty-application-status.rejected {
+  color: #d9364f;
+  background: #ffe5e9;
+}
+
+.faculty-application-status.withdrawn {
+  color: #697386;
+  background: #e9ebef;
+}
+
+.faculty-application-description {
+  margin: 24px 0 0;
+  color: #606b7c;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.faculty-application-details {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.faculty-application-details > div {
+  min-height: 115px;
+  padding: 20px 14px;
+  border: 1px solid #dde1e7;
+  border-radius: 14px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.faculty-application-details span,
+.faculty-application-programme span {
+  display: block;
+  margin-bottom: 9px;
+  color: #9098aa;
+  font-size: 13px;
+}
+
+.faculty-application-details strong {
+  color: #111827;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.faculty-application-programme {
+  margin-top: 16px;
+  padding: 18px 20px;
+  border: 1px solid #e0e3e8;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.faculty-application-programme strong {
+  font-size: 15px;
+}
+
+.faculty-application-status-message {
+  margin-top: 20px;
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  border-radius: 14px;
+}
+
+.faculty-application-status-message.applied {
+  background: #f5f1ff;
+  border: 1px solid #e6dbff;
+}
+
+.faculty-application-status-message.shortlisted {
+  background: #fff8e8;
+  border: 1px solid #ffe3a4;
+}
+
+.faculty-application-status-message.selected {
+  background: #edfbf6;
+  border: 1px solid #bdeedc;
+}
+
+.faculty-application-status-message.rejected {
+  background: #fff0f2;
+  border: 1px solid #ffd1d8;
+}
+
+.faculty-application-status-message.withdrawn {
+  background: #f1f2f4;
+  border: 1px solid #dedfe3;
+}
+
+.faculty-application-status-symbol {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #ffffff;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.faculty-application-status-message span {
+  display: block;
+  color: #8a92a3;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.faculty-application-status-message strong {
+  display: block;
+  margin-top: 4px;
+  color: #111827;
+  font-size: 17px;
+}
+
+.faculty-application-status-message p {
+  margin: 6px 0 0;
+  color: #657083;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.faculty-application-statement {
+  margin-top: 18px;
+  padding: 20px;
+  border-left: 3px solid #7138ff;
+  background: #f7f3ff;
+}
+
+.faculty-application-statement span {
+  display: block;
+  margin-bottom: 9px;
+  color: #8b91a2;
+  font-size: 13px;
+}
+
+.faculty-application-statement p {
+  margin: 0;
+  color: #4d586a;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.faculty-applications-empty {
+  padding: 80px 30px;
+  text-align: center;
+}
+
+.faculty-applications-empty-icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: #f0e7ff;
+  color: #7138ff;
+  font-size: 30px;
+}
+
+.faculty-applications-empty h3 {
+  margin: 0;
+  font-size: 21px;
+}
+
+.faculty-applications-empty p {
+  max-width: 470px;
+  margin: 12px auto 22px;
+  color: #8991a2;
+  line-height: 1.6;
+}
+
+.faculty-applications-empty button,
+.faculty-applications-state button {
+  padding: 13px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #7138ff;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.faculty-applications-state {
+  max-width: 650px;
+  margin: 100px auto;
+  padding: 60px 30px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #e0e3e8;
+  border-radius: 18px;
+}
+
+.faculty-applications-state h2 {
+  margin: 16px 0 8px;
+}
+
+.faculty-applications-state p {
+  color: #7c8495;
+}
+
+.faculty-applications-loader {
+  width: 38px;
+  height: 38px;
+  margin: 0 auto;
+  border: 4px solid #e7ddff;
+  border-top-color: #7138ff;
+  border-radius: 50%;
+  animation: facultyApplicationsSpin 0.8s linear infinite;
+}
+
+.faculty-applications-state-icon {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #ffe7eb;
+  color: #e52f4f;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+@keyframes facultyApplicationsSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1000px) {
+  .faculty-applications-page {
+    padding: 50px 30px 70px;
+  }
+
+  .faculty-applications-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .faculty-applications-summary article:nth-child(2) {
+    border-right: none;
+  }
+
+  .faculty-applications-summary article:nth-child(-n + 2) {
+    border-bottom: 1px solid #e2e4e9;
+  }
+
+  .faculty-application-details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .faculty-applications-page {
+    padding: 38px 16px 60px;
+  }
+
+  .faculty-applications-hero h1 {
+    font-size: 46px;
+  }
+
+  .faculty-applications-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .faculty-applications-summary article {
+    border-right: none;
+    border-bottom: 1px solid #e2e4e9;
+  }
+
+  .faculty-applications-summary article:last-child {
+    border-bottom: none;
+  }
+
+  .faculty-applications-section {
+    padding: 22px 16px;
+  }
+
+  .faculty-applications-section-header,
+  .faculty-application-card-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .faculty-application-details {
+    grid-template-columns: 1fr;
+  }
+
+  .faculty-application-card {
+    padding: 20px;
+  }
+}
