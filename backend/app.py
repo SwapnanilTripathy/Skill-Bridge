@@ -20,5 +20,13 @@ def home():
     }
 
 
+@app.route("/health")
+def health():
+    return {
+        "status": "ok",
+        "service": "skillbridge-backend"
+    }
+
+
 if __name__ == "__main__":
     app.run(debug=True)
